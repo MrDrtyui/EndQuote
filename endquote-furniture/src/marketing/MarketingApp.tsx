@@ -1,26 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, Check, Clock3, Globe2, Link2, ListChecks, Mail, Menu, MessageSquareText, Plus, Smartphone, X } from 'lucide-react'
-import { FAQ, MARKETING, whatsappLink } from './content'
+import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, Check, Clock3, Globe2, Link2, Mail, Menu, X } from 'lucide-react'
+import { MARKETING, whatsappLink } from './content'
 import StudioPreview from './StudioPreview'
 import Workflow from './Workflow'
-import ClientDemo from './ClientDemo'
 import { Logo, Modal, QuoteMark, SectionLabel } from './ui'
 import { api } from '../owner/api'
 import './marketing.css'
 
 const navigation = [
-  { href: '#features', label: 'Возможности' },
   { href: '#how-it-works', label: 'Как это работает' },
   { href: '#pricing', label: 'Тарифы' },
-  { href: '#faq', label: 'FAQ' },
 ]
 const external = { target: '_blank', rel: 'noopener noreferrer' } as const
-const benefits = [
-  { icon: MessageSquareText, title: 'Цены без переписки', text: 'Клиент заранее видит стоимость и состав услуги. Разговор начинается с конкретики.' },
-  { icon: ListChecks, title: 'Все детали в заявке', text: 'Какая мебель, сколько предметов, куда приехать — не нужно собирать по сообщениям.' },
-  { icon: Smartphone, title: 'Удобно с телефона', text: 'Каталог, расчёт и заявка открываются в браузере. Без установки приложения.' },
-]
-
 type OwnerAction = { label: string; href: string }
 function Header({ action, authenticated }: { action: OwnerAction; authenticated: boolean }) {
   const [open, setOpen] = useState(false)
@@ -80,7 +71,7 @@ function Pricing({ action }: { action: OwnerAction }) {
   return <section id="pricing" className="eq-pricing-section eq-section">
     <div className="eq-container eq-pricing">
       <div className="eq-pricing-copy">
-        <SectionLabel index="04">Ранний доступ</SectionLabel>
+        <SectionLabel index="02">Ранний доступ</SectionLabel>
         <h2>Начнём с вашего<br /><em>бизнеса.</em></h2>
         <p>Сейчас фокусируемся на химчистке мебели. Хотим понять задачи мастеров и небольших компаний, прежде чем открывать подписки.</p>
         <a className="eq-text-link" href={whatsappLink('Здравствуйте! Хочу обсудить ранний доступ к EndQuote для моего бизнеса.')} {...external}>Расскажите о своей работе<ArrowUpRight size={15} /></a>
@@ -108,7 +99,7 @@ function Footer() {
     <div className="eq-container">
       <div className="eq-footer-main">
         <div><Logo /><p>Ваши услуги. Ваши цены.<br />Одна ссылка в профиле.</p></div>
-        <div className="eq-footer-column"><strong>Продукт</strong><a href="#features">Возможности</a><a href={MARKETING.demo}>Клиентское демо</a><a href="#pricing">Ранний доступ</a></div>
+        <div className="eq-footer-column"><strong>Продукт</strong><a href="#how-it-works">Как это работает</a><a href={MARKETING.demo}>Клиентское демо</a><a href="#pricing">Ранний доступ</a></div>
         <div className="eq-footer-column"><strong>Связаться</strong><a href={`mailto:${MARKETING.email}`}>{MARKETING.email}<ArrowUpRight size={12} /></a><a href={whatsappLink()} {...external}>+7 (708) 805-65-48<ArrowUpRight size={12} /></a></div>
         <a className="eq-up" href="#top" aria-label="В начало страницы"><ArrowUp size={18} /></a>
       </div>
@@ -154,23 +145,7 @@ export default function MarketingApp() {
       </section>
       <Channels />
       <Workflow />
-      <ClientDemo />
-      <section className="eq-section eq-container eq-benefits">
-        <SectionLabel index="03">Для бизнеса</SectionLabel>
-        <h2>Меньше переписки.<br />Больше ясности.</h2>
-        <div className="eq-benefits-grid">{benefits.map(item => <article key={item.title}><item.icon size={25} strokeWidth={1.4} /><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
-      </section>
       <Pricing action={action} />
-      <section id="faq" className="eq-container eq-section eq-faq" aria-labelledby="eq-faq-title">
-        <div>
-          <SectionLabel index="05">FAQ</SectionLabel>
-          <h2 id="eq-faq-title">Есть вопрос?</h2>
-          <p>Не нашли ответ? <a href={whatsappLink()} {...external}>Напишите нам<ArrowUpRight size={14} /></a></p>
-        </div>
-        <div className="eq-faq-list">{FAQ.map((item, i) => <details key={item.question}>
-          <summary><small>0{i + 1}</small><span>{item.question}</span><Plus size={16} /></summary><p>{item.answer}</p>
-        </details>)}</div>
-      </section>
       <section className="eq-close-section">
         <div className="eq-container eq-close-card">
           <div><span className="eq-section-label"><i />Попробуйте EndQuote</span>
