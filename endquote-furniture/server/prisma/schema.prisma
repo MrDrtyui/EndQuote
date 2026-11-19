@@ -1,0 +1,162 @@
+generator client {
+  provider = "prisma-client"
+  output = "../src/generated"
+  moduleFormat = "esm"
+}
+datasource db {
+  provider = "postgresql"
+}
+model Owner {
+  id String @id @default(uuid()) @db.Uuid
+  normalizedEmail String @unique
+  passwordHash String
+  createdAt DateTime @default(now())
+  sessions OwnerSession[]
+  business Business?
+}
+model OwnerSession {
+  tokenHash String @id
+  ownerId String @db.Uuid
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  issuedAt DateTime @default(now())
+  idleExpiresAt DateTime
+  absoluteExpiresAt DateTime
+  revokedAt DateTime?
+  @@index([ownerId])
+}
+model RateBucket {
+  key String @id
+  hits Int
+  expiresAt DateTime
+  @@index([expiresAt])
+}
+model PlatformAdmin {
+  id String @id @default(uuid()) @db.Uuid
+  email String @unique
+  passwordHash String
+  sessions AdminSession[]
+  audits AccessAudit[]
+}
+model AdminSession {
+  tokenHash String @id
+  adminId String @db.Uuid
+  admin PlatformAdmin @relation(fields:[adminId],references:[id])
+  idleExpiresAt DateTime
+  absoluteExpiresAt DateTime
+}
+model AccessAudit {
+  id String @id @default(uuid()) @db.Uuid
+  adminId String @db.Uuid
+  admin PlatformAdmin @relation(fields:[adminId],references:[id])
+  businessId String @db.Uuid
+  business Business @relation(fields:[businessId],references:[id])
+  createdAt DateTime @default(now())
+  prior Json
+  next Json
+  reason String
+  @@index([businessId])
+}
+model Business {
+  id String @id @default(uuid()) @db.Uuid
+  ownerId String @unique @db.Uuid
+  owner Owner @relation(fields: [ownerId], references: [id])
+  slug String @unique
+  name String
+  city String
+  phone String
+  description String @default("")
+  area String @default("")
+  published Boolean @default(false)
+  accessState String @default("trial")
+  trialEndsAt DateTime
+  paidThrough DateTime?
+  accessVersion Int @default(1)
+  catalogRevision Int @default(1)
+  catalog Json
+  slugs Slug[]
+  customers Customer[]
+  orders CleaningOrder[]
+  uploads Upload[]
+  audits AccessAudit[]
+  logoId String? @db.Uuid
+  logo Upload? @relation("CurrentLogo",fields:[id,logoId],references:[businessId,id],onDelete:Restrict,onUpdate:Restrict)
+  social Json @default("{}")
+}
+model Slug {
+  name String @id
+  businessId String @db.Uuid
+  business Business @relation(fields: [businessId],references:[id])
+  @@index([businessId])
+}
+model Customer {
+  id String @id @default(uuid()) @db.Uuid
+  businessId String @db.Uuid
+  business Business @relation(fields:[businessId],references:[id])
+  phone String
+  name String
+  orders CleaningOrder[]
+  @@unique([businessId,phone])
+  @@unique([businessId,id])
+}
+model CleaningOrder {
+  id String @id @default(uuid()) @db.Uuid
+  businessId String @db.Uuid
+  business Business @relation(fields:[businessId],references:[id])
+  customerId String @db.Uuid
+  customer Customer @relation(fields:[businessId,customerId],references:[businessId,id])
+  createdAt DateTime @default(now())
+  status String @default("new")
+  contact Json
+  businessName String
+  consentVersion String
+  consentAt DateTime
+  revision Int
+  total Int
+  session String
+  attempt String
+  payloadHash String
+  receipt String @unique
+  events StatusEvent[]
+  lines OrderLine[]
+  photos Upload[]
+  @@unique([businessId,id])
+  @@unique([businessId,session,attempt])
+  @@index([businessId,createdAt,id])
+}
+model OrderLine {
+  id String @id @default(uuid()) @db.Uuid
+  businessId String @db.Uuid
+  orderId String @db.Uuid
+  position Int
+  snapshot Json
+  order CleaningOrder @relation(fields:[businessId,orderId],references:[businessId,id])
+  @@unique([businessId,orderId,position])
+}
+model StatusEvent {
+  id String @id @default(uuid()) @db.Uuid
+  businessId String @db.Uuid
+  orderId String @db.Uuid
+  order CleaningOrder @relation(fields:[businessId,orderId],references:[businessId,id])
+  actor String @db.Uuid
+  createdAt DateTime @default(now())
+  from String
+  to String
+  @@index([businessId,orderId])
+}
+model Upload {
+  id String @id @default(uuid()) @db.Uuid
+  businessId String @db.Uuid
+  business Business @relation(fields:[businessId],references:[id])
+  orderId String? @db.Uuid
+  order CleaningOrder? @relation(fields:[businessId,orderId],references:[businessId,id])
+  purpose String
+  session String
+  attempt String
+  key String @unique
+  size Int
+  state String
+  createdAt DateTime @default(now())
+  @@unique([businessId,id])
+  @@index([businessId,session,attempt])
+  currentFor Business[] @relation("CurrentLogo")
+}

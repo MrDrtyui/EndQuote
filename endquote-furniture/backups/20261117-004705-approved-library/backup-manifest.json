@@ -1,0 +1,97 @@
+[
+  {
+    "file": "sofa-u-shaped-geometry.json",
+    "bytes": 5252,
+    "sha256": "2007c44b025335d8328171df4ff13f243dcd202cf33527e19084f2703d15ef60"
+  },
+  {
+    "file": "three-loader-verification.json",
+    "bytes": 2778,
+    "sha256": "a2cf98c8730d00a3683e036deb6d81995a84312c03300abb0547f7751bb5366c"
+  },
+  {
+    "file": "sofa-4-seater-geometry.json",
+    "bytes": 4072,
+    "sha256": "7a2fe7fcfcc18bd568693403da3382bce6254e514831f2697ae8e5fb07906a19"
+  },
+  {
+    "file": "armchair-geometry.json",
+    "bytes": 1930,
+    "sha256": "6eaa8bfde0fd5b25a6641a0f1bf959c4dfca6e76a55d7ab9fd877aa3559b6f3e"
+  },
+  {
+    "file": "armchair.glb",
+    "bytes": 321076,
+    "sha256": "e45866c261d8a22e3497765f8d6d9ee8999f094a18a9bc3761cf297569af72b7"
+  },
+  {
+    "file": "sofa-2-seater.glb",
+    "bytes": 432020,
+    "sha256": "178fb12be5cd6ed4d7c2431a9c4f3eb713dedbc9133db9d911c96bca9e38717f"
+  },
+  {
+    "file": "blend-verification.json",
+    "bytes": 665,
+    "sha256": "470d8de82f3191c89462722d56ee1ee46b75c6eee47f449cc4dfb7637d057523"
+  },
+  {
+    "file": "asset-manifest.json",
+    "bytes": 3917,
+    "sha256": "ac66431b897ecef11862663e365bb98e3f159713a91c3618ac99f4c52395717d"
+  },
+  {
+    "file": "endquote-sofas.blend",
+    "bytes": 815308,
+    "sha256": "ac2ddcc1491ea65420879fbc2f4c53e9290ce4dbca6e859c828208fdefa91b36"
+  },
+  {
+    "file": "sofa-l-shaped-geometry.json",
+    "bytes": 3767,
+    "sha256": "01ce35bfe5fddf346baef418cfa5cfd7a4264acf1efb4e3145a38e4cf47a67e8"
+  },
+  {
+    "file": "README.md",
+    "bytes": 4226,
+    "sha256": "82ffeca7053eb9649f9cd9f2154b8c60306432684b0de43b8e22ca72a73d1e11"
+  },
+  {
+    "file": "sofa-4-seater.glb",
+    "bytes": 679128,
+    "sha256": "4ce4391934f62163159da89ac5bba89245d6ed3e15e6650f509626fa518045d9"
+  },
+  {
+    "file": "sofa-l-shaped.glb",
+    "bytes": 616648,
+    "sha256": "c28192a07ccce220b4bad3f7c20f62eb5e821d0a29b9d52ea57c5c88b96e75bb"
+  },
+  {
+    "file": "sofa-2-seater-geometry.json",
+    "bytes": 2590,
+    "sha256": "aaedb05ee841a0c382d533126fd218f219eb5fc1410e9b08cba73e20bfd3c874"
+  },
+  {
+    "file": "verification.json",
+    "bytes": 14783,
+    "sha256": "9d510aed0562e1efda2c09e2ae2ce0291b1072c23ea3550d74e39ab613af7ef2"
+  },
+  {
+    "file": "sofa-u-shaped.glb",
+    "bytes": 877148,
+    "sha256": "ebbbfef07affb4147223b4ffbf9f950f0b3a5f8a41931f274e4933a262d4776f"
+  },
+  {
+    "file": "roundtrip-verification.json",
+    "bytes": 2131,
+    "sha256": "8914551c15ddcb848db5ac2628928f69f9782cb9974a49ff2107b1e486607ce0"
+  },
+  {
+    "file": "sofa-3-seater-geometry.json",
+    "bytes": 3476,
+    "sha256": "4b1586d5e1f55b441e47a416354bb6e0012cc1dabdd79293cd25a42e71aa478e"
+  },
+  {
+    "file": "sofa-3-seater.glb",
+    "bytes": 577700,
+    "sha256": "c23610f25cad5b5c5fb5db949b28265e2e8905d86cb6fe4cfce126341b2d9162"
+  }
+]

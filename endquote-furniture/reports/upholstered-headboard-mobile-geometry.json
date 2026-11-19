@@ -1,0 +1,15 @@
+{
+  "id": "upholstered-headboard",
+  "triangles": 1728,
+  "dimensions_m": [
+    1.7000007629394531,
+    0.16975663602352142,
+    1.18000066280365
+  ],
+  "draw_calls": 1,
+  "materials": 1,
+  "errors": [],
+  "file_size_bytes": 84044,
+  "sha256": "a5d09faa198f7b77055b48b660aa5fe459c7c769e5043bd8b989221cf31f970f",
+  "export_warnings": []
+}

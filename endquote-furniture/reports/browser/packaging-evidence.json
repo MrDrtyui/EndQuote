@@ -1,0 +1,59 @@
+{
+  "standalone": "tools/browser-check.html",
+  "threeRevision": "187",
+  "moduleCount": 5,
+  "assets": [
+    {
+      "file": "armchair.glb",
+      "sha256": "121bb4975d8677983df3c1364db0ae1c445dc79ef7c351754fb5772bf09e0b0c"
+    },
+    {
+      "file": "dining-chair.glb",
+      "sha256": "b0f8c582fdba0fb91c78d628c883bfa8002c5c1d2c13c2c13f3bdeb198382aa0"
+    },
+    {
+      "file": "mattress-double.glb",
+      "sha256": "7906bd907f27109fae4677f90bac94d5380bb6de7fbfa42937bde902b1d1ed8e"
+    },
+    {
+      "file": "mattress-single.glb",
+      "sha256": "2b9af174c84997377d65b44ccc20f8fec945a73bb4f8e5972c41eb4b9c1a5a46"
+    },
+    {
+      "file": "ottoman.glb",
+      "sha256": "e7cac5d749ad1b4a6f18470a96acf2c5d2e99e43d7e387580d612b8720bede21"
+    },
+    {
+      "file": "sofa-2-seater.glb",
+      "sha256": "178fb12be5cd6ed4d7c2431a9c4f3eb713dedbc9133db9d911c96bca9e38717f"
+    },
+    {
+      "file": "sofa-3-seater.glb",
+      "sha256": "ae4bbb83b78020d26f82a45fb8196be0212e5b242f350a237c9a9937b9a92073"
+    },
+    {
+      "file": "sofa-4-seater.glb",
+      "sha256": "85a065476665d205917b7bbb4b267d6c726d864068ece6c585c08d4d076a07e5"
+    },
+    {
+      "file": "sofa-bed.glb",
+      "sha256": "c2eb7f8033b7cd63dad130fad988d3d9959c202fd248dd71142fa668b41d8a9e"
+    },
+    {
+      "file": "sofa-l-shaped.glb",
+      "sha256": "700ea93b8e8588903226f95e66124293a266589dfcf9c6916bf0656ddc8c43be"
+    },
+    {
+      "file": "sofa-u-shaped.glb",
+      "sha256": "412a28f11be71a1936d77baff90decf24f609aca4853b64ae26efe4189ad1b99"
+    },
+    {
+      "file": "upholstered-headboard.glb",
+      "sha256": "a5d09faa198f7b77055b48b660aa5fe459c7c769e5043bd8b989221cf31f970f"
+    }
+  ],
+  "htmlBytes": 5486504,
+  "htmlSha256": "1ab4431aeb48197972bafe871c44c9f9c0c92fc58241bc3259109ab3e6465bf5",
+  "snapshotVerifiedAgainstCurrentOriginals": true,
+  "moduleSources": "Three.js 0.187.0 cached package; original licenses retained in embedded module source"
+}

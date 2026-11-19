@@ -1,0 +1,414 @@
+{
+  "status": "pass",
+  "validator": "EndQuote independent GLB binary/geometry acceptance checker v1",
+  "limitations": [
+    "This focused checker is not the complete Khronos glTF conformance validator.",
+    "Cushion names/counts and footprint checks do not prove visual classification; inspect the Blender previews.",
+    "A valid scene hierarchy does not prove absence of geometric intersections or floating components.",
+    "Browser rendering performance and device-dependent shading require target-app QA."
+  ],
+  "assets": [
+    {
+      "file": "armchair.glb",
+      "status": "pass",
+      "bytes": 321076,
+      "sha256": "e45866c261d8a22e3497765f8d6d9ee8999f094a18a9bc3761cf297569af72b7",
+      "triangles": 8220,
+      "vertices_after_gltf_attribute_splits": 5418,
+      "mesh_nodes": 12,
+      "primitives": 12,
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery",
+        "EQ_Tonal_Stitched_Welting",
+        "EQ_Warm_Beige_Upholstered_Frame",
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "textures": 2,
+      "tangent_vertices_checked": 5418,
+      "max_abs_tangent_normal_dot": 0.00011168268573819029,
+      "max_tangent_squared_length_error": 0.00013445690760272022,
+      "normal_mapped_primitives": 6,
+      "root": "EQ_armchair",
+      "bounds_y_up_meters": {
+        "min": [
+          -0.5550000071525574,
+          0.0,
+          -0.48231571912765503
+        ],
+        "max": [
+          0.5550000071525574,
+          0.9156193137168884,
+          0.48231571912765503
+        ]
+      },
+      "dimensions_width_height_depth_meters": [
+        1.1100000143051147,
+        0.9156193137168884,
+        0.9646314382553101
+      ],
+      "seat_cushions": [
+        "EQ_armchair_SeatCushion_01"
+      ],
+      "back_cushions": [
+        "EQ_armchair_BackCushion_01"
+      ],
+      "checks": [
+        "GLB 2 header/chunk/buffer/accessor ranges",
+        "self-contained payload under 2 MB",
+        "no cameras, lights, skins, or animations",
+        "finite accessor values",
+        "named opaque metallic-roughness PBR materials",
+        "one named identity root and applied rotations/scales",
+        "valid hierarchy and material references",
+        "decoded finite positions and unit normals",
+        "valid triangle indices and nondegenerate faces",
+        "meter-scale bounds, Y-up, floor contact and centered origin",
+        "unit orthogonal tangents with valid handedness and normal-map UV references",
+        "descriptive cushion nodes and specified category seat counts",
+        "no disconnected export hierarchy or unreferenced scene nodes"
+      ],
+      "warnings": [
+        "Embedded textures are present; browser texture memory is not measured here."
+      ]
+    },
+    {
+      "file": "sofa-2-seater.glb",
+      "status": "pass",
+      "bytes": 432020,
+      "sha256": "178fb12be5cd6ed4d7c2431a9c4f3eb713dedbc9133db9d911c96bca9e38717f",
+      "triangles": 10908,
+      "vertices_after_gltf_attribute_splits": 7302,
+      "mesh_nodes": 16,
+      "primitives": 16,
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery",
+        "EQ_Tonal_Stitched_Welting",
+        "EQ_Warm_Beige_Upholstered_Frame",
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "textures": 2,
+      "tangent_vertices_checked": 7302,
+      "max_abs_tangent_normal_dot": 0.0001113224172604177,
+      "max_tangent_squared_length_error": 0.00013877827839459123,
+      "normal_mapped_primitives": 8,
+      "root": "EQ_sofa-2-seater",
+      "bounds_y_up_meters": {
+        "min": [
+          -0.9079999923706055,
+          0.0,
+          -0.48231571912765503
+        ],
+        "max": [
+          0.9079999923706055,
+          0.9156193137168884,
+          0.48231571912765503
+        ]
+      },
+      "dimensions_width_height_depth_meters": [
+        1.815999984741211,
+        0.9156193137168884,
+        0.9646314382553101
+      ],
+      "seat_cushions": [
+        "EQ_sofa-2-seater_SeatCushion_01",
+        "EQ_sofa-2-seater_SeatCushion_02"
+      ],
+      "back_cushions": [
+        "EQ_sofa-2-seater_BackCushion_01",
+        "EQ_sofa-2-seater_BackCushion_02"
+      ],
+      "checks": [
+        "GLB 2 header/chunk/buffer/accessor ranges",
+        "self-contained payload under 2 MB",
+        "no cameras, lights, skins, or animations",
+        "finite accessor values",
+        "named opaque metallic-roughness PBR materials",
+        "one named identity root and applied rotations/scales",
+        "valid hierarchy and material references",
+        "decoded finite positions and unit normals",
+        "valid triangle indices and nondegenerate faces",
+        "meter-scale bounds, Y-up, floor contact and centered origin",
+        "unit orthogonal tangents with valid handedness and normal-map UV references",
+        "descriptive cushion nodes and specified category seat counts",
+        "no disconnected export hierarchy or unreferenced scene nodes"
+      ],
+      "warnings": [
+        "Embedded textures are present; browser texture memory is not measured here."
+      ]
+    },
+    {
+      "file": "sofa-3-seater.glb",
+      "status": "pass",
+      "bytes": 577700,
+      "sha256": "c23610f25cad5b5c5fb5db949b28265e2e8905d86cb6fe4cfce126341b2d9162",
+      "triangles": 14772,
+      "vertices_after_gltf_attribute_splits": 9954,
+      "mesh_nodes": 22,
+      "primitives": 22,
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery",
+        "EQ_Tonal_Stitched_Welting",
+        "EQ_Warm_Beige_Upholstered_Frame",
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "textures": 2,
+      "tangent_vertices_checked": 9954,
+      "max_abs_tangent_normal_dot": 0.0001220608198853057,
+      "max_tangent_squared_length_error": 0.00013865037831650717,
+      "normal_mapped_primitives": 10,
+      "root": "EQ_sofa-3-seater",
+      "bounds_y_up_meters": {
+        "min": [
+          -1.2259999513626099,
+          0.0,
+          -0.48231571912765503
+        ],
+        "max": [
+          1.2259999513626099,
+          0.9156193137168884,
+          0.48231571912765503
+        ]
+      },
+      "dimensions_width_height_depth_meters": [
+        2.4519999027252197,
+        0.9156193137168884,
+        0.9646314382553101
+      ],
+      "seat_cushions": [
+        "EQ_sofa-3-seater_SeatCushion_01",
+        "EQ_sofa-3-seater_SeatCushion_02",
+        "EQ_sofa-3-seater_SeatCushion_03"
+      ],
+      "back_cushions": [
+        "EQ_sofa-3-seater_BackCushion_01",
+        "EQ_sofa-3-seater_BackCushion_02",
+        "EQ_sofa-3-seater_BackCushion_03"
+      ],
+      "checks": [
+        "GLB 2 header/chunk/buffer/accessor ranges",
+        "self-contained payload under 2 MB",
+        "no cameras, lights, skins, or animations",
+        "finite accessor values",
+        "named opaque metallic-roughness PBR materials",
+        "one named identity root and applied rotations/scales",
+        "valid hierarchy and material references",
+        "decoded finite positions and unit normals",
+        "valid triangle indices and nondegenerate faces",
+        "meter-scale bounds, Y-up, floor contact and centered origin",
+        "unit orthogonal tangents with valid handedness and normal-map UV references",
+        "descriptive cushion nodes and specified category seat counts",
+        "no disconnected export hierarchy or unreferenced scene nodes"
+      ],
+      "warnings": [
+        "Embedded textures are present; browser texture memory is not measured here."
+      ]
+    },
+    {
+      "file": "sofa-4-seater.glb",
+      "status": "pass",
+      "bytes": 679128,
+      "sha256": "4ce4391934f62163159da89ac5bba89245d6ed3e15e6650f509626fa518045d9",
+      "triangles": 17460,
+      "vertices_after_gltf_attribute_splits": 11838,
+      "mesh_nodes": 26,
+      "primitives": 26,
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery",
+        "EQ_Tonal_Stitched_Welting",
+        "EQ_Warm_Beige_Upholstered_Frame",
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "textures": 2,
+      "tangent_vertices_checked": 11838,
+      "max_abs_tangent_normal_dot": 0.0001220608198853057,
+      "max_tangent_squared_length_error": 0.00013445690760272022,
+      "normal_mapped_primitives": 12,
+      "root": "EQ_sofa-4-seater",
+      "bounds_y_up_meters": {
+        "min": [
+          -1.534000039100647,
+          0.0,
+          -0.48231571912765503
+        ],
+        "max": [
+          1.534000039100647,
+          0.9156193137168884,
+          0.48231571912765503
+        ]
+      },
+      "dimensions_width_height_depth_meters": [
+        3.068000078201294,
+        0.9156193137168884,
+        0.9646314382553101
+      ],
+      "seat_cushions": [
+        "EQ_sofa-4-seater_SeatCushion_01",
+        "EQ_sofa-4-seater_SeatCushion_02",
+        "EQ_sofa-4-seater_SeatCushion_03",
+        "EQ_sofa-4-seater_SeatCushion_04"
+      ],
+      "back_cushions": [
+        "EQ_sofa-4-seater_BackCushion_01",
+        "EQ_sofa-4-seater_BackCushion_02",
+        "EQ_sofa-4-seater_BackCushion_03",
+        "EQ_sofa-4-seater_BackCushion_04"
+      ],
+      "checks": [
+        "GLB 2 header/chunk/buffer/accessor ranges",
+        "self-contained payload under 2 MB",
+        "no cameras, lights, skins, or animations",
+        "finite accessor values",
+        "named opaque metallic-roughness PBR materials",
+        "one named identity root and applied rotations/scales",
+        "valid hierarchy and material references",
+        "decoded finite positions and unit normals",
+        "valid triangle indices and nondegenerate faces",
+        "meter-scale bounds, Y-up, floor contact and centered origin",
+        "unit orthogonal tangents with valid handedness and normal-map UV references",
+        "descriptive cushion nodes and specified category seat counts",
+        "no disconnected export hierarchy or unreferenced scene nodes"
+      ],
+      "warnings": [
+        "Embedded textures are present; browser texture memory is not measured here."
+      ]
+    },
+    {
+      "file": "sofa-l-shaped.glb",
+      "status": "pass",
+      "bytes": 616648,
+      "sha256": "c28192a07ccce220b4bad3f7c20f62eb5e821d0a29b9d52ea57c5c88b96e75bb",
+      "triangles": 16100,
+      "vertices_after_gltf_attribute_splits": 10832,
+      "mesh_nodes": 24,
+      "primitives": 24,
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery",
+        "EQ_Tonal_Stitched_Welting",
+        "EQ_Warm_Beige_Upholstered_Frame",
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "textures": 2,
+      "tangent_vertices_checked": 10832,
+      "max_abs_tangent_normal_dot": 0.0001220608198853057,
+      "max_tangent_squared_length_error": 0.00013529709362103404,
+      "normal_mapped_primitives": 10,
+      "root": "EQ_sofa-l-shaped",
+      "bounds_y_up_meters": {
+        "min": [
+          -1.3009999990463257,
+          0.0,
+          -0.9223157167434692
+        ],
+        "max": [
+          1.3009999990463257,
+          0.9156193137168884,
+          0.9223157167434692
+        ]
+      },
+      "dimensions_width_height_depth_meters": [
+        2.6019999980926514,
+        0.9156193137168884,
+        1.8446314334869385
+      ],
+      "seat_cushions": [
+        "EQ_sofa-l-shaped_SeatCushion_01",
+        "EQ_sofa-l-shaped_SeatCushion_02",
+        "EQ_sofa-l-shaped_SeatCushion_03"
+      ],
+      "back_cushions": [
+        "EQ_sofa-l-shaped_BackCushion_01",
+        "EQ_sofa-l-shaped_BackCushion_02",
+        "EQ_sofa-l-shaped_BackCushion_03"
+      ],
+      "checks": [
+        "GLB 2 header/chunk/buffer/accessor ranges",
+        "self-contained payload under 2 MB",
+        "no cameras, lights, skins, or animations",
+        "finite accessor values",
+        "named opaque metallic-roughness PBR materials",
+        "one named identity root and applied rotations/scales",
+        "valid hierarchy and material references",
+        "decoded finite positions and unit normals",
+        "valid triangle indices and nondegenerate faces",
+        "meter-scale bounds, Y-up, floor contact and centered origin",
+        "unit orthogonal tangents with valid handedness and normal-map UV references",
+        "descriptive cushion nodes and specified category seat counts",
+        "no disconnected export hierarchy or unreferenced scene nodes"
+      ],
+      "warnings": [
+        "Embedded textures are present; browser texture memory is not measured here."
+      ]
+    },
+    {
+      "file": "sofa-u-shaped.glb",
+      "status": "pass",
+      "bytes": 877148,
+      "sha256": "ebbbfef07affb4147223b4ffbf9f950f0b3a5f8a41931f274e4933a262d4776f",
+      "triangles": 22804,
+      "vertices_after_gltf_attribute_splits": 15478,
+      "mesh_nodes": 34,
+      "primitives": 34,
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery",
+        "EQ_Tonal_Stitched_Welting",
+        "EQ_Warm_Beige_Upholstered_Frame",
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "textures": 2,
+      "tangent_vertices_checked": 15478,
+      "max_abs_tangent_normal_dot": 0.00013651154620353267,
+      "max_tangent_squared_length_error": 0.00014882997166565382,
+      "normal_mapped_primitives": 14,
+      "root": "EQ_sofa-u-shaped",
+      "bounds_y_up_meters": {
+        "min": [
+          -1.7969999313354492,
+          0.0,
+          -1.0223157405853271
+        ],
+        "max": [
+          1.7969999313354492,
+          0.9156193137168884,
+          1.0223157405853271
+        ]
+      },
+      "dimensions_width_height_depth_meters": [
+        3.5939998626708984,
+        0.9156193137168884,
+        2.0446314811706543
+      ],
+      "seat_cushions": [
+        "EQ_sofa-u-shaped_SeatCushion_01",
+        "EQ_sofa-u-shaped_SeatCushion_02",
+        "EQ_sofa-u-shaped_SeatCushion_03",
+        "EQ_sofa-u-shaped_SeatCushion_04",
+        "EQ_sofa-u-shaped_SeatCushion_05"
+      ],
+      "back_cushions": [
+        "EQ_sofa-u-shaped_BackCushion_01",
+        "EQ_sofa-u-shaped_BackCushion_02",
+        "EQ_sofa-u-shaped_BackCushion_03",
+        "EQ_sofa-u-shaped_BackCushion_04",
+        "EQ_sofa-u-shaped_BackCushion_05"
+      ],
+      "checks": [
+        "GLB 2 header/chunk/buffer/accessor ranges",
+        "self-contained payload under 2 MB",
+        "no cameras, lights, skins, or animations",
+        "finite accessor values",
+        "named opaque metallic-roughness PBR materials",
+        "one named identity root and applied rotations/scales",
+        "valid hierarchy and material references",
+        "decoded finite positions and unit normals",
+        "valid triangle indices and nondegenerate faces",
+        "meter-scale bounds, Y-up, floor contact and centered origin",
+        "unit orthogonal tangents with valid handedness and normal-map UV references",
+        "descriptive cushion nodes and specified category seat counts",
+        "no disconnected export hierarchy or unreferenced scene nodes"
+      ],
+      "warnings": [
+        "Embedded textures are present; browser texture memory is not measured here."
+      ]
+    }
+  ]
+}

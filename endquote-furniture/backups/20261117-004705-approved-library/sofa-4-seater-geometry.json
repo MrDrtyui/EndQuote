@@ -1,0 +1,170 @@
+{
+  "model": "sofa-4-seater",
+  "seats": 4,
+  "dimensions_m": [
+    3.068000078201294,
+    0.9646314382553101,
+    0.9156193137168884
+  ],
+  "objects": [
+    {
+      "name": "EQ_sofa-4-seater_Continuous_Upholstered_Base",
+      "polygons": 150,
+      "triangles": 300,
+      "volume_m3": 0.5100987596574675
+    },
+    {
+      "name": "EQ_sofa-4-seater_Rear_Support",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.059158110914798716
+    },
+    {
+      "name": "EQ_sofa-4-seater_Armrest_Left",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.0636186820942566
+    },
+    {
+      "name": "EQ_sofa-4-seater_Armrest_Right",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06361868209425658
+    },
+    {
+      "name": "EQ_sofa-4-seater_SeatCushion_01",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.07595523873222286
+    },
+    {
+      "name": "EQ_sofa-4-seater_SeatPiping_01",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.033870821998348e-05
+    },
+    {
+      "name": "EQ_sofa-4-seater_BackCushion_01",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.058312212193783255
+    },
+    {
+      "name": "EQ_sofa-4-seater_BackPiping_01",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.294256091913191e-06
+    },
+    {
+      "name": "EQ_sofa-4-seater_SeatCushion_02",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.07595523886438912
+    },
+    {
+      "name": "EQ_sofa-4-seater_SeatPiping_02",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.0338647094875088e-05
+    },
+    {
+      "name": "EQ_sofa-4-seater_BackCushion_02",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.05831221210726895
+    },
+    {
+      "name": "EQ_sofa-4-seater_BackPiping_02",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.294225716178925e-06
+    },
+    {
+      "name": "EQ_sofa-4-seater_SeatCushion_03",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.07595523886438918
+    },
+    {
+      "name": "EQ_sofa-4-seater_SeatPiping_03",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.033864709487498e-05
+    },
+    {
+      "name": "EQ_sofa-4-seater_BackCushion_03",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.05831221210726912
+    },
+    {
+      "name": "EQ_sofa-4-seater_BackPiping_03",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.294225539618678e-06
+    },
+    {
+      "name": "EQ_sofa-4-seater_SeatCushion_04",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.07595523873222286
+    },
+    {
+      "name": "EQ_sofa-4-seater_SeatPiping_04",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.0338708219984321e-05
+    },
+    {
+      "name": "EQ_sofa-4-seater_BackCushion_04",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.05831221219378318
+    },
+    {
+      "name": "EQ_sofa-4-seater_BackPiping_04",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.294256132592131e-06
+    },
+    {
+      "name": "EQ_sofa-4-seater_OakFoot_01",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834969752922635
+    },
+    {
+      "name": "EQ_sofa-4-seater_OakFoot_02",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834969752921495
+    },
+    {
+      "name": "EQ_sofa-4-seater_OakFoot_03",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.00048349696593128394
+    },
+    {
+      "name": "EQ_sofa-4-seater_OakFoot_04",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834969659311515
+    },
+    {
+      "name": "EQ_sofa-4-seater_OakFoot_05",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834967107695445
+    },
+    {
+      "name": "EQ_sofa-4-seater_OakFoot_06",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.00048349669603640146
+    }
+  ],
+  "triangles": 17460,
+  "polygons": 8730,
+  "errors": []
+}

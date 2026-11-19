@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-11",
+  "seq": "11",
+  "title": "Complete entitlement policy and separate admin lifecycle",
+  "status": "pending",
+  "depends_on": ["10"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-5", "entitlements", "platform-admin", "audit"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": [],
+  "acceptance_criteria": [
+    "Complete centralized request- and commit-time policy and owner banner: equality at expiry closes mutations/public intake while approved owner/receipt reads remain available; unavailable, unknown and outage responses are distinct and demo/lab/marketing stay independent.",
+    "Provide separate PlatformAdmin identities, cookie, UI, guarded API and secret-safe out-of-band bootstrap. Versioned access changes audit actor/time/old/new/reason atomically, without impersonation or order PII access.",
+    "Prove the clock-controlled operation matrix, separate identities/cookies, role rejection, admin concurrency conflicts, stale open checkout deny, and persistent audit/reactivation limited to the intended tenant."
+  ],
+  "deliverables": ["Entitlement matrix, separate admin bootstrap/UI/API, audit migration and phase-5 gate evidence"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "file": "sofa-2-seater.glb",
+    "passed": true,
+    "triangles": 10908,
+    "mesh_components": 16,
+    "dimensions_blender_xyz_m": [
+      1.815999984741211,
+      0.9646314382553101,
+      0.9156193137168884
+    ],
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/previews/roundtrip/sofa-2-seater.png"
+  },
+  {
+    "file": "armchair.glb",
+    "passed": true,
+    "triangles": 8220,
+    "mesh_components": 12,
+    "dimensions_blender_xyz_m": [
+      1.1100000143051147,
+      0.9646314382553101,
+      0.9156193137168884
+    ],
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/previews/roundtrip/armchair.png"
+  },
+  {
+    "file": "sofa-3-seater.glb",
+    "passed": true,
+    "triangles": 14772,
+    "mesh_components": 22,
+    "dimensions_blender_xyz_m": [
+      2.4519999027252197,
+      0.9646314382553101,
+      0.9156193137168884
+    ],
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/previews/roundtrip/sofa-3-seater.png"
+  },
+  {
+    "file": "sofa-4-seater.glb",
+    "passed": true,
+    "triangles": 17460,
+    "mesh_components": 26,
+    "dimensions_blender_xyz_m": [
+      3.068000078201294,
+      0.9646314382553101,
+      0.9156193137168884
+    ],
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/previews/roundtrip/sofa-4-seater.png"
+  },
+  {
+    "file": "sofa-l-shaped.glb",
+    "passed": true,
+    "triangles": 16100,
+    "mesh_components": 24,
+    "dimensions_blender_xyz_m": [
+      2.6019999980926514,
+      1.8446314334869385,
+      0.9156193137168884
+    ],
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/previews/roundtrip/sofa-l-shaped.png"
+  },
+  {
+    "file": "sofa-u-shaped.glb",
+    "passed": true,
+    "triangles": 22804,
+    "mesh_components": 34,
+    "dimensions_blender_xyz_m": [
+      3.5939998626708984,
+      2.0446314811706543,
+      0.9156193137168884
+    ],
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/previews/roundtrip/sofa-u-shaped.png"
+  }
+]

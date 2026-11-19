@@ -1,0 +1,15 @@
+{
+  "id": "mattress-single",
+  "triangles": 864,
+  "dimensions_m": [
+    0.9000012278556824,
+    2.0000011920928955,
+    0.24884441494941711
+  ],
+  "draw_calls": 1,
+  "materials": 1,
+  "errors": [],
+  "file_size_bytes": 42672,
+  "sha256": "2b9af174c84997377d65b44ccc20f8fec945a73bb4f8e5972c41eb4b9c1a5a46",
+  "export_warnings": []
+}

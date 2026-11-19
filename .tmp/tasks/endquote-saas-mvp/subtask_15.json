@@ -1,0 +1,20 @@
+{
+  "id": "endquote-saas-mvp-15",
+  "seq": "15",
+  "title": "Obtain final code, security, and docs reviews",
+  "status": "pending",
+  "depends_on": ["14"],
+  "parallel": false,
+  "suggested_agent": "orchestrator",
+  "labels": ["final-gate", "code-review", "security-review", "docs-review"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md", "AGENTS.md"],
+  "reference_files": [],
+  "acceptance_criteria": [
+    "Orchestrator schedules separate code, security and docs reviews after the slices and verification converge.",
+    "Record review findings, resolve and reverify all blockers, and surface residual risks and operator launch prerequisites; do not deploy."
+  ],
+  "deliverables": ["Three review outcomes, disposition of findings, and orchestrator sign-off or explicit block"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

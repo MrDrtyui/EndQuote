@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-05",
+  "seq": "05",
+  "title": "Build private image processing for owner logos",
+  "status": "pending",
+  "depends_on": ["04"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-3", "owner-media", "private-s3"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": [],
+  "acceptance_criteria": [
+    "Build the server-only private S3 processing primitive for the authenticated owner logo endpoint using Node24-compatible sharp, allowlisted decoders, byte/pixel/output caps, metadata removal and randomized tenant keys.",
+    "Only the current sanitized logo is served through controlled same-origin branding for an eligible published business; unlink replaced bytes after DB commit and never expose storage URLs, keys, or credentials.",
+    "Provide the owner logo reference contract for workspace APIs and the reusable private-media primitive for phase 4."
+  ],
+  "deliverables": ["Owner logo handler, branding route, private image primitive, and scoped tests"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

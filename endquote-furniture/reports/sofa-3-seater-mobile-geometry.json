@@ -1,0 +1,15 @@
+{
+  "id": "sofa-3-seater",
+  "triangles": 3324,
+  "dimensions_m": [
+    2.452502727508545,
+    0.9638588428497314,
+    0.9158324003219604
+  ],
+  "draw_calls": 2,
+  "materials": 2,
+  "errors": [],
+  "file_size_bytes": 169252,
+  "sha256": "ae4bbb83b78020d26f82a45fb8196be0212e5b242f350a237c9a9937b9a92073",
+  "export_warnings": []
+}

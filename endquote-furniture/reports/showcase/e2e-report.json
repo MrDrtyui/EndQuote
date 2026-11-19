@@ -1,0 +1,1082 @@
+{
+  "startedAt": "2026-11-16T20:44:17.445Z",
+  "baseURL": "http://127.0.0.1:5173",
+  "status": "passed",
+  "scope": "Desktop Chrome browser and emulated mobile viewport/touch; no physical older Android device benchmark.",
+  "checks": {
+    "lazyInitialCatalog": {
+      "passed": true,
+      "glbRequests": 0
+    },
+    "desktopOverflow": {
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440
+    },
+    "keyboardFocusTrap": {
+      "passed": true,
+      "forwardTabs": 12,
+      "reverseTabs": 5
+    },
+    "escapeAndFocusRestoration": {
+      "passed": true
+    },
+    "mouseOrbitAndReset": {
+      "passed": true,
+      "testedModels": 12
+    },
+    "desktopErrors": {
+      "errors": [],
+      "consoleErrors": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/armchair.glb",
+          "file": "armchair.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/dining-chair.glb",
+          "file": "dining-chair.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/mattress-double.glb",
+          "file": "mattress-double.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/mattress-single.glb",
+          "file": "mattress-single.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/ottoman.glb",
+          "file": "ottoman.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-2-seater.glb",
+          "file": "sofa-2-seater.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-3-seater.glb",
+          "file": "sofa-3-seater.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-4-seater.glb",
+          "file": "sofa-4-seater.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-bed.glb",
+          "file": "sofa-bed.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-l-shaped.glb",
+          "file": "sofa-l-shaped.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-u-shaped.glb",
+          "file": "sofa-u-shaped.glb"
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/upholstered-headboard.glb",
+          "file": "upholstered-headboard.glb"
+        }
+      ],
+      "responses": [
+        {
+          "url": "http://127.0.0.1:5173/models/armchair.glb",
+          "file": "armchair.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/dining-chair.glb",
+          "file": "dining-chair.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/mattress-double.glb",
+          "file": "mattress-double.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/mattress-single.glb",
+          "file": "mattress-single.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/ottoman.glb",
+          "file": "ottoman.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-2-seater.glb",
+          "file": "sofa-2-seater.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-3-seater.glb",
+          "file": "sofa-3-seater.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-4-seater.glb",
+          "file": "sofa-4-seater.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-bed.glb",
+          "file": "sofa-bed.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-l-shaped.glb",
+          "file": "sofa-l-shaped.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-u-shaped.glb",
+          "file": "sofa-u-shaped.glb",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/models/upholstered-headboard.glb",
+          "file": "upholstered-headboard.glb",
+          "status": 200
+        }
+      ],
+      "failedRequests": []
+    },
+    "searchAndFilters": {
+      "passed": true,
+      "mattressResults": 2,
+      "bedroomFilterResults": 3,
+      "unmatchedResults": 0,
+      "resetResults": 12
+    },
+    "mobileOverflow": {
+      "viewport": 390,
+      "document": 390,
+      "body": 390
+    },
+    "mobileTouchOrbit": {
+      "passed": true,
+      "viewport": "390×844",
+      "deviceScaleFactor": 2,
+      "dpr": 1.5,
+      "changedPixelRatio": 0.20524321764427306,
+      "initial": {
+        "state": "ready",
+        "modelId": "sofa-u-shaped",
+        "dpr": 1.5,
+        "camera": [
+          4.46982,
+          3.85504,
+          5.90016
+        ],
+        "orbitChanges": 1
+      },
+      "rotated": {
+        "state": "ready",
+        "modelId": "sofa-u-shaped",
+        "dpr": 1.5,
+        "camera": [
+          -1.63642,
+          4.45647,
+          6.90401
+        ],
+        "orbitChanges": 60
+      }
+    },
+    "mobileErrors": {
+      "errors": [],
+      "consoleErrors": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-u-shaped.glb",
+          "file": "sofa-u-shaped.glb"
+        }
+      ],
+      "responses": [
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-u-shaped.glb",
+          "file": "sofa-u-shaped.glb",
+          "status": 200
+        }
+      ],
+      "failedRequests": []
+    },
+    "webglUnavailableFallback": {
+      "passed": true,
+      "image": {
+        "complete": true,
+        "width": 512,
+        "height": 512,
+        "alt": "Кресло — изображение мебели",
+        "source": "http://127.0.0.1:5173/previews/armchair.webp"
+      }
+    }
+  },
+  "models": [
+    {
+      "id": "armchair",
+      "heading": "Кресло",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/armchair.glb",
+          "file": "armchair.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1384,
+        "height": 970,
+        "cssWidth": 923,
+        "cssHeight": 647
+      },
+      "dpr": 1.4994582881906826,
+      "pixelStatistics": {
+        "width": 923,
+        "height": 647,
+        "quantizedColors": 55,
+        "brightnessRange": 231.33333333333334,
+        "opaqueSamples": 149296
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.1846475356717645,
+        "initial": {
+          "state": "ready",
+          "modelId": "armchair",
+          "dpr": 1.5,
+          "camera": [
+            1.77463,
+            1.80638,
+            2.34251
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "armchair",
+          "dpr": 1.5,
+          "camera": [
+            -1.85494,
+            2.13876,
+            2.04667
+          ],
+          "orbitChanges": 50
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "armchair",
+          "dpr": 1.5,
+          "camera": [
+            1.77463,
+            1.80638,
+            2.34251
+          ],
+          "orbitChanges": 57
+        }
+      }
+    },
+    {
+      "id": "dining-chair",
+      "heading": "Мягкий обеденный стул",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/dining-chair.glb",
+          "file": "dining-chair.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 68,
+        "brightnessRange": 228.33333333333334,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.13774739259786573,
+        "initial": {
+          "state": "ready",
+          "modelId": "dining-chair",
+          "dpr": 1.5,
+          "camera": [
+            1.3124,
+            1.46978,
+            1.73236
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "dining-chair",
+          "dpr": 1.5,
+          "camera": [
+            -1.35849,
+            1.714,
+            1.52681
+          ],
+          "orbitChanges": 49
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "dining-chair",
+          "dpr": 1.5,
+          "camera": [
+            1.3124,
+            1.46978,
+            1.73236
+          ],
+          "orbitChanges": 55
+        }
+      }
+    },
+    {
+      "id": "mattress-double",
+      "heading": "Двуспальный матрас",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/mattress-double.glb",
+          "file": "mattress-double.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1380,
+        "height": 967,
+        "cssWidth": 920.057861328125,
+        "cssHeight": 644.934326171875
+      },
+      "dpr": 1.4999056668109305,
+      "pixelStatistics": {
+        "width": 921,
+        "height": 645,
+        "quantizedColors": 38,
+        "brightnessRange": 122,
+        "opaqueSamples": 148512
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.18926680638672155,
+        "initial": {
+          "state": "ready",
+          "modelId": "mattress-double",
+          "dpr": 1.5,
+          "camera": [
+            2.03322,
+            1.66967,
+            2.68385
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "mattress-double",
+          "dpr": 1.5,
+          "camera": [
+            -2.10131,
+            2.04764,
+            2.36867
+          ],
+          "orbitChanges": 49
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "mattress-double",
+          "dpr": 1.5,
+          "camera": [
+            2.03322,
+            1.66967,
+            2.68385
+          ],
+          "orbitChanges": 55
+        }
+      }
+    },
+    {
+      "id": "mattress-single",
+      "heading": "Односпальный матрас",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/mattress-single.glb",
+          "file": "mattress-single.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 37,
+        "brightnessRange": 122,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.31222339375298014,
+        "initial": {
+          "state": "ready",
+          "modelId": "mattress-single",
+          "dpr": 1.5,
+          "camera": [
+            1.72336,
+            1.43418,
+            2.27483
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "mattress-single",
+          "dpr": 1.5,
+          "camera": [
+            -1.78388,
+            1.75488,
+            2.00491
+          ],
+          "orbitChanges": 49
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "mattress-single",
+          "dpr": 1.5,
+          "camera": [
+            1.72336,
+            1.43418,
+            2.27483
+          ],
+          "orbitChanges": 55
+        }
+      }
+    },
+    {
+      "id": "ottoman",
+      "heading": "Пуф",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/ottoman.glb",
+          "file": "ottoman.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 60,
+        "brightnessRange": 225,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.14240142911828504,
+        "initial": {
+          "state": "ready",
+          "modelId": "ottoman",
+          "dpr": 1.5,
+          "camera": [
+            0.98379,
+            0.96645,
+            1.2986
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "ottoman",
+          "dpr": 1.5,
+          "camera": [
+            -1.01834,
+            1.14953,
+            1.14452
+          ],
+          "orbitChanges": 49
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "ottoman",
+          "dpr": 1.5,
+          "camera": [
+            0.98379,
+            0.96645,
+            1.2986
+          ],
+          "orbitChanges": 55
+        }
+      }
+    },
+    {
+      "id": "sofa-2-seater",
+      "heading": "Двухместный диван",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-2-seater.glb",
+          "file": "sofa-2-seater.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.640625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 54,
+        "brightnessRange": 218.66666666666666,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.2549679993015587,
+        "initial": {
+          "state": "ready",
+          "modelId": "sofa-2-seater",
+          "dpr": 1.5,
+          "camera": [
+            2.07024,
+            2.03119,
+            2.73271
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "sofa-2-seater",
+          "dpr": 1.5,
+          "camera": [
+            -2.15724,
+            2.41814,
+            2.39427
+          ],
+          "orbitChanges": 50
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "sofa-2-seater",
+          "dpr": 1.5,
+          "camera": [
+            2.07024,
+            2.03119,
+            2.73271
+          ],
+          "orbitChanges": 56
+        }
+      }
+    },
+    {
+      "id": "sofa-3-seater",
+      "heading": "Трёхместный диван",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-3-seater.glb",
+          "file": "sofa-3-seater.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 54,
+        "brightnessRange": 223.66666666666666,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.3210680778762013,
+        "initial": {
+          "state": "ready",
+          "modelId": "sofa-3-seater",
+          "dpr": 1.5,
+          "camera": [
+            2.33607,
+            2.23333,
+            3.08362
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "sofa-3-seater",
+          "dpr": 1.5,
+          "camera": [
+            -2.41811,
+            2.66805,
+            2.71773
+          ],
+          "orbitChanges": 49
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "sofa-3-seater",
+          "dpr": 1.5,
+          "camera": [
+            2.33607,
+            2.23333,
+            3.08362
+          ],
+          "orbitChanges": 56
+        }
+      }
+    },
+    {
+      "id": "sofa-4-seater",
+      "heading": "Четырёхместный диван",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-4-seater.glb",
+          "file": "sofa-4-seater.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 57,
+        "brightnessRange": 226.33333333333334,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.3470497572245019,
+        "initial": {
+          "state": "ready",
+          "modelId": "sofa-4-seater",
+          "dpr": 1.5,
+          "camera": [
+            2.62899,
+            2.45598,
+            3.47026
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "sofa-4-seater",
+          "dpr": 1.5,
+          "camera": [
+            -2.72131,
+            2.94521,
+            3.0585
+          ],
+          "orbitChanges": 49
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "sofa-4-seater",
+          "dpr": 1.5,
+          "camera": [
+            2.62899,
+            2.45598,
+            3.47026
+          ],
+          "orbitChanges": 56
+        }
+      }
+    },
+    {
+      "id": "sofa-bed",
+      "heading": "Диван-кровать (разложенный)",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-bed.glb",
+          "file": "sofa-bed.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.640625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 67,
+        "brightnessRange": 226.33333333333334,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.2248023881318711,
+        "initial": {
+          "state": "ready",
+          "modelId": "sofa-bed",
+          "dpr": 1.5,
+          "camera": [
+            2.79525,
+            2.5824,
+            3.68973
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "sofa-bed",
+          "dpr": 1.5,
+          "camera": [
+            -2.89341,
+            3.10258,
+            3.25192
+          ],
+          "orbitChanges": 49
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "sofa-bed",
+          "dpr": 1.5,
+          "camera": [
+            2.79525,
+            2.5824,
+            3.68973
+          ],
+          "orbitChanges": 55
+        }
+      }
+    },
+    {
+      "id": "sofa-l-shaped",
+      "heading": "Угловой диван",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-l-shaped.glb",
+          "file": "sofa-l-shaped.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.640625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 51,
+        "brightnessRange": 226.33333333333334,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.2751237382725667,
+        "initial": {
+          "state": "ready",
+          "modelId": "sofa-l-shaped",
+          "dpr": 1.5,
+          "camera": [
+            2.88452,
+            2.65022,
+            3.80757
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "sofa-l-shaped",
+          "dpr": 1.5,
+          "camera": [
+            -3.00575,
+            3.18937,
+            3.33601
+          ],
+          "orbitChanges": 50
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "sofa-l-shaped",
+          "dpr": 1.5,
+          "camera": [
+            2.88452,
+            2.65022,
+            3.80757
+          ],
+          "orbitChanges": 56
+        }
+      }
+    },
+    {
+      "id": "sofa-u-shaped",
+      "heading": "П-образный диван",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/sofa-u-shaped.glb",
+          "file": "sofa-u-shaped.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 60,
+        "brightnessRange": 226.66666666666666,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.30994674385338106,
+        "initial": {
+          "state": "ready",
+          "modelId": "sofa-u-shaped",
+          "dpr": 1.5,
+          "camera": [
+            3.40958,
+            3.04926,
+            4.50065
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "sofa-u-shaped",
+          "dpr": 1.5,
+          "camera": [
+            -3.55288,
+            3.68654,
+            3.94326
+          ],
+          "orbitChanges": 50
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "sofa-u-shaped",
+          "dpr": 1.5,
+          "camera": [
+            3.40958,
+            3.04926,
+            4.50065
+          ],
+          "orbitChanges": 60
+        }
+      }
+    },
+    {
+      "id": "upholstered-headboard",
+      "heading": "Мягкое изголовье",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5173/models/upholstered-headboard.glb",
+          "file": "upholstered-headboard.glb"
+        }
+      ],
+      "http200": true,
+      "decodedImages": [
+        {
+          "width": 128,
+          "height": 128,
+          "sourceType": "Blob",
+          "mimeType": "image/png",
+          "sourceBytes": 1116
+        }
+      ],
+      "canvas": {
+        "width": 1381,
+        "height": 968,
+        "cssWidth": 921.046875,
+        "cssHeight": 645.640625
+      },
+      "dpr": 1.4993807997014268,
+      "pixelStatistics": {
+        "width": 922,
+        "height": 646,
+        "quantizedColors": 36,
+        "brightnessRange": 122,
+        "opaqueSamples": 148903
+      },
+      "mouseOrbitAndReset": {
+        "passed": true,
+        "changedPixelRatio": 0.2300205502911291,
+        "initial": {
+          "state": "ready",
+          "modelId": "upholstered-headboard",
+          "dpr": 1.5,
+          "camera": [
+            1.808,
+            1.96408,
+            2.38656
+          ],
+          "orbitChanges": 1
+        },
+        "rotated": {
+          "state": "ready",
+          "modelId": "upholstered-headboard",
+          "dpr": 1.5,
+          "camera": [
+            -1.87149,
+            2.30054,
+            2.10338
+          ],
+          "orbitChanges": 49
+        },
+        "reset": {
+          "state": "ready",
+          "modelId": "upholstered-headboard",
+          "dpr": 1.5,
+          "camera": [
+            1.808,
+            1.96408,
+            2.38656
+          ],
+          "orbitChanges": 56
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "reports/showcase/desktop-catalog.png",
+    "reports/showcase/desktop-viewer-u-shaped.png",
+    "reports/showcase/mobile-catalog.png",
+    "reports/showcase/mobile-viewer.png",
+    "reports/showcase/mobile-webgl-fallback.png"
+  ],
+  "browser": {
+    "version": "157.0.8103.51",
+    "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  },
+  "finishedAt": "2026-11-16T20:44:44.108Z"
+}

@@ -1,0 +1,35 @@
+{
+  "name": "endquote-server",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "generate": "prisma generate",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/main.js",
+    "test": "node --test tests/*.test.mjs",
+    "test:disposable": "node tests/disposable.mjs",
+    "admin:bootstrap": "node dist/src/bootstrap.js",
+    "storage:reconcile": "node dist/src/reconcile.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1172.0",
+    "@fastify/cookie": "^11.0.0",
+    "@fastify/multipart": "^10.1.9",
+    "@fastify/static": "^10.1.11",
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "argon2": "^0.44.0",
+    "fastify": "^5.0.0",
+    "pg": "^8.0.0",
+    "sharp": "^0.35.5",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "prisma": "7.10.1",
+    "typescript": "^6.0.0"
+  }
+}

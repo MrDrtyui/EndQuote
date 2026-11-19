@@ -1,0 +1,176 @@
+{
+  "source_files": [
+    {
+      "id": "sofa-2-seater",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/sofa-2-seater.blend",
+      "bytes": 178835,
+      "sha256": "4513e4c4aecb318a11a7c3a21fd515426307d05dd23aa98b65ae32fc5f18cfdf",
+      "scenes": [
+        "EndQuote | 2-Seater Sofa",
+        "EndQuote Mobile | Approved 2-Seater"
+      ],
+      "mesh_datablocks": 17,
+      "materials": 5,
+      "webp_preview_512": true,
+      "source_readback": "passed",
+      "preview_camera_saved": true
+    },
+    {
+      "id": "armchair",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/armchair.blend",
+      "bytes": 218082,
+      "sha256": "e7fef109280f5d9e5d2f4b75103c0b33be02a4908f5d188e3b938924731d2182",
+      "scenes": [
+        "EndQuote | Armchair",
+        "EndQuote Mobile | Armchair"
+      ],
+      "mesh_datablocks": 15,
+      "materials": 7,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "sofa-3-seater",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/sofa-3-seater.blend",
+      "bytes": 300273,
+      "sha256": "f179a0b68f40dcdf3c4825d9b496c6fd5d72759f0cc6e8225f8fb5bdd168f08e",
+      "scenes": [
+        "EndQuote | 3-Seater Sofa",
+        "EndQuote Mobile | 3-Seater Sofa"
+      ],
+      "mesh_datablocks": 25,
+      "materials": 7,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "sofa-4-seater",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/sofa-4-seater.blend",
+      "bytes": 334775,
+      "sha256": "7ea025288fbc65cf5ef4256d10b9ec68b69f56f0d7471a6b77088f5ceb1cc312",
+      "scenes": [
+        "EndQuote | 4-Seater Sofa",
+        "EndQuote Mobile | 4-Seater Sofa"
+      ],
+      "mesh_datablocks": 29,
+      "materials": 7,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "sofa-l-shaped",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/sofa-l-shaped.blend",
+      "bytes": 323379,
+      "sha256": "196601567cd39853ddde8281b4aa8e7440f0734b0c80ac082c1142839e56f22c",
+      "scenes": [
+        "EndQuote | L-Shaped Corner Sofa",
+        "EndQuote Mobile | L-Shaped Corner Sofa"
+      ],
+      "mesh_datablocks": 27,
+      "materials": 7,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "sofa-u-shaped",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/sofa-u-shaped.blend",
+      "bytes": 392255,
+      "sha256": "ccc8efc893d6d5eb8f723558d9153c515d0a94a301a10c0242b546fd7c8588fb",
+      "scenes": [
+        "EndQuote | U-Shaped Sofa",
+        "EndQuote Mobile | U-Shaped Sofa"
+      ],
+      "mesh_datablocks": 37,
+      "materials": 7,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "sofa-bed",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/sofa-bed.blend",
+      "bytes": 325985,
+      "sha256": "2aa201b9c5334c14f64e21cec334ba1e46f2d3d58b954320a200529a3b9d8e08",
+      "scenes": [
+        "EndQuote Source | Unfolded Sofa Bed",
+        "EndQuote Mobile | Unfolded Sofa Bed"
+      ],
+      "mesh_datablocks": 27,
+      "materials": 7,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "dining-chair",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/dining-chair.blend",
+      "bytes": 170351,
+      "sha256": "074e81874c1edae4137a666accbafa8c955e16944092f706510f65491f288647",
+      "scenes": [
+        "EndQuote Source | Upholstered Dining Chair",
+        "EndQuote Mobile | Upholstered Dining Chair"
+      ],
+      "mesh_datablocks": 12,
+      "materials": 6,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "ottoman",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/ottoman.blend",
+      "bytes": 146451,
+      "sha256": "4647f8ae1ddda9b724a968df71e7b6e3cc32a95e71a2f146956905cc121949c3",
+      "scenes": [
+        "EndQuote Source | Upholstered Ottoman",
+        "EndQuote Mobile | Upholstered Ottoman"
+      ],
+      "mesh_datablocks": 10,
+      "materials": 7,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "mattress-single",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/mattress-single.blend",
+      "bytes": 124036,
+      "sha256": "f957ec06c62a31b349efe95888ad99962b152d7066ed4f97dbc645f0a2707d57",
+      "scenes": [
+        "EndQuote Source | Single Mattress",
+        "EndQuote Mobile | Single Mattress"
+      ],
+      "mesh_datablocks": 5,
+      "materials": 5,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "mattress-double",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/mattress-double.blend",
+      "bytes": 123889,
+      "sha256": "74fc05ec54a3be6a656745779d21c7607cf3adf95d91923eeb815826af8abca5",
+      "scenes": [
+        "EndQuote Source | Double Mattress",
+        "EndQuote Mobile | Double Mattress"
+      ],
+      "mesh_datablocks": 5,
+      "materials": 5,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    },
+    {
+      "id": "upholstered-headboard",
+      "source": "/Users/ila/dev/projects/renameme/endquote-furniture/sources/upholstered-headboard.blend",
+      "bytes": 163632,
+      "sha256": "7c08628d8168dfa7ac1eb3ec0b36f447238ccb124d9861f4c4837edff5e6c2c4",
+      "scenes": [
+        "EndQuote Source | Upholstered Headboard",
+        "EndQuote Mobile | Upholstered Headboard"
+      ],
+      "mesh_datablocks": 9,
+      "materials": 5,
+      "webp_preview_512": true,
+      "source_readback": "passed"
+    }
+  ],
+  "approved_appearance_signature_unchanged": true,
+  "approved_glb_byte_identical": true,
+  "original_master_blend_unchanged": true
+}

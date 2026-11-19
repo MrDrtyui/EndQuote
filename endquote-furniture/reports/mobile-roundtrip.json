@@ -1,0 +1,182 @@
+[
+  {
+    "id": "sofa-2-seater",
+    "passed": true,
+    "triangles": 10908,
+    "material_count": 4,
+    "mesh_count": 16,
+    "dimensions_blender_xyz_m": [
+      1.815999984741211,
+      0.9646314382553101,
+      0.9156193137168884
+    ],
+    "vertex_color_layers": 0,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/sofa-2-seater.png"
+  },
+  {
+    "id": "sofa-3-seater",
+    "passed": true,
+    "triangles": 3324,
+    "material_count": 2,
+    "mesh_count": 2,
+    "dimensions_blender_xyz_m": [
+      2.452502727508545,
+      0.9638588428497314,
+      0.9158324003219604
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/sofa-3-seater.png"
+  },
+  {
+    "id": "sofa-4-seater",
+    "passed": true,
+    "triangles": 4012,
+    "material_count": 2,
+    "mesh_count": 2,
+    "dimensions_blender_xyz_m": [
+      3.068502902984619,
+      0.9638588428497314,
+      0.9159047603607178
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/sofa-4-seater.png"
+  },
+  {
+    "id": "sofa-l-shaped",
+    "passed": true,
+    "triangles": 3524,
+    "material_count": 2,
+    "mesh_count": 2,
+    "dimensions_blender_xyz_m": [
+      2.602529287338257,
+      1.843924641609192,
+      0.91595858335495
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/sofa-l-shaped.png"
+  },
+  {
+    "id": "sofa-u-shaped",
+    "passed": true,
+    "triangles": 4720,
+    "material_count": 2,
+    "mesh_count": 2,
+    "dimensions_blender_xyz_m": [
+      3.5945444107055664,
+      2.0439229011535645,
+      0.9159561991691589
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/sofa-u-shaped.png"
+  },
+  {
+    "id": "armchair",
+    "passed": true,
+    "triangles": 1832,
+    "material_count": 2,
+    "mesh_count": 2,
+    "dimensions_blender_xyz_m": [
+      1.1105027198791504,
+      0.9638588428497314,
+      0.915321409702301
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/armchair.png"
+  },
+  {
+    "id": "sofa-bed",
+    "passed": true,
+    "triangles": 3952,
+    "material_count": 2,
+    "mesh_count": 2,
+    "dimensions_blender_xyz_m": [
+      1.8165026903152466,
+      2.2775094509124756,
+      0.9160241484642029
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/sofa-bed.png"
+  },
+  {
+    "id": "dining-chair",
+    "passed": true,
+    "triangles": 1080,
+    "material_count": 2,
+    "mesh_count": 2,
+    "dimensions_blender_xyz_m": [
+      0.480000764131546,
+      0.5585334897041321,
+      0.9447137713432312
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/dining-chair.png"
+  },
+  {
+    "id": "ottoman",
+    "passed": true,
+    "triangles": 1104,
+    "material_count": 2,
+    "mesh_count": 2,
+    "dimensions_blender_xyz_m": [
+      0.6306498050689697,
+      0.6306454539299011,
+      0.4375459551811218
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/ottoman.png"
+  },
+  {
+    "id": "mattress-single",
+    "passed": true,
+    "triangles": 864,
+    "material_count": 1,
+    "mesh_count": 1,
+    "dimensions_blender_xyz_m": [
+      0.9000012278556824,
+      2.0000011920928955,
+      0.24884441494941711
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/mattress-single.png"
+  },
+  {
+    "id": "mattress-double",
+    "passed": true,
+    "triangles": 864,
+    "material_count": 1,
+    "mesh_count": 1,
+    "dimensions_blender_xyz_m": [
+      1.600001335144043,
+      2.0000011920928955,
+      0.24883636832237244
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/mattress-double.png"
+  },
+  {
+    "id": "upholstered-headboard",
+    "passed": true,
+    "triangles": 1728,
+    "material_count": 1,
+    "mesh_count": 1,
+    "dimensions_blender_xyz_m": [
+      1.7000007629394531,
+      0.16975663602352142,
+      1.18000066280365
+    ],
+    "vertex_color_layers": 1,
+    "floor_z": 0.0,
+    "preview": "/Users/ila/dev/projects/renameme/endquote-furniture/reports/roundtrip/upholstered-headboard.png"
+  }
+]

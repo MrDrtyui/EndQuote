@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-12",
+  "seq": "12",
+  "title": "Package same-origin service and document local/operator setup",
+  "status": "pending",
+  "depends_on": ["11"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-6", "packaging", "setup", "docs"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md", "AGENTS.md"],
+  "reference_files": ["endquote-furniture/package.json"],
+  "acceptance_criteria": [
+    "Package Vite dist with compiled Node24, generated Prisma client and native runtime dependencies; add same-origin Vite development proxy and container/Compose setup without deployment.",
+    "Serve only dist and intended APIs with correct route/status/content types, no private data/root serving, allowlisted Host/origin and same-origin framing. Distinguish liveness and readiness; keep static/demo pages usable during DB outage.",
+    "Document exact setup/build/test, one-shot migrations, bootstrap, HTTPS, quotas/cleanup, log redaction, credential rotation, restore and rollback plus consent/retention operator review. No production db push/reset/auto-seed."
+  ],
+  "deliverables": ["Build/Compose and setup files, env example, README, and packaged runtime contract"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

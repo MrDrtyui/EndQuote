@@ -1,0 +1,1164 @@
+{
+  "status": "pass",
+  "validator": "EndQuote mobile-library binary/geometry acceptance checker v1",
+  "directory": "/Users/ila/dev/projects/renameme/endquote-furniture/public/models",
+  "manifest": "/Users/ila/dev/projects/renameme/endquote-furniture/manifest.json",
+  "approved_two_seater_sha256": "178fb12be5cd6ed4d7c2431a9c4f3eb713dedbc9133db9d911c96bca9e38717f",
+  "checks": [
+    "GLB binary/accessor ranges, finite geometry, triangle indices and nondegenerate faces",
+    "unit normals, UV accessors, unit orthogonal tangents and valid handedness",
+    "valid vertex colors and white PBR base multiplier on vertex-tinted upholstery",
+    "embedded PNG CRCs, 8-bit RGB/RGBA coding, zlib data and scanline lengths",
+    "one identity root, applied rotations/scales, Y-up floor-centered meter bounds",
+    "named PBR materials and embedded images; no external resources, cameras, lights or animation",
+    "no Draco/meshopt compression; mobile triangle, file, material and draw-call budgets",
+    "semantic seat-count metadata and manifest consistency; byte-identical approved two-seater"
+  ],
+  "limitations": [
+    "Focused acceptance checks are not the complete Khronos glTF conformance suite.",
+    "Metadata checks do not establish silhouette quality or absence of part intersections.",
+    "PNG encoding is structurally decoded; browser texture upload and GPU rendering are separate checks.",
+    "Target-phone rendering performance requires testing in EndQuote's application."
+  ],
+  "assets": [
+    {
+      "id": "armchair",
+      "file": "armchair.glb",
+      "status": "pass",
+      "bytes": 96640,
+      "sha256": "121bb4975d8677983df3c1364db0ae1c445dc79ef7c351754fb5772bf09e0b0c",
+      "triangles": 1832,
+      "vertices_after_gltf_splits": 1398,
+      "mesh_nodes": 2,
+      "draw_calls": 2,
+      "material_count": 2,
+      "materials": [
+        "EQ_Mobile_Smoked_Oak",
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 1.1105027198791504,
+        "depth": 0.9638588428497314,
+        "height": 0.915321409702301
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Smoked_Oak",
+          "base_color": [
+            0.052000001072883606,
+            0.035999998450279236,
+            0.024000000208616257,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.5600000023841858
+        },
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -0.5552513599395752,
+          0.0,
+          -0.4819294214248657
+        ],
+        "max": [
+          0.5552513599395752,
+          0.915321409702301,
+          0.4819294214248657
+        ]
+      },
+      "root": "EQ_Mobile_armchair",
+      "seat_count": 1,
+      "uv_meshes": 2,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_armchair_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 1398,
+      "max_abs_normal_tangent_dot": 0.0001164873058595306,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "sofa-2-seater",
+      "file": "sofa-2-seater.glb",
+      "status": "pass",
+      "bytes": 432020,
+      "sha256": "178fb12be5cd6ed4d7c2431a9c4f3eb713dedbc9133db9d911c96bca9e38717f",
+      "triangles": 10908,
+      "vertices_after_gltf_splits": 7302,
+      "mesh_nodes": 16,
+      "draw_calls": 16,
+      "material_count": 4,
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery",
+        "EQ_Tonal_Stitched_Welting",
+        "EQ_Warm_Beige_Upholstered_Frame",
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "dimensions_meters": {
+        "width": 1.815999984741211,
+        "depth": 0.9646314382553101,
+        "height": 0.9156193137168884
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Warm_Beige_Woven_Upholstery",
+          "base_color": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8700000047683716
+        },
+        {
+          "name": "EQ_Tonal_Stitched_Welting",
+          "base_color": [
+            0.4399999976158142,
+            0.3799999952316284,
+            0.3149999976158142,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.9300000071525574
+        },
+        {
+          "name": "EQ_Warm_Beige_Upholstered_Frame",
+          "base_color": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8999999761581421
+        },
+        {
+          "name": "EQ_Smoked_Oak_Feet",
+          "base_color": [
+            0.052000001072883606,
+            0.035999998450279236,
+            0.024000000208616257,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.5600000023841858
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -0.9079999923706055,
+          0.0,
+          -0.48231571912765503
+        ],
+        "max": [
+          0.9079999923706055,
+          0.9156193137168884,
+          0.48231571912765503
+        ]
+      },
+      "root": "EQ_sofa-2-seater",
+      "seat_count": 2,
+      "uv_meshes": 16,
+      "vertex_color_meshes": 0,
+      "vertex_color_ranges": [],
+      "tangent_vertices_checked": 7302,
+      "max_abs_normal_tangent_dot": 0.0001113224172604177,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": true,
+      "warnings": [
+        "Preservation exception: approved two-seater retains 10,908 triangles, 4 materials and 16 mesh nodes.",
+        "File exceeds preferred 300 kB budget."
+      ]
+    },
+    {
+      "id": "sofa-3-seater",
+      "file": "sofa-3-seater.glb",
+      "status": "pass",
+      "bytes": 169252,
+      "sha256": "ae4bbb83b78020d26f82a45fb8196be0212e5b242f350a237c9a9937b9a92073",
+      "triangles": 3324,
+      "vertices_after_gltf_splits": 2480,
+      "mesh_nodes": 2,
+      "draw_calls": 2,
+      "material_count": 2,
+      "materials": [
+        "EQ_Mobile_Smoked_Oak",
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 2.452502727508545,
+        "depth": 0.9638588428497314,
+        "height": 0.9158324003219604
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Smoked_Oak",
+          "base_color": [
+            0.052000001072883606,
+            0.035999998450279236,
+            0.024000000208616257,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.5600000023841858
+        },
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -1.2262513637542725,
+          0.0,
+          -0.4819294214248657
+        ],
+        "max": [
+          1.2262513637542725,
+          0.9158324003219604,
+          0.4819294214248657
+        ]
+      },
+      "root": "EQ_Mobile_sofa-3-seater",
+      "seat_count": 3,
+      "uv_meshes": 2,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_sofa-3-seater_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 2480,
+      "max_abs_normal_tangent_dot": 0.00011057761795596477,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "sofa-4-seater",
+      "file": "sofa-4-seater.glb",
+      "status": "pass",
+      "bytes": 202068,
+      "sha256": "85a065476665d205917b7bbb4b267d6c726d864068ece6c585c08d4d076a07e5",
+      "triangles": 4012,
+      "vertices_after_gltf_splits": 2957,
+      "mesh_nodes": 2,
+      "draw_calls": 2,
+      "material_count": 2,
+      "materials": [
+        "EQ_Mobile_Smoked_Oak",
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 3.068502902984619,
+        "depth": 0.9638588428497314,
+        "height": 0.9159047603607178
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Smoked_Oak",
+          "base_color": [
+            0.052000001072883606,
+            0.035999998450279236,
+            0.024000000208616257,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.5600000023841858
+        },
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -1.5342514514923096,
+          0.0,
+          -0.4819294214248657
+        ],
+        "max": [
+          1.5342514514923096,
+          0.9159047603607178,
+          0.4819294214248657
+        ]
+      },
+      "root": "EQ_Mobile_sofa-4-seater",
+      "seat_count": 4,
+      "uv_meshes": 2,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_sofa-4-seater_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 2957,
+      "max_abs_normal_tangent_dot": 0.00011901864462871004,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "sofa-l-shaped",
+      "file": "sofa-l-shaped.glb",
+      "status": "pass",
+      "bytes": 180148,
+      "sha256": "700ea93b8e8588903226f95e66124293a266589dfcf9c6916bf0656ddc8c43be",
+      "triangles": 3524,
+      "vertices_after_gltf_splits": 2665,
+      "mesh_nodes": 2,
+      "draw_calls": 2,
+      "material_count": 2,
+      "materials": [
+        "EQ_Mobile_Smoked_Oak",
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 2.602529287338257,
+        "depth": 1.843924641609192,
+        "height": 0.91595858335495
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Smoked_Oak",
+          "base_color": [
+            0.052000001072883606,
+            0.035999998450279236,
+            0.024000000208616257,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.5600000023841858
+        },
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -1.3012646436691284,
+          0.0,
+          -0.921962320804596
+        ],
+        "max": [
+          1.3012646436691284,
+          0.91595858335495,
+          0.921962320804596
+        ]
+      },
+      "root": "EQ_Mobile_sofa-l-shaped",
+      "seat_count": 3,
+      "uv_meshes": 2,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_sofa-l-shaped_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 2665,
+      "max_abs_normal_tangent_dot": 0.00013133089055727964,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "sofa-u-shaped",
+      "file": "sofa-u-shaped.glb",
+      "status": "pass",
+      "bytes": 241900,
+      "sha256": "412a28f11be71a1936d77baff90decf24f609aca4853b64ae26efe4189ad1b99",
+      "triangles": 4720,
+      "vertices_after_gltf_splits": 3597,
+      "mesh_nodes": 2,
+      "draw_calls": 2,
+      "material_count": 2,
+      "materials": [
+        "EQ_Mobile_Smoked_Oak",
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 3.5945444107055664,
+        "depth": 2.0439229011535645,
+        "height": 0.9159561991691589
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Smoked_Oak",
+          "base_color": [
+            0.052000001072883606,
+            0.035999998450279236,
+            0.024000000208616257,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.5600000023841858
+        },
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -1.7972722053527832,
+          0.0,
+          -1.0219614505767822
+        ],
+        "max": [
+          1.7972722053527832,
+          0.9159561991691589,
+          1.0219614505767822
+        ]
+      },
+      "root": "EQ_Mobile_sofa-u-shaped",
+      "seat_count": 5,
+      "uv_meshes": 2,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_sofa-u-shaped_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 3597,
+      "max_abs_normal_tangent_dot": 0.00011690981034240266,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "sofa-bed",
+      "file": "sofa-bed.glb",
+      "status": "pass",
+      "bytes": 195004,
+      "sha256": "c2eb7f8033b7cd63dad130fad988d3d9959c202fd248dd71142fa668b41d8a9e",
+      "triangles": 3952,
+      "vertices_after_gltf_splits": 2931,
+      "mesh_nodes": 2,
+      "draw_calls": 2,
+      "material_count": 2,
+      "materials": [
+        "EQ_Mobile_Smoked_Oak",
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 1.8165026903152466,
+        "depth": 2.2775094509124756,
+        "height": 0.9160241484642029
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Smoked_Oak",
+          "base_color": [
+            0.052000001072883606,
+            0.035999998450279236,
+            0.024000000208616257,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.5600000023841858
+        },
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -0.9082513451576233,
+          0.0,
+          -1.1387547254562378
+        ],
+        "max": [
+          0.9082513451576233,
+          0.9160241484642029,
+          1.1387547254562378
+        ]
+      },
+      "root": "EQ_Mobile_sofa-bed",
+      "seat_count": 2,
+      "uv_meshes": 2,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_sofa-bed_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 2931,
+      "max_abs_normal_tangent_dot": 0.000119547515036178,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "dining-chair",
+      "file": "dining-chair.glb",
+      "status": "pass",
+      "bytes": 57780,
+      "sha256": "b0f8c582fdba0fb91c78d628c883bfa8002c5c1d2c13c2c13f3bdeb198382aa0",
+      "triangles": 1080,
+      "vertices_after_gltf_splits": 848,
+      "mesh_nodes": 2,
+      "draw_calls": 2,
+      "material_count": 2,
+      "materials": [
+        "EQ_Mobile_Smoked_Oak",
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 0.480000764131546,
+        "depth": 0.5585334897041321,
+        "height": 0.9447137713432312
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Smoked_Oak",
+          "base_color": [
+            0.052000001072883606,
+            0.035999998450279236,
+            0.024000000208616257,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.5600000023841858
+        },
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -0.240000382065773,
+          0.0,
+          -0.27926674485206604
+        ],
+        "max": [
+          0.240000382065773,
+          0.9447137713432312,
+          0.27926674485206604
+        ]
+      },
+      "root": "EQ_Mobile_dining-chair",
+      "seat_count": 1,
+      "uv_meshes": 2,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_dining-chair_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 848,
+      "max_abs_normal_tangent_dot": 0.00012594914865182716,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "ottoman",
+      "file": "ottoman.glb",
+      "status": "pass",
+      "bytes": 58252,
+      "sha256": "e7cac5d749ad1b4a6f18470a96acf2c5d2e99e43d7e387580d612b8720bede21",
+      "triangles": 1104,
+      "vertices_after_gltf_splits": 832,
+      "mesh_nodes": 2,
+      "draw_calls": 2,
+      "material_count": 2,
+      "materials": [
+        "EQ_Mobile_Smoked_Oak",
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 0.6306498050689697,
+        "depth": 0.6306454539299011,
+        "height": 0.4375459551811218
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Smoked_Oak",
+          "base_color": [
+            0.052000001072883606,
+            0.035999998450279236,
+            0.024000000208616257,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.5600000023841858
+        },
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -0.31532490253448486,
+          0.0,
+          -0.31532272696495056
+        ],
+        "max": [
+          0.31532490253448486,
+          0.4375459551811218,
+          0.31532272696495056
+        ]
+      },
+      "root": "EQ_Mobile_ottoman",
+      "seat_count": 1,
+      "uv_meshes": 2,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_ottoman_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 832,
+      "max_abs_normal_tangent_dot": 0.00011816926655683346,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "mattress-single",
+      "file": "mattress-single.glb",
+      "status": "pass",
+      "bytes": 42672,
+      "sha256": "2b9af174c84997377d65b44ccc20f8fec945a73bb4f8e5972c41eb4b9c1a5a46",
+      "triangles": 864,
+      "vertices_after_gltf_splits": 569,
+      "mesh_nodes": 1,
+      "draw_calls": 1,
+      "material_count": 1,
+      "materials": [
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 0.9000012278556824,
+        "depth": 2.0000011920928955,
+        "height": 0.24884441494941711
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -0.4500006139278412,
+          0.0,
+          -1.0000005960464478
+        ],
+        "max": [
+          0.4500006139278412,
+          0.24884441494941711,
+          1.0000005960464478
+        ]
+      },
+      "root": "EQ_Mobile_mattress-single",
+      "seat_count": null,
+      "uv_meshes": 1,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_mattress-single_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 569,
+      "max_abs_normal_tangent_dot": 0.0001087445112641916,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "mattress-double",
+      "file": "mattress-double.glb",
+      "status": "pass",
+      "bytes": 42612,
+      "sha256": "7906bd907f27109fae4677f90bac94d5380bb6de7fbfa42937bde902b1d1ed8e",
+      "triangles": 864,
+      "vertices_after_gltf_splits": 568,
+      "mesh_nodes": 1,
+      "draw_calls": 1,
+      "material_count": 1,
+      "materials": [
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 1.600001335144043,
+        "depth": 2.0000011920928955,
+        "height": 0.24883636832237244
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -0.8000006675720215,
+          0.0,
+          -1.0000005960464478
+        ],
+        "max": [
+          0.8000006675720215,
+          0.24883636832237244,
+          1.0000005960464478
+        ]
+      },
+      "root": "EQ_Mobile_mattress-double",
+      "seat_count": null,
+      "uv_meshes": 1,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_mattress-double_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 568,
+      "max_abs_normal_tangent_dot": 0.00010894790312043767,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    },
+    {
+      "id": "upholstered-headboard",
+      "file": "upholstered-headboard.glb",
+      "status": "pass",
+      "bytes": 84044,
+      "sha256": "a5d09faa198f7b77055b48b660aa5fe459c7c769e5043bd8b989221cf31f970f",
+      "triangles": 1728,
+      "vertices_after_gltf_splits": 1170,
+      "mesh_nodes": 1,
+      "draw_calls": 1,
+      "material_count": 1,
+      "materials": [
+        "EQ_Mobile_Woven_Upholstery_VertexTint"
+      ],
+      "dimensions_meters": {
+        "width": 1.7000007629394531,
+        "depth": 0.16975663602352142,
+        "height": 1.18000066280365
+      },
+      "material_pbr_factors": [
+        {
+          "name": "EQ_Mobile_Woven_Upholstery_VertexTint",
+          "base_color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "metallic": 0,
+          "roughness": 0.8899999856948853
+        }
+      ],
+      "bounds_y_up_meters": {
+        "min": [
+          -0.8500003814697266,
+          0.0,
+          -0.08487831801176071
+        ],
+        "max": [
+          0.8500003814697266,
+          1.18000066280365,
+          0.08487831801176071
+        ]
+      },
+      "root": "EQ_Mobile_upholstered-headboard",
+      "seat_count": null,
+      "uv_meshes": 1,
+      "vertex_color_meshes": 1,
+      "vertex_color_ranges": [
+        {
+          "node": "EQ_Mobile_upholstered-headboard_Upholstery",
+          "semantic": "COLOR_0",
+          "component_type": 5126,
+          "min": [
+            0.5049999952316284,
+            0.4399999976158142,
+            0.36500000953674316
+          ],
+          "max": [
+            0.5699999928474426,
+            0.5,
+            0.41499999165534973
+          ]
+        }
+      ],
+      "tangent_vertices_checked": 1170,
+      "max_abs_normal_tangent_dot": 0.00012272098784293917,
+      "images": [
+        {
+          "name": "EQ_Weave_Normal_128",
+          "mime_type": "image/png",
+          "bytes": 1116,
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 2,
+          "encoding_check": "PNG chunk CRCs and zlib scanline data valid"
+        }
+      ],
+      "extensions_used": [
+        "KHR_materials_specular"
+      ],
+      "preservation_exception": false,
+      "warnings": []
+    }
+  ]
+}

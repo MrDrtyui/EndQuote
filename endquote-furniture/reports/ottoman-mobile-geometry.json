@@ -1,0 +1,15 @@
+{
+  "id": "ottoman",
+  "triangles": 1104,
+  "dimensions_m": [
+    0.6306498050689697,
+    0.6306454539299011,
+    0.4375459551811218
+  ],
+  "draw_calls": 2,
+  "materials": 2,
+  "errors": [],
+  "file_size_bytes": 58252,
+  "sha256": "e7cac5d749ad1b4a6f18470a96acf2c5d2e99e43d7e387580d612b8720bede21",
+  "export_warnings": []
+}

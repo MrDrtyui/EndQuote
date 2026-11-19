@@ -1,0 +1,97 @@
+{
+  "status": "pass",
+  "three_version": "0.187.0",
+  "network_used": false,
+  "method": "Three.js GLTFLoader.parseAsync against in-memory GLB copies with texture bindings removed",
+  "limitations": [
+    "Node has no browser DOM/image decoding or WebGL context; this checks scene/geometry loading and PBR factors only.",
+    "Original GLB textures remain embedded and unchanged. UV/tangent correctness is checked separately in verification.json.",
+    "Target-browser visual rendering and GPU performance are not tested."
+  ],
+  "assets": [
+    {
+      "file": "armchair.glb",
+      "status": "pass",
+      "triangles": 8220,
+      "mesh_nodes": 12,
+      "dimensions_width_height_depth_meters": [
+        1.1100000143051147,
+        0.9156193137168884,
+        0.9646314382553101
+      ],
+      "max_bounds_error": 0,
+      "position_normal_uv_tangent_present": true,
+      "root": "EQ_armchair"
+    },
+    {
+      "file": "sofa-2-seater.glb",
+      "status": "pass",
+      "triangles": 10908,
+      "mesh_nodes": 16,
+      "dimensions_width_height_depth_meters": [
+        1.815999984741211,
+        0.9156193137168884,
+        0.9646314382553101
+      ],
+      "max_bounds_error": 0,
+      "position_normal_uv_tangent_present": true,
+      "root": "EQ_sofa-2-seater"
+    },
+    {
+      "file": "sofa-3-seater.glb",
+      "status": "pass",
+      "triangles": 14772,
+      "mesh_nodes": 22,
+      "dimensions_width_height_depth_meters": [
+        2.4519999027252197,
+        0.9156193137168884,
+        0.9646314382553101
+      ],
+      "max_bounds_error": 0,
+      "position_normal_uv_tangent_present": true,
+      "root": "EQ_sofa-3-seater"
+    },
+    {
+      "file": "sofa-4-seater.glb",
+      "status": "pass",
+      "triangles": 17460,
+      "mesh_nodes": 26,
+      "dimensions_width_height_depth_meters": [
+        3.068000078201294,
+        0.9156193137168884,
+        0.9646314382553101
+      ],
+      "max_bounds_error": 0,
+      "position_normal_uv_tangent_present": true,
+      "root": "EQ_sofa-4-seater"
+    },
+    {
+      "file": "sofa-l-shaped.glb",
+      "status": "pass",
+      "triangles": 16100,
+      "mesh_nodes": 24,
+      "dimensions_width_height_depth_meters": [
+        2.6019999980926514,
+        0.9156193137168884,
+        1.8446314334869385
+      ],
+      "max_bounds_error": 0,
+      "position_normal_uv_tangent_present": true,
+      "root": "EQ_sofa-l-shaped"
+    },
+    {
+      "file": "sofa-u-shaped.glb",
+      "status": "pass",
+      "triangles": 22804,
+      "mesh_nodes": 34,
+      "dimensions_width_height_depth_meters": [
+        3.5939998626708984,
+        0.9156193137168884,
+        2.0446314811706543
+      ],
+      "max_bounds_error": 0,
+      "position_normal_uv_tangent_present": true,
+      "root": "EQ_sofa-u-shaped"
+    }
+  ]
+}

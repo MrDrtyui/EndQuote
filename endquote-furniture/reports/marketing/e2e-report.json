@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:4173/",
+  "widths": [
+    {
+      "width": 390,
+      "noOverflow": true,
+      "previewsLoaded": true,
+      "noInitial3D": true,
+      "actualEmbedded3D": true,
+      "rotation": "touch",
+      "livePrice": "9000 → 18000",
+      "basketIsolated": true,
+      "realBookingForm": true,
+      "errors": []
+    },
+    {
+      "width": 360,
+      "noOverflow": true,
+      "previewsLoaded": true,
+      "noInitial3D": true,
+      "actualEmbedded3D": true,
+      "rotation": "touch",
+      "livePrice": "9000 → 18000",
+      "basketIsolated": true,
+      "realBookingForm": true,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "noOverflow": true,
+      "previewsLoaded": true,
+      "noInitial3D": true,
+      "actualEmbedded3D": true,
+      "rotation": "mouse",
+      "livePrice": "9000 → 18000",
+      "basketIsolated": true,
+      "realBookingForm": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "noOverflow": true,
+      "previewsLoaded": true,
+      "noInitial3D": true,
+      "actualEmbedded3D": true,
+      "rotation": "mouse",
+      "livePrice": "9000 → 18000",
+      "basketIsolated": true,
+      "realBookingForm": true,
+      "errors": []
+    }
+  ],
+  "checks": {
+    "assetsBytePreserved": 25,
+    "realContactLinks": true,
+    "honestPricingAndLegal": true,
+    "noBackendRequests": true,
+    "demoNavigation": true
+  },
+  "errors": []
+}

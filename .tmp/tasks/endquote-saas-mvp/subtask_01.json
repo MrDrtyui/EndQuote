@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-01",
+  "seq": "01",
+  "title": "Capture preservation and runtime baseline",
+  "status": "in_progress",
+  "depends_on": [],
+  "parallel": false,
+  "suggested_agent": "test-verifier",
+  "labels": ["preflight", "preservation", "runtime"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": ["endquote-furniture/package.json"],
+  "acceptance_criteria": [
+    "Capture path inventories/hashes and desktop/mobile reference renders for /, /lab, /chistodom, /clean/chistodom, and all four marketing iframe stages without overwriting reference reports.",
+    "Report the exact known legacy .blend mismatch separately; do not regenerate signatures, suppress failures, or accept any additional difference.",
+    "Record read-only Node/Node24, psql, Compose/Docker, Colima, loopback port, and disk preflight outcomes. If verification needs unavailable tooling or a stopped runtime, record the block and request approval rather than installing, starting, or using an existing DSN."
+  ],
+  "deliverables": ["Preservation snapshot and read-only runtime evidence with approval blockers, if any"],
+  "started_at": "2026-11-18T14:36:05Z",
+  "completed_at": null,
+  "completion_summary": null
+}

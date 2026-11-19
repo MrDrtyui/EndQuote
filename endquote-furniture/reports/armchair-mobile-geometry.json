@@ -1,0 +1,15 @@
+{
+  "id": "armchair",
+  "triangles": 1832,
+  "dimensions_m": [
+    1.1105027198791504,
+    0.9638588428497314,
+    0.915321409702301
+  ],
+  "draw_calls": 2,
+  "materials": 2,
+  "errors": [],
+  "file_size_bytes": 96640,
+  "sha256": "121bb4975d8677983df3c1364db0ae1c445dc79ef7c351754fb5772bf09e0b0c",
+  "export_warnings": []
+}

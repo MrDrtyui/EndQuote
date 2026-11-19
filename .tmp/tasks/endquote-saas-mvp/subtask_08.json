@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-08",
+  "seq": "08",
+  "title": "Bind shared storefront to live and draft read/quote data",
+  "status": "pending",
+  "depends_on": ["07"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-4", "shared-booking", "public-read", "preview"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": ["endquote-furniture/src/App.tsx", "endquote-furniture/src/booking/BookingApp.tsx"],
+  "acceptance_criteria": [
+    "Inject explicit profile, catalog/tariff, mode, cart/receipt, and submission contracts through the shared flow without changing protected rendered presentation or assets; prove price rounding parity for all 12 models.",
+    "Implement public profile/catalog/revision and validated quote reads, frozen manifest merge, route-only mode selection and anonymous live checkout session/CSRF with a basic visibility/access guard.",
+    "Preserve standalone demo's existing local namespace without server writes; isolate embed, draft preview and live in memory, reset live cart on tenant change, and prove no demo fallback, persistence leaks, or query-flag mode switches. Draft preview shows saved draft and cannot submit."
+  ],
+  "deliverables": ["Shared storefront data flow, public read/quote contracts, draft preview integration and preservation comparisons"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

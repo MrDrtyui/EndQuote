@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-02",
+  "seq": "02",
+  "title": "Set up Node24 server and initial PostgreSQL migration",
+  "status": "pending",
+  "depends_on": ["01"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-1", "server", "migration"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": ["endquote-furniture/package.json"],
+  "acceptance_criteria": [
+    "Verify Node24 compatibility and availability of matching Prisma 7.10.1 CLI, client and pg adapter before install; stop on incompatibility and leave the frontend toolchain unchanged.",
+    "Deliver separate ESM Fastify/Zod/pg runtime, explicit generated client configuration, one pool, graceful shutdown and request IDs with sensitive data excluded from logs.",
+    "Commit the initial owner/session/rate-limit migration and separate migration/runtime role configuration; show client generation, migrate deploy and migrate status using fresh isolated PostgreSQL."
+  ],
+  "deliverables": ["Server foundation, first committed migration, and real PostgreSQL migration evidence"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

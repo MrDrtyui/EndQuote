@@ -1,0 +1,86 @@
+{
+  "model": "armchair",
+  "seats": 1,
+  "dimensions_m": [
+    1.1100000143051147,
+    0.9646314382553101,
+    0.9156193137168884
+  ],
+  "objects": [
+    {
+      "name": "EQ_armchair_Continuous_Upholstered_Base",
+      "polygons": 150,
+      "triangles": 300,
+      "volume_m3": 0.1830365470561681
+    },
+    {
+      "name": "EQ_armchair_Rear_Support",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.015565867638240744
+    },
+    {
+      "name": "EQ_armchair_Armrest_Left",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06361867320970166
+    },
+    {
+      "name": "EQ_armchair_Armrest_Right",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06361867320970165
+    },
+    {
+      "name": "EQ_armchair_SeatCushion_01",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.08430297570452058
+    },
+    {
+      "name": "EQ_armchair_SeatPiping_01",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.0906957138330331e-05
+    },
+    {
+      "name": "EQ_armchair_BackCushion_01",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06478599993392968
+    },
+    {
+      "name": "EQ_armchair_BackPiping_01",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.85552816038966e-06
+    },
+    {
+      "name": "EQ_armchair_OakFoot_01",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834967820132524
+    },
+    {
+      "name": "EQ_armchair_OakFoot_02",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.00048349678201327963
+    },
+    {
+      "name": "EQ_armchair_OakFoot_03",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834967726522639
+    },
+    {
+      "name": "EQ_armchair_OakFoot_04",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834967726522923
+    }
+  ],
+  "triangles": 8220,
+  "polygons": 4110,
+  "errors": []
+}

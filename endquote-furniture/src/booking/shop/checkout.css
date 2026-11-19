@@ -1,0 +1,81 @@
+.sf-checkout,.sf-confirm { max-width: 970px; margin-inline: auto; padding-bottom: clamp(36px,5vw,72px); }
+.sf-checkout-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 15px; }
+.sf-checkout-nav ol { list-style: none; display: flex; align-items: center; gap: 12px; }
+.sf-checkout-nav li { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--sf-muted); }
+.sf-checkout-nav li i { width: 6px; height: 6px; border: 1px solid #91a18a; border-radius: 50%; }
+.sf-checkout-nav li[aria-current=step] { color: var(--sf-pine); font-weight: 600; }
+.sf-checkout-nav li[aria-current=step] i { background: var(--sf-pine); border-color: var(--sf-pine); }
+.sf-checkout-head { padding-block: 24px; }
+.sf-checkout-head h1,.sf-confirm h1 { margin: 10px 0; font-size: clamp(34px,4.1vw,59px); letter-spacing: -.062em; }
+.sf-checkout-head > p { max-width: 530px; font-size: 15px; color: var(--sf-muted); line-height: 1.65; }
+.sf-checkout-layout,.sf-confirm-layout { display: grid; grid-template-columns: minmax(0,1.45fr) minmax(0,1fr); gap: clamp(20px,3.5vw,48px); align-items: start; }
+.sf-checkout-main { min-width: 0; }
+.sf-order-lines { display: grid; gap: 14px; }
+.sf-order-line,.sf-summary,.sf-confirm-info { border: 1px solid var(--sf-line); border-radius: 13px; background: var(--sf-paper); padding: 19px; min-width: 0; }
+.sf-line-head { display: flex; align-items: center; gap: 13px; }
+.sf-line-head > img { background: #e8e8e2; border-radius: 9px; flex: none; width: 80px; height: 80px; object-fit: contain; }
+.sf-line-head > div { min-width: 0; flex: 1; }.sf-line-head h3 { font-size: 17px; }
+.sf-line-head small { color: var(--sf-muted); display: block; font-size: 11px; margin-top: 5px; }
+.sf-line-head strong { display: block; font-size: 19px; font-weight: 590; letter-spacing: -.035em; }
+.sf-remove { align-self: start; color: #6d776a; margin-right: -7px; }
+.sf-shop .sf-line-specs { display: grid; gap: 4px; margin-block: 12px; }
+.sf-line-specs > div,.sf-summary dl > div { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 12px; }
+.sf-line-specs dt,.sf-summary dt { color: var(--sf-muted); }
+.sf-line-specs dd { text-align: right; overflow-wrap: anywhere; }
+.sf-line-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 10px; border-top: 1px solid var(--sf-line); }
+.sf-line-actions .sf-stepper { padding: 0; }.sf-line-actions .sf-stepper button { width: 39px; height: 39px; }
+.sf-more { display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 13px; color: var(--sf-pine); background: var(--sf-pale); border: 1px dashed #acbea3; width: 100%; min-height: 47px; border-radius: 9px; margin-top: 13px; }
+.sf-summary { position: sticky; top: 84px; padding: 24px; background: #edf1e7; }
+.sf-summary dl { margin: 18px 0; display: grid; gap: 10px; }.sf-summary dl > div { font-size: 13px; }
+.sf-summary dt { color: #404b3e; }.sf-summary dt span { white-space: nowrap; font-size: 11px; }.sf-summary dd { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sf-summary-total { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; border-top: 1px solid #d2d9ca; padding-top: 14px; }
+.sf-summary-total span { color: var(--sf-muted); font-size: 12px; }
+.sf-summary-total strong { font-variant-numeric: tabular-nums; font-size: 26px; font-weight: 570; letter-spacing: -.055em; white-space: nowrap; }
+.sf-summary > p,.sf-local-note { display: flex; align-items: start; gap: 7px; color: var(--sf-muted); font-size: 12px; line-height: 1.6; }
+.sf-summary > p { margin-top: 10px; }.sf-summary > p svg { margin-top: 3px; }
+.sf-shop .booking-contact-form { gap: 14px; margin-top: 0; }
+.sf-shop .booking-form-card { padding: 21px; background: var(--sf-paper); border: 1px solid var(--sf-line); border-radius: 13px; }
+.sf-shop .booking-form-card h2 { font-size: 19px; color: var(--sf-ink); margin-bottom: 16px; }
+.sf-shop .booking-form-card h2 svg { color: #517052; }
+.sf-shop .booking-form-card:nth-child(2) h2 { margin-bottom: 5px; }
+.sf-shop .booking-form-intro,.sf-shop .booking-field small,.sf-shop .booking-optional,.sf-shop .booking-photo-heading span { color: var(--sf-muted); font-size: 11px; }
+.sf-shop .booking-field { font-size: 13px; font-weight: 530; margin-top: 18px; color: var(--sf-ink); }
+.sf-shop .booking-field :is(input,textarea) { font: inherit; font-size: 16px; font-weight: 430; color: var(--sf-ink); background: #fbfbf8; border: 1px solid #cbd2c5; }
+.sf-shop .booking-field :is(input,textarea)::placeholder { font-size: 14px; color: #6b7467; }
+.sf-shop .booking-field small { font-weight: 430; }
+.sf-shop .booking-required { color: #64815e; }
+.sf-shop .booking-field :is(input,textarea)[aria-invalid=true] { border-color: #ab543d; background: #fff7f1; }
+.sf-shop .booking-field .booking-field-error,.sf-shop .booking-field-error { color: #9c422d; }
+.sf-date-choices { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 9px; }
+.sf-date-choices button { min-height: 36px; padding: 0 10px; font-size: 11px; color: #445d45; border: 1px solid #cdd8c7; border-radius: 99px; }
+.sf-date-choices button[aria-pressed=true] { border-color: #819d77; background: var(--sf-pale); }
+.sf-shop .booking-photo-heading strong { font-size: 13px; color: var(--sf-ink); }
+.sf-shop .booking-photo-upload { background: #f2f5ed; border-color: #b1c2a9; color: var(--sf-pine); }
+.sf-shop .booking-photo-upload span { font-size: 11px; }
+.sf-shop .booking-photo button { width: 34px; height: 34px; }
+.sf-shop .booking-demo-notice,.sf-local-note { padding: 12px 14px; background: var(--sf-pale); border: 1px solid #d2deca; border-radius: 9px; color: #4a5d47; font-size: 12px; }
+.sf-confirm { padding-top: clamp(30px,4vw,62px); }
+.sf-confirm > header { text-align: center; max-width: 610px; margin-inline: auto; }
+.sf-success-icon { display: inline-grid; place-items: center; width: 57px; height: 57px; background: var(--sf-pine); color: #d2f2ad; border-radius: 50%; margin-bottom: 14px; }
+.sf-confirm header .sf-kicker { justify-content: center; }
+.sf-confirm header > p:not(.sf-kicker) { color: var(--sf-muted); font-size: 15px; overflow-wrap: anywhere; }
+.sf-number { display: inline-block; margin-top: 12px; padding: 5px 10px; border: 1px solid var(--sf-line); background: var(--sf-paper); border-radius: 6px; font: 12px/1.5 ui-monospace,Menlo,monospace; }
+.sf-confirm .sf-local-note { max-width: 610px; margin: 18px auto 24px; }
+.sf-confirm-layout { grid-template-columns: .9fr 1.1fr; gap: 20px; }
+.sf-confirm-layout h2 { font-size: 20px; margin-bottom: 13px; }
+.sf-confirm-info dl > div { display: grid; grid-template-columns: 21px 1fr; gap: 2px 7px; padding-block: 9px; }
+.sf-confirm-info dl svg { grid-row: span 2; color: #577151; }
+.sf-confirm-info dt { color: var(--sf-muted); font-size: 11px; }.sf-confirm-info dd { font-size: 14px; overflow-wrap: anywhere; }
+.sf-confirm-info p { font-size: 13px; margin-top: 12px; overflow-wrap: anywhere; }
+.sf-confirm-photos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.sf-confirm-photos img { width: 60px; height: 60px; border-radius: 7px; object-fit: cover; }
+.sf-confirm .sf-summary-total { margin-top: 15px; }
+.sf-confirm > .sf-action { display: flex; width: fit-content; margin: 22px auto 0; }
+@media (max-width: 680px) {
+  .sf-checkout-nav { padding-top: 8px; }.sf-checkout-nav ol { gap: 8px; }.sf-checkout-nav li { font-size: 10px; }
+  .sf-checkout-head { padding: 15px 0 19px; }.sf-checkout-head > p { font-size: 14px; }
+  .sf-checkout-layout,.sf-confirm-layout { grid-template-columns: minmax(0,1fr); gap: 17px; }
+  .sf-order-line,.sf-summary,.sf-confirm-info,.sf-shop .booking-form-card { padding: 15px; }.sf-summary { position: static; }
+  .sf-line-head > img { width: 64px; height: 64px; }.sf-line-head { gap: 10px; }.sf-line-head h3 { font-size: 15px; }
+  .sf-confirm-layout h2 { font-size: 18px; }.sf-confirm > .sf-action { width: 100%; }
+}

@@ -1,0 +1,50 @@
+.booking-header.storefront-header { background: #fffefa; }
+.storefront-platform { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 620; letter-spacing: -.5px; }
+.storefront-platform > span { display: inline-flex; align-items: center; color: #819286; font-size: 10px; font-weight: 400; letter-spacing: 0; border-left: 1px solid #e0e7dd; padding-left: 10px; margin-left: 3px; }
+.storefront-header .booking-header-inner { min-height: 61px; }
+.storefront-header-actions { display: flex; align-items: center; gap: 12px; }
+.storefront-basket-button { position: relative; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #dde7d8; background: #fffefa; border-radius: 11px; color: #51785b; }
+.storefront-basket-button > span { position: absolute; top: -5px; right: -5px; display: grid; place-items: center; background: var(--bt); color: white; font-size: 8px; width: 18px; height: 18px; border-radius: 50%; border: 2px solid #fffefa; }
+.storefront-profile { padding: 24px 0 25px; border-bottom: 1px solid #e2e9dc; margin-bottom: 25px; }
+.storefront-profile-heading { display: flex; gap: 14px; align-items: center; }
+.storefront-avatar { position: relative; width: 64px; height: 64px; display: grid; place-items: center; border: 1px solid #c6ddd2; border-radius: 19px; color: #f2f9f2; background: #146e68; flex-shrink: 0; }
+.storefront-avatar > span { position: absolute; bottom: 5px; right: 7px; font-size: 7px; letter-spacing: .3px; color: #a6cfc2; }
+.storefront-profile-heading > div:last-child { min-width: 0; }
+.storefront-profile-kicker { display: block; font-size: 9px; color: #91a08c; margin-bottom: 3px; }
+.storefront-profile-heading h1 { display: flex; align-items: center; gap: 7px; font-size: 28px; font-weight: 590; line-height: 1.2; letter-spacing: -1px; }
+.storefront-profile-heading p { color: #8a9a84; font-size: 10px; margin-top: 4px; }
+.storefront-profile-symbol { display: grid; place-items: center; width: 16px; height: 16px; background: #e4f1e8; border: 1px solid #cee4d1; color: #54846b; border-radius: 50%; }
+.storefront-description { color: #84947d; font-size: 12px; line-height: 1.8; margin-top: 16px !important; max-width: 575px; }
+.storefront-service-area { display: flex; align-items: flex-start; gap: 6px; color: #799373; font-size: 10px; margin-top: 10px; line-height: 1.6; }
+.storefront-service-area svg { margin-top: 1px; }.storefront-service-area span > span { color: #9caa91; }
+.storefront-profile-actions { display: flex; align-items: center; gap: 9px; margin-top: 18px; }
+.storefront-contact-button { display: flex; align-items: center; gap: 8px; min-height: 45px; flex: 1; padding: 10px 13px; background: #eaf3eb; color: #287166; border: 1px solid #d4e5d7; border-radius: 10px; font-size: 12px !important; font-weight: 500 !important; }
+.storefront-contact-button > span { margin-left: auto; font-size: 9px; color: #9db493; font-weight: 400; }
+.storefront-socials { display: flex; gap: 7px; }.storefront-socials > a { display: grid; place-items: center; width: 45px; height: 45px; border: 1px solid #e0e8d9; background: #fffefa; color: #809d76; border-radius: 10px; }
+.storefront-profile-note { display: flex; align-items: center; gap: 6px; color: #acb8a0; font-size: 9px; margin-top: 11px; }
+.storefront-profile + .booking-catalog .booking-page-heading { padding-top: 0; }
+.storefront-profile + .booking-catalog .booking-page-heading h2 { display: flex; align-items: center; gap: 9px; font-size: 24px; font-weight: 540; letter-spacing: -.9px; }
+.storefront-profile + .booking-catalog .booking-page-heading p { font-size: 11px; margin-top: 8px; }
+.storefront-profile + .booking-catalog .booking-catalog-toolbar { margin-top: 18px; }
+.booking-main.is-catalog { padding-top: 0; }
+.storefront-checkout-label { display: flex; align-items: center; gap: 7px; color: #9bae8e; font-size: 10px; }
+.storefront-recent-order { margin-top: 22px; }
+.storefront-contact-backdrop { position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; padding: 20px; background: #18372c69; }
+.storefront-contact-sheet { width: min(420px,100%); padding: 22px; border: 1px solid #e0ebd8; border-radius: 20px; background: #fffefa; }
+.storefront-contact-sheet > header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 17px; }
+.storefront-contact-avatar { display: grid; place-items: center; width: 45px; height: 45px; color: #2c7b67; background: #e9f3e9; border: 1px solid #d9e9d4; border-radius: 13px; }
+.storefront-contact-sheet h2 { font-size: 21px; font-weight: 540; letter-spacing: -.7px; line-height: 1.3; }
+.storefront-contact-sheet > p { color: #91a388; font-size: 11px; line-height: 1.7; margin: 8px 0 20px; }
+.storefront-contact-row { display: flex; align-items: center; gap: 12px; min-height: 70px; border: 1px solid #e0ebd6; border-radius: 11px; padding: 13px; margin-top: 9px; color: #7a9b69; }
+.storefront-contact-row > span { flex: 1; font-size: 10px; color: #a2b392; }.storefront-contact-row strong { display: block; font-weight: 500; color: #517c48; font-size: 13px; margin-top: 3px; }
+.storefront-copy { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; min-height: 44px; color: #90a77d; border: 0; background: transparent; font-size: 11px !important; margin-top: 7px; }
+.storefront-contacts-demo { font-size: 10px; color: #a4b293; background: #f3f7eb; border-radius: 9px; padding: 11px; line-height: 1.7; margin-top: 9px; }
+@media (min-width: 700px) {
+ .storefront-header .booking-header-inner { min-height: 72px; }.storefront-platform { font-size: 19px; }.storefront-platform > span { font-size: 11px; }.storefront-profile { padding-block: 34px 30px; position: relative; }.storefront-profile-heading { gap: 16px; }.storefront-avatar { width: 74px; height: 74px; border-radius: 22px; }.storefront-profile-heading h1 { font-size: 33px; }.storefront-profile-kicker { font-size: 10px; }.storefront-profile-heading p { font-size: 12px; }.storefront-description { font-size: 13px; max-width: 600px; }.storefront-service-area { font-size: 11px; }.storefront-profile-actions { position: absolute; top: 43px; right: 0; width: 315px; margin: 0; }.storefront-profile-note { position: absolute; top: 101px; right: 0; max-width: 315px; margin: 0; }.storefront-contact-button { font-size: 12px !important; }.storefront-profile + .booking-catalog .booking-page-heading h2 { font-size: 29px; }.storefront-profile + .booking-catalog .booking-page-heading p { font-size: 12px; }
+}
+@media (min-width: 700px) and (max-width: 900px) { .storefront-profile-actions { position: static; width: 350px; margin-top: 18px; }.storefront-profile-note { position: static; margin-top: 11px; } }
+@media (max-width: 370px) { .storefront-profile-heading h1 { font-size: 26px; }.storefront-contact-button > span { display: none; }.storefront-contact-button > svg:last-child { margin-left: auto; }.storefront-description { font-size: 11px; }.storefront-contact-sheet { padding: 19px; }.storefront-platform > span { font-size: 9px; } }
+@media (max-width: 699px) {
+ .storefront-header .booking-header-inner { min-height: 56px; }.storefront-profile { padding-block: 20px; margin-bottom: 20px; }.storefront-avatar { width: 56px; height: 56px; border-radius: 16px; }.storefront-description { margin-top: 12px !important; }.storefront-profile-actions { margin-top: 14px; }.storefront-profile-note { display: none; }
+}
+@media (max-width: 370px) { .storefront-platform > span { display: none; } }

@@ -1,0 +1,29 @@
+{
+  "status": "not_run",
+  "recordedAt": "2026-11-16T20:00:32.731497+00:00",
+  "scope": "Browser GLTFLoader parsing, embedded image decoding and real WebGL rendering of all 12 original GLBs",
+  "reasons": [
+    "In-app CUA browser returned: The browser access host is unavailable.",
+    "Local sandbox denied loopback server binding and native Chrome launch during preflight."
+  ],
+  "checksNotRun": [
+    "Browser GLTFLoader parseAsync execution of the 12 original textured GLBs",
+    "Browser ImageBitmap/HTMLImageElement decoding of embedded texture images",
+    "WebGL context creation, shader compilation and GPU drawing",
+    "Actual rendered-frame pixel checks and browser visual inspection",
+    "Browser performance or older Android device benchmarks"
+  ],
+  "preparedChecks": [
+    "Self-contained HTML with all 12 original GLBs embedded byte-for-byte and all five JavaScript modules embedded",
+    "Embedded asset SHA256 values matched the current original files",
+    "Extracted JavaScript module passed node --check; packer passed Python compilation"
+  ],
+  "harness": "tools/browser-check.html",
+  "manualReproduction": [
+    "Open tools/browser-check.html in a desktop browser with WebGL enabled. No local server or network dependencies are required.",
+    "Wait for the header status to show 12/12 loaded and rendered. Inspect the full gallery.",
+    "Read the visible JSON in #qa-report for exact hashes, materials, decoded texture dimensions, meshes, bounds, triangles, WebGL errors and frame pixel checks.",
+    "Use the optional contact-sheet download link to save the browser-rendered PNG."
+  ],
+  "limitations": "No live browser success or GPU/image-decoding result is claimed. The HTML is a reproducible frozen snapshot; regenerate it if any model changes."
+}

@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": {
+    "noInitial3D": true,
+    "initialJS": [
+      "/assets/index-MHTlzHtN.js",
+      "/assets/jsx-runtime-Wy9s6hX0.js"
+    ],
+    "legalKeyboardFocus": true,
+    "production3D": true,
+    "demoRoute": true,
+    "legacyRoute": true,
+    "labPreserved": true
+  },
+  "errors": []
+}

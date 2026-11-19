@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-13",
+  "seq": "13",
+  "title": "Rehearse real PostgreSQL migrations, private S3, and restore",
+  "status": "pending",
+  "depends_on": ["12"],
+  "parallel": false,
+  "suggested_agent": "test-verifier",
+  "labels": ["phase-6", "verification", "postgres", "private-s3", "restore"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": [],
+  "acceptance_criteria": [
+    "Confirm approved disposable infrastructure with unique Compose project, exclusively created resources and exact allowlisted targets before writes. If unavailable, record the block and seek approval; never use existing/live DSNs, destructive resets or shared deletes.",
+    "On Node24 generate/typecheck/build; fresh PostgreSQL migrate deploy/status/redeploy with no pending changes, and independently upgrade a prior-phase DB with two synthetic tenants/orders and preserved counts, constraints and snapshots.",
+    "Prove private bucket upload/read/cleanup and direct-read denial, then restore records and objects into a different isolated DB and bucket and compare results."
+  ],
+  "deliverables": ["Scrubbed commands and results for fresh/upgrade migrations, storage privacy/cleanup, and isolated backup/restore"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

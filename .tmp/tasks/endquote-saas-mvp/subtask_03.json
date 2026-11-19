@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-03",
+  "seq": "03",
+  "title": "Implement owner authentication and browser request protections",
+  "status": "pending",
+  "depends_on": ["02"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-1", "auth", "owner-api"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": [],
+  "acceptance_criteria": [
+    "Implement strict session/register/login/logout contracts with Argon2id, hashed revocable session tokens, idle/absolute expiry and rotation, standard errors, and no-store.",
+    "Enforce secure cookie settings with explicit loopback-only exception, exact Origin and session-bound CSRF including pre-login, bounded bodies, trusted proxy rules, and shared PostgreSQL account/IP rate limits.",
+    "On real PostgreSQL, show restart persistence, duplicate normalized email rejection, and denial for invalid Origin/CSRF, expired/revoked sessions, and exceeded rate caps."
+  ],
+  "deliverables": ["Owner auth routes, reusable guards, and real-DB auth evidence"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

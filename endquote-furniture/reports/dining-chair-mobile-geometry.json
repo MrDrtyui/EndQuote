@@ -1,0 +1,15 @@
+{
+  "id": "dining-chair",
+  "triangles": 1080,
+  "dimensions_m": [
+    0.480000764131546,
+    0.5585334897041321,
+    0.9447137713432312
+  ],
+  "draw_calls": 2,
+  "materials": 2,
+  "errors": [],
+  "file_size_bytes": 57780,
+  "sha256": "b0f8c582fdba0fb91c78d628c883bfa8002c5c1d2c13c2c13f3bdeb198382aa0",
+  "export_warnings": []
+}

@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-06",
+  "seq": "06",
+  "title": "Implement scoped owner workspace and versioned catalog APIs",
+  "status": "pending",
+  "depends_on": ["04", "05"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-3", "owner-api", "orders", "catalog"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": [],
+  "acceptance_criteria": [
+    "Commit scoped order/customer/snapshot/history migrations and real summaries, stable list/detail pagination, and atomic status transitions with actor/history and stale-state conflicts.",
+    "Support all 12 manifest IDs in tenant tariffs with bounded integer KZT, basis-point conversion, transactional validation, and revision preconditions; reject invalid or stale updates without partial writes.",
+    "Implement sanitized profile, logo reference, publication and slug changes, plus current-password account updates with session rotation. Verify distinct owner data and true zeros using disposable DB fixtures."
+  ],
+  "deliverables": ["Workspace API and migrations, revision/DTO contracts for owner UI and live flow, and two-owner DB assertions"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

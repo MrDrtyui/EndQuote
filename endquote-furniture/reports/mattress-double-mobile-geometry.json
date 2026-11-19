@@ -1,0 +1,15 @@
+{
+  "id": "mattress-double",
+  "triangles": 864,
+  "dimensions_m": [
+    1.600001335144043,
+    2.0000011920928955,
+    0.24883636832237244
+  ],
+  "draw_calls": 1,
+  "materials": 1,
+  "errors": [],
+  "file_size_bytes": 42612,
+  "sha256": "7906bd907f27109fae4677f90bac94d5380bb6de7fbfa42937bde902b1d1ed8e",
+  "export_warnings": []
+}

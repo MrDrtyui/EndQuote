@@ -1,0 +1,17 @@
+{
+  "id": "endquote-saas-mvp",
+  "name": "EndQuote SaaS MVP",
+  "status": "active",
+  "objective": "Track the six approved EndQuote MVP gates and final reviews without changing the approved plan, preserved experiences, or deployment scope.",
+  "context_files": [".opencode/plans/endquote-saas-mvp.md", "AGENTS.md"],
+  "reference_files": ["endquote-furniture/package.json", "endquote-furniture/src/App.tsx", "endquote-furniture/src/booking/BookingApp.tsx"],
+  "exit_criteria": [
+    "All six approved plan gates have recorded evidence, with no new preservation drift.",
+    "Real PostgreSQL fresh and upgrade migrations, private S3 and isolated restore, and packaged same-origin desktop/mobile E2E pass; absent dependencies are reported as blocked, not skipped passes.",
+    "Final code, security, and docs reviews are scheduled by the orchestrator after convergence, and blocking findings are resolved before sign-off. No deployment."
+  ],
+  "subtask_count": 15,
+  "completed_count": 0,
+  "created_at": "2026-11-18T14:36:05Z",
+  "completed_at": null
+}

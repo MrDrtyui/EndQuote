@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-14",
+  "seq": "14",
+  "title": "Run packaged desktop/mobile E2E and preservation gates",
+  "status": "pending",
+  "depends_on": ["13"],
+  "parallel": false,
+  "suggested_agent": "test-verifier",
+  "labels": ["phase-6", "verification", "playwright", "preservation"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": ["endquote-furniture/package.json"],
+  "acceptance_criteria": [
+    "Run packaged same-origin desktop/mobile Playwright with real PostgreSQL/private S3 and separate A/B owner and customer contexts plus admin: onboard/publish distinct setups, submit with image and consent, retry, persist through restart, rename/retire, expire/reactivate and check offline/error feedback.",
+    "Show scoped list/detail/update/receipt/media denial, preview isolation, and no demo writes. Run frontend test/build and legacy showcase/booking/marketing tests at documented origins without overwriting reports.",
+    "Compare routes, alias/history/WebGL, all iframe stages, visuals and inventories to 01; log the exact pre-existing mismatch separately and block on any new drift, failure or missing dependency."
+  ],
+  "deliverables": ["Scrubbed E2E output and screenshots, legacy results, migration/storage assertions and preservation comparison"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

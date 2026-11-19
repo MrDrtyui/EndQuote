@@ -1,0 +1,158 @@
+{
+  "model": "sofa-l-shaped",
+  "seats": 3,
+  "dimensions_m": [
+    2.6019999980926514,
+    1.8446314334869385,
+    0.9156193137168884
+  ],
+  "objects": [
+    {
+      "name": "EQ_sofa-l-shaped_Continuous_Upholstered_Base",
+      "polygons": 230,
+      "triangles": 452,
+      "volume_m3": 0.5724730628912905
+    },
+    {
+      "name": "EQ_sofa-l-shaped_Rear_Support",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.04878324423955452
+    },
+    {
+      "name": "EQ_sofa-l-shaped_Armrest_Left",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06361868267402172
+    },
+    {
+      "name": "EQ_sofa-l-shaped_Armrest_Right",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.11448788730524023
+    },
+    {
+      "name": "EQ_sofa-l-shaped_SeatCushion_01",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.08430297771118393
+    },
+    {
+      "name": "EQ_sofa-l-shaped_SeatPiping_01",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.0907009777498563e-05
+    },
+    {
+      "name": "EQ_sofa-l-shaped_BackCushion_01",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06478600043678266
+    },
+    {
+      "name": "EQ_sofa-l-shaped_BackPiping_01",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.855523980525582e-06
+    },
+    {
+      "name": "EQ_sofa-l-shaped_SeatCushion_02",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.08430297503042178
+    },
+    {
+      "name": "EQ_sofa-l-shaped_SeatPiping_02",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.0906936273477375e-05
+    },
+    {
+      "name": "EQ_sofa-l-shaped_BackCushion_02",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06478599975970402
+    },
+    {
+      "name": "EQ_sofa-l-shaped_BackPiping_02",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.855524401446321e-06
+    },
+    {
+      "name": "EQ_sofa-l-shaped_SeatCushion_03",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.1989457310659672
+    },
+    {
+      "name": "EQ_sofa-l-shaped_SeatPiping_03",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.8051971803077565e-05
+    },
+    {
+      "name": "EQ_sofa-l-shaped_BackCushion_03",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06478600043678236
+    },
+    {
+      "name": "EQ_sofa-l-shaped_BackPiping_03",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.855524374094055e-06
+    },
+    {
+      "name": "EQ_sofa-l-shaped_OakFoot_01",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.00048349696748592035
+    },
+    {
+      "name": "EQ_sofa-l-shaped_OakFoot_02",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834969674859154
+    },
+    {
+      "name": "EQ_sofa-l-shaped_OakFoot_03",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834970950773774
+    },
+    {
+      "name": "EQ_sofa-l-shaped_OakFoot_04",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.00048349709507738
+    },
+    {
+      "name": "EQ_sofa-l-shaped_OakFoot_05",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834967034029729
+    },
+    {
+      "name": "EQ_sofa-l-shaped_OakFoot_06",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.000483496823875651
+    },
+    {
+      "name": "EQ_sofa-l-shaped_OakFoot_07",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004834971614268193
+    },
+    {
+      "name": "EQ_sofa-l-shaped_OakFoot_08",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.00048349688358408603
+    }
+  ],
+  "triangles": 16100,
+  "polygons": 8054,
+  "errors": []
+}

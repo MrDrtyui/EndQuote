@@ -1,0 +1,126 @@
+{
+  "collection": "EndQuote upholstery configurator sofas",
+  "units": "meters",
+  "blender_up": "Z",
+  "blender_front": "-Y",
+  "gltf_up": "Y",
+  "gltf_front": "+Z",
+  "origin": "horizontal bounding-box center at floor level",
+  "material_style": "warm-beige woven upholstery, tonal welting, smoked-oak feet",
+  "models": [
+    {
+      "file": "sofa-2-seater.glb",
+      "category": "2-Seater Sofa",
+      "seat_count": 2,
+      "chaise": "none",
+      "dimensions_width_depth_height_m": [
+        1.815999984741211,
+        0.9646314382553101,
+        0.9156193137168884
+      ],
+      "source_polygons": 5454,
+      "exported_triangles": 10908,
+      "mesh_components": 16,
+      "file_bytes": 432020,
+      "sha256": "178fb12be5cd6ed4d7c2431a9c4f3eb713dedbc9133db9d911c96bca9e38717f",
+      "preview": "previews/sofa-2-seater.png",
+      "scene": "EndQuote | 2-Seater Sofa",
+      "root_node": "EQ_sofa-2-seater"
+    },
+    {
+      "file": "armchair.glb",
+      "category": "Armchair",
+      "seat_count": 1,
+      "chaise": "none",
+      "dimensions_width_depth_height_m": [
+        1.1100000143051147,
+        0.9646314382553101,
+        0.9156193137168884
+      ],
+      "source_polygons": 4110,
+      "exported_triangles": 8220,
+      "mesh_components": 12,
+      "file_bytes": 321076,
+      "sha256": "e45866c261d8a22e3497765f8d6d9ee8999f094a18a9bc3761cf297569af72b7",
+      "preview": "previews/armchair.png",
+      "scene": "EndQuote | Armchair",
+      "root_node": "EQ_armchair"
+    },
+    {
+      "file": "sofa-3-seater.glb",
+      "category": "3-Seater Sofa",
+      "seat_count": 3,
+      "chaise": "none",
+      "dimensions_width_depth_height_m": [
+        2.4519999027252197,
+        0.9646314382553101,
+        0.9156193137168884
+      ],
+      "source_polygons": 7386,
+      "exported_triangles": 14772,
+      "mesh_components": 22,
+      "file_bytes": 577700,
+      "sha256": "c23610f25cad5b5c5fb5db949b28265e2e8905d86cb6fe4cfce126341b2d9162",
+      "preview": "previews/sofa-3-seater.png",
+      "scene": "EndQuote | 3-Seater Sofa",
+      "root_node": "EQ_sofa-3-seater"
+    },
+    {
+      "file": "sofa-4-seater.glb",
+      "category": "4-Seater Sofa",
+      "seat_count": 4,
+      "chaise": "none",
+      "dimensions_width_depth_height_m": [
+        3.068000078201294,
+        0.9646314382553101,
+        0.9156193137168884
+      ],
+      "source_polygons": 8730,
+      "exported_triangles": 17460,
+      "mesh_components": 26,
+      "file_bytes": 679128,
+      "sha256": "4ce4391934f62163159da89ac5bba89245d6ed3e15e6650f509626fa518045d9",
+      "preview": "previews/sofa-4-seater.png",
+      "scene": "EndQuote | 4-Seater Sofa",
+      "root_node": "EQ_sofa-4-seater"
+    },
+    {
+      "file": "sofa-l-shaped.glb",
+      "category": "L-Shaped Corner Sofa",
+      "seat_count": 3,
+      "chaise": "right",
+      "dimensions_width_depth_height_m": [
+        2.6019999980926514,
+        1.8446314334869385,
+        0.9156193137168884
+      ],
+      "source_polygons": 8054,
+      "exported_triangles": 16100,
+      "mesh_components": 24,
+      "file_bytes": 616648,
+      "sha256": "c28192a07ccce220b4bad3f7c20f62eb5e821d0a29b9d52ea57c5c88b96e75bb",
+      "preview": "previews/sofa-l-shaped.png",
+      "scene": "EndQuote | L-Shaped Corner Sofa",
+      "root_node": "EQ_sofa-l-shaped"
+    },
+    {
+      "file": "sofa-u-shaped.glb",
+      "category": "U-Shaped Sofa",
+      "seat_count": 5,
+      "chaise": "both",
+      "dimensions_width_depth_height_m": [
+        3.5939998626708984,
+        2.0446314811706543,
+        0.9156193137168884
+      ],
+      "source_polygons": 11408,
+      "exported_triangles": 22804,
+      "mesh_components": 34,
+      "file_bytes": 877148,
+      "sha256": "ebbbfef07affb4147223b4ffbf9f950f0b3a5f8a41931f274e4933a262d4776f",
+      "preview": "previews/sofa-u-shaped.png",
+      "scene": "EndQuote | U-Shaped Sofa",
+      "root_node": "EQ_sofa-u-shaped"
+    }
+  ]
+}

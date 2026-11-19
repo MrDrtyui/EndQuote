@@ -1,0 +1,996 @@
+{
+  "objects": [
+    {
+      "name": "EQ_sofa-2-seater",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": []
+    },
+    {
+      "name": "EQ_sofa-2-seater_Armrest_Left",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery"
+      ],
+      "geometry_normals_uv_sha256": "83d9d0d9db0b60d2182e3eb7c311844e76ba4b2edee6c20cf97c81136b8ec276"
+    },
+    {
+      "name": "EQ_sofa-2-seater_Armrest_Right",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery"
+      ],
+      "geometry_normals_uv_sha256": "a76d365e53082d6cdab27832d2c13553ca8bf66a48e07769fbd6e10f6f02f0cf"
+    },
+    {
+      "name": "EQ_sofa-2-seater_BackCushion_01",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery"
+      ],
+      "geometry_normals_uv_sha256": "d5069cf6221f0778b80cf24710d264fd106af0941fbdda457a02d3e0a2f9bf19"
+    },
+    {
+      "name": "EQ_sofa-2-seater_BackCushion_02",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery"
+      ],
+      "geometry_normals_uv_sha256": "e079d8d3a3a2791d45bea12923d5985e9a623f8e1424c0939acf7aebf2722602"
+    },
+    {
+      "name": "EQ_sofa-2-seater_BackPiping_01",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Tonal_Stitched_Welting"
+      ],
+      "geometry_normals_uv_sha256": "d3260faea05997408531405585b471b5626b90c7e88c34e089506ccf6e52d41e"
+    },
+    {
+      "name": "EQ_sofa-2-seater_BackPiping_02",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Tonal_Stitched_Welting"
+      ],
+      "geometry_normals_uv_sha256": "084417fe7792ad2a09ded38bc4031180cba2db7c4dc671bcc8c6737859fdee67"
+    },
+    {
+      "name": "EQ_sofa-2-seater_Continuous_Upholstered_Base",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Warm_Beige_Upholstered_Frame"
+      ],
+      "geometry_normals_uv_sha256": "b90fac9255971e83107c4bcec7481885ae169f8a8335b7153c0222db7e8bfc24"
+    },
+    {
+      "name": "EQ_sofa-2-seater_OakFoot_01",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "geometry_normals_uv_sha256": "6402c354ccf2bceb9fb749bbd3cc968e237627aa26125ce0a44592ecedb316c4"
+    },
+    {
+      "name": "EQ_sofa-2-seater_OakFoot_02",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "geometry_normals_uv_sha256": "c84d27ae428f87ded17a26679fdc68d42a8a17d8a28019b4d9c7a9b47eaaa042"
+    },
+    {
+      "name": "EQ_sofa-2-seater_OakFoot_03",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "geometry_normals_uv_sha256": "64582bae1d652013d2da26ef7daf5a19df51691423c68c1b858a5bed52ed4925"
+    },
+    {
+      "name": "EQ_sofa-2-seater_OakFoot_04",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Smoked_Oak_Feet"
+      ],
+      "geometry_normals_uv_sha256": "be5ed40d482022929ed6641b1b1d8ff8cdf62b593c532a65ec395c84aa75a17a"
+    },
+    {
+      "name": "EQ_sofa-2-seater_Rear_Support",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Warm_Beige_Upholstered_Frame"
+      ],
+      "geometry_normals_uv_sha256": "02bb949f46782b908bc2f977378e2e4c11bdf76f39dabefd0d6d99bad19c6704"
+    },
+    {
+      "name": "EQ_sofa-2-seater_SeatCushion_01",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery"
+      ],
+      "geometry_normals_uv_sha256": "4c41265d795b6dd6224bd3557b64c44cbda6ca23c6857b081d4707eff62f200d"
+    },
+    {
+      "name": "EQ_sofa-2-seater_SeatCushion_02",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Warm_Beige_Woven_Upholstery"
+      ],
+      "geometry_normals_uv_sha256": "32bca69c4e1e0820ee2a64eb1bfad55d8687d21eff158438c42e9f6692c2b07e"
+    },
+    {
+      "name": "EQ_sofa-2-seater_SeatPiping_01",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Tonal_Stitched_Welting"
+      ],
+      "geometry_normals_uv_sha256": "4ae90764d368a57ea14bec293994cb5be9fa30ffbfd8658fa777c9ca4617b5a7"
+    },
+    {
+      "name": "EQ_sofa-2-seater_SeatPiping_02",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        "EQ_Tonal_Stitched_Welting"
+      ],
+      "geometry_normals_uv_sha256": "a92b35bb5aed00895b517b5cf1274e26352e6e3eafa2e082faefde588e4000c9"
+    }
+  ],
+  "materials": [
+    {
+      "name": "EQ_Smoked_Oak_Feet",
+      "principled": {
+        "Base Color": [
+          0.052000001072883606,
+          0.035999998450279236,
+          0.024000000208616257,
+          1.0
+        ],
+        "Metallic": 0.0,
+        "Roughness": 0.5600000023841858,
+        "IOR": 1.5,
+        "Alpha": 1.0,
+        "Thin Wall": false,
+        "Normal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Weight": 0.0,
+        "Diffuse Roughness": 0.0,
+        "Subsurface Weight": 0.0,
+        "Subsurface Radius": [
+          1.0,
+          0.20000000298023224,
+          0.10000000149011612
+        ],
+        "Subsurface Scale": 0.004999999888241291,
+        "Subsurface IOR": 1.399999976158142,
+        "Subsurface Anisotropy": 0.0,
+        "Specular IOR Level": 0.2800000011920929,
+        "Specular Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Anisotropic": 0.0,
+        "Anisotropic Rotation": 0.0,
+        "Tangent": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Transmission Weight": 0.0,
+        "Transmission Dispersion Scale": 0.0,
+        "Transmission Dispersion Abbe Number": 20.0,
+        "Coat Weight": 0.0,
+        "Coat Roughness": 0.029999999329447746,
+        "Coat IOR": 1.5,
+        "Coat Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Coat Normal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Sheen Weight": 0.0,
+        "Sheen Roughness": 0.5,
+        "Sheen Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Emission Color": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Emission Strength": 0.0,
+        "Thin Film Thickness": 0.0,
+        "Thin Film IOR": 1.3300000429153442
+      },
+      "nodes": [
+        [
+          "ShaderNodeBsdfPrincipled",
+          "Principled BSDF"
+        ],
+        [
+          "ShaderNodeOutputMaterial",
+          "Material Output"
+        ]
+      ],
+      "links": [
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ]
+      ]
+    },
+    {
+      "name": "EQ_Tonal_Stitched_Welting",
+      "principled": {
+        "Base Color": [
+          0.4399999976158142,
+          0.3799999952316284,
+          0.3149999976158142,
+          1.0
+        ],
+        "Metallic": 0.0,
+        "Roughness": 0.9300000071525574,
+        "IOR": 1.5,
+        "Alpha": 1.0,
+        "Thin Wall": false,
+        "Normal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Weight": 0.0,
+        "Diffuse Roughness": 0.0,
+        "Subsurface Weight": 0.0,
+        "Subsurface Radius": [
+          1.0,
+          0.20000000298023224,
+          0.10000000149011612
+        ],
+        "Subsurface Scale": 0.004999999888241291,
+        "Subsurface IOR": 1.399999976158142,
+        "Subsurface Anisotropy": 0.0,
+        "Specular IOR Level": 0.2800000011920929,
+        "Specular Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Anisotropic": 0.0,
+        "Anisotropic Rotation": 0.0,
+        "Tangent": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Transmission Weight": 0.0,
+        "Transmission Dispersion Scale": 0.0,
+        "Transmission Dispersion Abbe Number": 20.0,
+        "Coat Weight": 0.0,
+        "Coat Roughness": 0.029999999329447746,
+        "Coat IOR": 1.5,
+        "Coat Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Coat Normal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Sheen Weight": 0.0,
+        "Sheen Roughness": 0.5,
+        "Sheen Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Emission Color": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Emission Strength": 0.0,
+        "Thin Film Thickness": 0.0,
+        "Thin Film IOR": 1.3300000429153442
+      },
+      "nodes": [
+        [
+          "ShaderNodeBsdfPrincipled",
+          "Principled BSDF"
+        ],
+        [
+          "ShaderNodeOutputMaterial",
+          "Material Output"
+        ]
+      ],
+      "links": [
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ]
+      ]
+    },
+    {
+      "name": "EQ_Warm_Beige_Upholstered_Frame",
+      "principled": {
+        "Base Color": [
+          0.5049999952316284,
+          0.4399999976158142,
+          0.36500000953674316,
+          1.0
+        ],
+        "Metallic": 0.0,
+        "Roughness": 0.8999999761581421,
+        "IOR": 1.5,
+        "Alpha": 1.0,
+        "Thin Wall": false,
+        "Normal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Weight": 0.0,
+        "Diffuse Roughness": 0.0,
+        "Subsurface Weight": 0.0,
+        "Subsurface Radius": [
+          1.0,
+          0.20000000298023224,
+          0.10000000149011612
+        ],
+        "Subsurface Scale": 0.004999999888241291,
+        "Subsurface IOR": 1.399999976158142,
+        "Subsurface Anisotropy": 0.0,
+        "Specular IOR Level": 0.2800000011920929,
+        "Specular Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Anisotropic": 0.0,
+        "Anisotropic Rotation": 0.0,
+        "Tangent": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Transmission Weight": 0.0,
+        "Transmission Dispersion Scale": 0.0,
+        "Transmission Dispersion Abbe Number": 20.0,
+        "Coat Weight": 0.0,
+        "Coat Roughness": 0.029999999329447746,
+        "Coat IOR": 1.5,
+        "Coat Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Coat Normal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Sheen Weight": 0.0,
+        "Sheen Roughness": 0.5,
+        "Sheen Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Emission Color": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Emission Strength": 0.0,
+        "Thin Film Thickness": 0.0,
+        "Thin Film IOR": 1.3300000429153442
+      },
+      "nodes": [
+        [
+          "ShaderNodeBsdfPrincipled",
+          "Principled BSDF"
+        ],
+        [
+          "ShaderNodeOutputMaterial",
+          "Material Output"
+        ],
+        [
+          "ShaderNodeTexImage",
+          "Image Texture"
+        ],
+        [
+          "ShaderNodeNormalMap",
+          "Normal Map"
+        ]
+      ],
+      "links": [
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ],
+        [
+          "Image Texture",
+          "Color",
+          "Normal Map",
+          "Color"
+        ],
+        [
+          "Normal Map",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ]
+      ]
+    },
+    {
+      "name": "EQ_Warm_Beige_Woven_Upholstery",
+      "principled": {
+        "Base Color": [
+          0.5699999928474426,
+          0.5,
+          0.41499999165534973,
+          1.0
+        ],
+        "Metallic": 0.0,
+        "Roughness": 0.8700000047683716,
+        "IOR": 1.5,
+        "Alpha": 1.0,
+        "Thin Wall": false,
+        "Normal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Weight": 0.0,
+        "Diffuse Roughness": 0.0,
+        "Subsurface Weight": 0.0,
+        "Subsurface Radius": [
+          1.0,
+          0.20000000298023224,
+          0.10000000149011612
+        ],
+        "Subsurface Scale": 0.004999999888241291,
+        "Subsurface IOR": 1.399999976158142,
+        "Subsurface Anisotropy": 0.0,
+        "Specular IOR Level": 0.2800000011920929,
+        "Specular Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Anisotropic": 0.0,
+        "Anisotropic Rotation": 0.0,
+        "Tangent": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Transmission Weight": 0.0,
+        "Transmission Dispersion Scale": 0.0,
+        "Transmission Dispersion Abbe Number": 20.0,
+        "Coat Weight": 0.0,
+        "Coat Roughness": 0.029999999329447746,
+        "Coat IOR": 1.5,
+        "Coat Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Coat Normal": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Sheen Weight": 0.0,
+        "Sheen Roughness": 0.5,
+        "Sheen Tint": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Emission Color": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Emission Strength": 0.0,
+        "Thin Film Thickness": 0.0,
+        "Thin Film IOR": 1.3300000429153442
+      },
+      "nodes": [
+        [
+          "ShaderNodeBsdfPrincipled",
+          "Principled BSDF"
+        ],
+        [
+          "ShaderNodeOutputMaterial",
+          "Material Output"
+        ],
+        [
+          "ShaderNodeTexImage",
+          "Image Texture"
+        ],
+        [
+          "ShaderNodeNormalMap",
+          "Normal Map"
+        ]
+      ],
+      "links": [
+        [
+          "Principled BSDF",
+          "BSDF",
+          "Material Output",
+          "Surface"
+        ],
+        [
+          "Image Texture",
+          "Color",
+          "Normal Map",
+          "Color"
+        ],
+        [
+          "Normal Map",
+          "Normal",
+          "Principled BSDF",
+          "Normal"
+        ]
+      ]
+    }
+  ]
+}

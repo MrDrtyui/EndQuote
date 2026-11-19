@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-09",
+  "seq": "09",
+  "title": "Implement staged checkout media and private owner photo reads",
+  "status": "pending",
+  "depends_on": ["05", "08"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-4", "checkout-media", "private-s3"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": [],
+  "acceptance_criteria": [
+    "Reuse the private image primitive for bounded multipart checkout uploads with quotas, MIME/magic/decode validation and disconnect handling. Bind staged grants and records to tenant, checkout session, attempt and purpose.",
+    "Stream order photos only through scoped owner handlers; deny anonymous and other-owner access. Never expose S3 keys, storage credentials, signed/bearer URLs or media URLs on anonymous receipts.",
+    "On real private S3 and PostgreSQL verify direct object denial, invalid/reused/foreign upload rejection, interruption and DB-failure compensation, and idempotent staged TTL/orphan cleanup that leaves attached photos intact."
+  ],
+  "deliverables": ["Checkout uploads and grants, owner photo streaming, cleanup/reconciliation and storage evidence"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

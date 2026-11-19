@@ -1,0 +1,15 @@
+{
+  "id": "sofa-l-shaped",
+  "triangles": 3524,
+  "dimensions_m": [
+    2.602529287338257,
+    1.843924641609192,
+    0.91595858335495
+  ],
+  "draw_calls": 2,
+  "materials": 2,
+  "errors": [],
+  "file_size_bytes": 180148,
+  "sha256": "700ea93b8e8588903226f95e66124293a266589dfcf9c6916bf0656ddc8c43be",
+  "export_warnings": []
+}

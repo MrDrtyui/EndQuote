@@ -1,0 +1,110 @@
+{
+  "model": "sofa-2-seater",
+  "seats": 2,
+  "dimensions_m": [
+    1.815999984741211,
+    0.9646314382553101,
+    0.9156193137168884
+  ],
+  "objects": [
+    {
+      "name": "EQ_sofa-2-seater_Continuous_Upholstered_Base",
+      "polygons": 150,
+      "triangles": 300,
+      "volume_m3": 0.3009660240090628
+    },
+    {
+      "name": "EQ_sofa-2-seater_Rear_Support",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.03129064061924701
+    },
+    {
+      "name": "EQ_sofa-2-seater_Armrest_Left",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06361867154983335
+    },
+    {
+      "name": "EQ_sofa-2-seater_Armrest_Right",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06361867154983336
+    },
+    {
+      "name": "EQ_sofa-2-seater_SeatCushion_01",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.08191788979258546
+    },
+    {
+      "name": "EQ_sofa-2-seater_SeatPiping_01",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.0744593828537576e-05
+    },
+    {
+      "name": "EQ_sofa-2-seater_BackCushion_01",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06293629781644255
+    },
+    {
+      "name": "EQ_sofa-2-seater_BackPiping_01",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.695223992267399e-06
+    },
+    {
+      "name": "EQ_sofa-2-seater_SeatCushion_02",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.08191788979258545
+    },
+    {
+      "name": "EQ_sofa-2-seater_SeatPiping_02",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 1.0744593828537711e-05
+    },
+    {
+      "name": "EQ_sofa-2-seater_BackCushion_02",
+      "polygons": 480,
+      "triangles": 960,
+      "volume_m3": 0.06293629781644251
+    },
+    {
+      "name": "EQ_sofa-2-seater_BackPiping_02",
+      "polygons": 192,
+      "triangles": 384,
+      "volume_m3": 8.69522494604543e-06
+    },
+    {
+      "name": "EQ_sofa-2-seater_OakFoot_01",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004842237615339026
+    },
+    {
+      "name": "EQ_sofa-2-seater_OakFoot_02",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.00048422376153389924
+    },
+    {
+      "name": "EQ_sofa-2-seater_OakFoot_03",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.00048422376153390315
+    },
+    {
+      "name": "EQ_sofa-2-seater_OakFoot_04",
+      "polygons": 294,
+      "triangles": 588,
+      "volume_m3": 0.0004842237615339013
+    }
+  ],
+  "triangles": 10908,
+  "polygons": 5454,
+  "errors": []
+}

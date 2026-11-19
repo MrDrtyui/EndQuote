@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-04",
+  "seq": "04",
+  "title": "Gate self-service onboarding and tenant isolation",
+  "status": "pending",
+  "depends_on": ["03"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-2", "onboarding", "tenant-scope", "routing"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": ["endquote-furniture/src/App.tsx"],
+  "acceptance_criteria": [
+    "Implement lazy owner auth/onboarding routes and atomic onboarding of one unpublished tenant per owner, a neutral catalog copy and 14-day UTC trial; publishing requires confirmation.",
+    "Enforce reserved/canonical/retired slug rules and scoped constraints, composite foreign keys, and owner-derived repository scope. Test concurrent claims/renames and cross-tenant isolation against real PostgreSQL.",
+    "Prove route precedence, alias/query/hash behavior and standalone/iframe preservation. Unknown or invalid paths are not found; known unavailable and transport errors are distinct; live stays unavailable until its gate and never falls back to demo."
+  ],
+  "deliverables": ["Onboarding UI and API, slug registry, tenant scope contract, and route/DB gate evidence"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

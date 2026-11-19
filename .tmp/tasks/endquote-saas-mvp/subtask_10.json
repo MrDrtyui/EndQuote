@@ -1,0 +1,22 @@
+{
+  "id": "endquote-saas-mvp-10",
+  "seq": "10",
+  "title": "Commit live orders atomically and authorize private receipts",
+  "status": "pending",
+  "depends_on": ["08", "09"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-4", "public-ordering", "idempotency", "receipts"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": ["endquote-furniture/src/booking/BookingApp.tsx"],
+  "acceptance_criteria": [
+    "Accept bounded contacts/date, explicit current consent and configurations, not client amounts. Resolve public tenant from route/session regardless of owner identity; lock and check time/access/publication/revision after lock, reprice server-side, and require explicit reconfirmation on stale prices or consent.",
+    "Commit scoped customer/order/immutable snapshots and one-time same-attempt photo attachment atomically. Identical racing retries create one order; prior committed identical retry gives non-PII acknowledgement only even after repricing/expiry; different payload conflicts.",
+    "Authorize no-store minimal receipts with the same eligible receipt session rather than the opaque ID alone. Clear live cart and show sent copy only after commit; embed/draft can't write and demo never writes live.",
+    "Use controlled clocks and transaction barriers for tariff-edit lock order, expiry crossings, owner A submitting to B, upload swaps, unrelated receipts and no-partial-write assertions on real dependencies."
+  ],
+  "deliverables": ["Live order/receipt handlers and UI bindings, snapshot migrations, and deterministic phase-4 gate evidence"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

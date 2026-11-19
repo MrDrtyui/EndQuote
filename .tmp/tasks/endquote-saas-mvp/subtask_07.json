@@ -1,0 +1,21 @@
+{
+  "id": "endquote-saas-mvp-07",
+  "seq": "07",
+  "title": "Wire owner workspace UI to real scoped APIs",
+  "status": "pending",
+  "depends_on": ["06"],
+  "parallel": false,
+  "suggested_agent": "code-executor",
+  "labels": ["phase-3", "owner-ui", "workspace"],
+  "context_files": [".opencode/plans/endquote-saas-mvp.md"],
+  "reference_files": ["endquote-furniture/src/App.tsx"],
+  "acceptance_criteria": [
+    "Render truthful scoped summary, empty states, filterable orders/details/status history, complete catalog editor, profile, and account settings with owner-only styles.",
+    "Show canonical link with an honest copy fallback and authenticated-only draft preview entry; shared preview rendering is handed off to 08, with no orders/uploads enabled.",
+    "Verify two owners see different real data and changes persist across reload, including slug, catalog, order status and account; old credentials/session fail after change."
+  ],
+  "deliverables": ["Owner workspace screens and UI/DB gate evidence; explicit preview handoff"],
+  "started_at": null,
+  "completed_at": null,
+  "completion_summary": null
+}

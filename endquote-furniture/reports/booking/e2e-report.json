@@ -1,0 +1,125 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:5173/chistodom",
+  "checks": {
+    "touchRotation": true,
+    "basketSurvivesRefresh": true,
+    "repeatVisitsAndOrders": {
+      "passed": true,
+      "existingBasketPreserved": true,
+      "consecutiveOrders": 3
+    },
+    "flow390": {
+      "passed": true,
+      "photos": 1,
+      "total": 20200,
+      "orderNumber": "EQ-261118-412E",
+      "noBackendRequests": true,
+      "persistedAfterRefresh": true,
+      "consoleErrors": []
+    },
+    "flow360": {
+      "passed": true,
+      "photos": 0,
+      "total": 15000,
+      "orderNumber": "EQ-261118-CA61",
+      "noBackendRequests": true,
+      "persistedAfterRefresh": true,
+      "consoleErrors": []
+    },
+    "mouseRotation": true,
+    "flow1440": {
+      "passed": true,
+      "photos": 0,
+      "total": 15000,
+      "orderNumber": "EQ-261118-CB79",
+      "noBackendRequests": true,
+      "persistedAfterRefresh": true,
+      "consoleErrors": []
+    },
+    "webglFallbackStillAllowsBooking": true
+  },
+  "models": [
+    {
+      "id": "sofa-2-seater",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "sofa-3-seater",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "sofa-4-seater",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "sofa-l-shaped",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "sofa-u-shaped",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "sofa-bed",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "armchair",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "dining-chair",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "ottoman",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "mattress-single",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "mattress-double",
+      "ready": true,
+      "onlySelectedGLB": true
+    },
+    {
+      "id": "upholstered-headboard",
+      "ready": true,
+      "onlySelectedGLB": true
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "390-storefront-first-screen.png",
+    "390-catalog.png",
+    "390-3d-viewer.png",
+    "390-configuration.png",
+    "390-cart.png",
+    "390-contact.png",
+    "390-confirmation.png",
+    "360-storefront-first-screen.png",
+    "360-catalog.png",
+    "360-cart.png",
+    "360-contact.png",
+    "360-confirmation.png",
+    "1440-storefront-first-screen.png",
+    "1440-catalog.png",
+    "1440-3d-viewer.png",
+    "1440-cart.png",
+    "1440-contact.png",
+    "1440-confirmation.png"
+  ]
+}

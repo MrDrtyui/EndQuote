@@ -1,0 +1,15 @@
+{
+  "id": "sofa-2-seater",
+  "triangles": 10908,
+  "dimensions_m": [
+    1.815999984741211,
+    0.9646314382553101,
+    0.9156193137168884
+  ],
+  "draw_calls": 16,
+  "materials": 4,
+  "errors": [],
+  "file_size_bytes": 432020,
+  "sha256": "178fb12be5cd6ed4d7c2431a9c4f3eb713dedbc9133db9d911c96bca9e38717f",
+  "export_warnings": []
+}

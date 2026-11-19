@@ -1,0 +1,15 @@
+{
+  "id": "sofa-u-shaped",
+  "triangles": 4720,
+  "dimensions_m": [
+    3.5945444107055664,
+    2.0439229011535645,
+    0.9159561991691589
+  ],
+  "draw_calls": 2,
+  "materials": 2,
+  "errors": [],
+  "file_size_bytes": 241900,
+  "sha256": "412a28f11be71a1936d77baff90decf24f609aca4853b64ae26efe4189ad1b99",
+  "export_warnings": []
+}

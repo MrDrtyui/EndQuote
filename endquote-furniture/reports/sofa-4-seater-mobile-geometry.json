@@ -1,0 +1,15 @@
+{
+  "id": "sofa-4-seater",
+  "triangles": 4012,
+  "dimensions_m": [
+    3.068502902984619,
+    0.9638588428497314,
+    0.9159047603607178
+  ],
+  "draw_calls": 2,
+  "materials": 2,
+  "errors": [],
+  "file_size_bytes": 202068,
+  "sha256": "85a065476665d205917b7bbb4b267d6c726d864068ece6c585c08d4d076a07e5",
+  "export_warnings": []
+}
