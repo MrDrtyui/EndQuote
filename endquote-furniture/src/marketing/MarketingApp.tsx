@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, Check, Clock3, Globe2, Link2, Mail, Menu, X } from 'lucide-react'
 import { MARKETING, whatsappLink } from './content'
-import StudioPreview from './StudioPreview'
 import Workflow from './Workflow'
 import { Logo, Modal, QuoteMark, SectionLabel } from './ui'
 import { api } from '../owner/api'
@@ -15,6 +14,7 @@ const external = { target: '_blank', rel: 'noopener noreferrer' } as const
 type OwnerAction = { label: string; href: string }
 function Header({ action, authenticated }: { action: OwnerAction; authenticated: boolean }) {
   const [open, setOpen] = useState(false)
+  const [overDark, setOverDark] = useState(false)
   const header = useRef<HTMLElement>(null)
   const toggle = useRef<HTMLButtonElement>(null)
   useEffect(() => {
@@ -32,7 +32,26 @@ function Header({ action, authenticated }: { action: OwnerAction; authenticated:
       size.removeEventListener('change', resize)
     }
   }, [open])
-  return <header className="eq-header" ref={header}>
+  useEffect(() => {
+    let frame = 0
+    const update = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const hero = document.querySelector<HTMLElement>('.eq-hero')
+        const headerHeight = header.current?.offsetHeight ?? 72
+        setOverDark(!hero || hero.getBoundingClientRect().bottom <= headerHeight)
+      })
+    }
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [])
+  return <header className={`eq-header${overDark ? ' eq-header--dark' : ''}`} ref={header}>
     <div className="eq-container eq-header-row">
       <Logo />
       <nav className="eq-desktop-nav" aria-label="Навигация по странице">{navigation.map(link => <a key={link.href} href={link.href}>{link.label}</a>)}</nav>
@@ -137,10 +156,11 @@ export default function MarketingApp() {
           <div className="eq-hero-copy">
             <p className="eq-release"><i className="eq-status-dot" />Витрина для сервисного бизнеса</p>
             <h1 id="eq-hero-title"><span>Ваши услуги.</span><span>Ваши цены.</span><em>Одна ссылка.</em></h1>
-            <p className="eq-hero-intro">Превратите ссылку в&nbsp;профиле в&nbsp;каталог услуг с&nbsp;3D‑превью, расчётом стоимости и&nbsp;заявками.</p>
-            <div className="eq-hero-actions"><a className="eq-button eq-primary" href={MARKETING.demo}>Посмотреть демо<ArrowUpRight size={17} /></a><a className="eq-button eq-secondary" href="#how-it-works">Как это работает<ArrowDown size={15} /></a></div>
+            <div className="eq-hero-bottom">
+              <p className="eq-hero-intro">Превратите ссылку в&nbsp;профиле в&nbsp;каталог услуг с&nbsp;3D-превью, расчётом стоимости и&nbsp;заявками.</p>
+              <a className="eq-hero-learn" href="#how-it-works">Как это работает<ArrowDown size={18} strokeWidth={1.7} /></a>
+            </div>
           </div>
-          <StudioPreview />
         </div>
       </section>
       <Channels />
