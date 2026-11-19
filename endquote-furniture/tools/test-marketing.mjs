@@ -42,6 +42,10 @@ try {
     }
     assert(!requests.some((value) => /\.glb|FurnitureViewer|three\.module|react-three/.test(value)), 'Heavy 3D fetched without interaction')
     await expect(page.locator('iframe')).toHaveCount(0)
+    await expect(page.locator('.eq-hero')).toHaveCSS('background-color', 'rgb(248, 249, 244)')
+    await expect(page.locator('.eq-sofa-stage img')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Посмотреть в 3D' })).toBeVisible()
+    await expect(page.locator('.eq-browser-bar, .eq-study-controls')).toHaveCount(0)
     await expect(page.locator('#how-it-works')).toBeVisible()
     await expect(page.locator('#features')).toHaveCount(0)
     await expect(page.locator('.eq-benefits')).toHaveCount(0)
