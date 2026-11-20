@@ -38,6 +38,10 @@ model PlatformAdmin {
   id String @id @default(uuid()) @db.Uuid
   email String @unique
   passwordHash String
+  totpPending String?
+  totpCiphertext String?
+  totpEnabledAt DateTime?
+  lastTotpStep Int?
   sessions AdminSession[]
   audits AccessAudit[]
 }
@@ -47,6 +51,8 @@ model AdminSession {
   admin PlatformAdmin @relation(fields:[adminId],references:[id])
   idleExpiresAt DateTime
   absoluteExpiresAt DateTime
+  mfaAt DateTime?
+  reauthAt DateTime?
 }
 model AccessAudit {
   id String @id @default(uuid()) @db.Uuid

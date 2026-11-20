@@ -15,7 +15,8 @@ try{
     await tx.$executeRaw`GRANT UPDATE ("name") ON "Customer" TO runtime`
     await tx.$executeRaw`GRANT UPDATE ("status") ON "CleaningOrder" TO runtime`
     await tx.$executeRaw`GRANT UPDATE ("state","orderId") ON "Upload" TO runtime`
-    await tx.$executeRaw`GRANT UPDATE ("idleExpiresAt") ON "AdminSession" TO runtime`
+    await tx.$executeRaw`GRANT UPDATE ("idleExpiresAt","mfaAt","reauthAt") ON "AdminSession" TO runtime`
+    await tx.$executeRaw`GRANT UPDATE ("totpPending","totpCiphertext","totpEnabledAt","lastTotpStep") ON "PlatformAdmin" TO runtime`
     await tx.$executeRaw`GRANT SELECT ("id","businessId","adminId","prior","next","createdAt","reason") ON "AccessAudit" TO runtime`
     await tx.$executeRaw`GRANT UPDATE ("hits") ON "RateBucket" TO runtime`
     await tx.$executeRaw`GRANT DELETE ON "Upload","RateBucket","AdminSession" TO runtime`
