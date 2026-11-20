@@ -17,7 +17,7 @@
 .ow-onboard-layout { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); align-items: start; gap: clamp(40px,7vw,96px); width: min(1010px,calc(100% - 80px)); margin: 0 auto; padding-block: clamp(40px,8vh,85px); }
 .ow-steps { display: flex; gap: 13px; align-items: center; list-style: none; padding: 0 0 24px; }
 .ow-steps li { display: flex; align-items: center; gap: 6px; color: var(--ow-muted); font-size: 12px; }
-.ow-steps li:first-child svg, .ow-steps li > span { box-sizing: content-box; display: grid; place-items: center; width: 16px; height: 16px; padding: 3px; border-radius: 50%; background: var(--ow-mint); color: var(--ow-teal); }
+.ow-steps li:first-child svg, .ow-steps li:nth-child(3) svg, .ow-steps li > span { box-sizing: content-box; display: grid; place-items: center; width: 16px; height: 16px; padding: 3px; border-radius: 50%; background: var(--ow-mint); color: var(--ow-teal); }
 .ow-steps li[aria-current] { color: var(--ow-dark); font-weight: 600; }
 .ow-steps li > span { color: #fff; background: var(--ow-teal); font-size: 11px; }
 .ow-onboard-form form { margin-top: 27px; }
