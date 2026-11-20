@@ -55,7 +55,7 @@ export function AuthScreen({ register, refresh, providers }: { providers?:Provid
   </main>
 }
 
-export function Onboarding({ onCreated, logout, signingOut, verification }: { verification?:string; onCreated: (business: Business) => void; logout: () => void; signingOut: boolean }) {
+export function Onboarding({ onCreated, logout, signingOut }: { onCreated: (business: Business) => void; logout: () => void; signingOut: boolean }) {
   const [name, setName] = useState(''), [city, setCity] = useState(''), [phone, setPhone] = useState('')
   const [slug, setSlug] = useState(''), [customSlug, setCustomSlug] = useState(false)
   const [errors, setErrors] = useState<FormErrors>({}), [error, setError] = useState(''), [busy, setBusy] = useState(false)
@@ -77,9 +77,8 @@ export function Onboarding({ onCreated, logout, signingOut, verification }: { ve
   return <main className="ow-onboard">
     <header className="ow-onboard-bar"><Brand /><Button variant="quiet" busy={signingOut} onClick={logout}><LogOut size={16} />Выйти</Button></header>
     <div className="ow-onboard-layout"><div className="ow-onboard-form">
-      <ol className="ow-steps" aria-label="Настройка, шаг 2 из 2"><li><Check size={13} />Аккаунт</li><li aria-hidden="true"><ChevronRight size={14} /></li><li aria-current="step"><span>2</span>Витрина</li></ol>
+      <ol className="ow-steps" aria-label="Настройка, шаг 3 из 3"><li><Check size={13} />Аккаунт</li><li aria-hidden="true"><ChevronRight size={14} /></li><li><Check size={13} />Почта</li><li aria-hidden="true"><ChevronRight size={14} /></li><li aria-current="step"><span>3</span>Витрина</li></ol>
       <h1>Создайте витрину</h1><p className="ow-intro">Укажите, как клиентам найти вашу компанию и связаться с вами.</p>
-      {verification&&<Notice kind="info">{verification}</Notice>}
       <form noValidate onSubmit={submit}><fieldset disabled={busy} className="ow-fields">
         <Field label="Название компании" name="name" value={name} placeholder="Например, Мята" maxLength={100} autoComplete="organization" required error={errors.name}
           onChange={e => { const v = e.target.value; setName(v); clear('name'); if (!customSlug) { setSlug(suggestSlug(v)); clear('slug') } }} />
