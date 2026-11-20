@@ -11,6 +11,7 @@ import multipart from '@fastify/multipart'
 import {intake,type CommitClock} from './intake.js'
 
 import {accounts} from './account.js'
+import {newTotpSecret,encryptTotp,decryptTotp,verifyTotp,totpUri} from './admin-security.js'
 import {social} from './social.js'
 
 export const environment = z.object({
@@ -20,6 +21,7 @@ export const environment = z.object({
       u.protocol === 'http:' && ['127.0.0.1','localhost','[::1]'].includes(u.hostname)))
   }),
   SESSION_SECRET: z.string().regex(/^[a-f0-9]{64}$/i),
+  ADMIN_TOTP_KEY: z.string().regex(/^[a-f0-9]{64}$/i).optional(),
   DATABASE_URL: z.url().regex(/^postgres(?:ql)?:\/\//),
   RESEND_API_KEY:z.string().optional(), MAIL_FROM:z.string().optional(),
   GOOGLE_CLIENT_ID:z.string().optional(), GOOGLE_CLIENT_SECRET:z.string().optional(),
@@ -151,48 +153,258 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
   workspace(app,db,businessAccess)
   const files=intake(app,db,mac,options,businessAccess,rate,clock)
   app.get('/readyz',async()=>{await db.$queryRaw`SELECT 1`;await files.ready();return {ok:true}})
+  // Separate, limited admin sessions are never interchangeable with owner sessions.
+  // Every admin API requires an enrolled TOTP and a completed second factor.
   const adminKey=name('admin')
-  async function admin(req:FastifyRequest){
+  const adminCode=z.strictObject({code:z.string().regex(/^[0-9]{6}$/)})
+  const adminChange=z.strictObject({
+    expectedVersion:z.number().int().positive(),
+    state:z.enum(['trial','active','expired','suspended']),
+    endsAt:z.iso.datetime().nullable(),
+    reason:z.string().trim().min(5).max(300)
+  })
+  const mfaKey=()=>{
+    if(!config.ADMIN_TOTP_KEY)throw new Problem(503,'MFA_CONFIG','Настройте ADMIN_TOTP_KEY на сервере.')
+    return config.ADMIN_TOTP_KEY
+  }
+  async function pendingAdmin(req:FastifyRequest){
     if(req.method!=='GET')csrf(req,'admin')
-    const where={tokenHash:digest(req.cookies[adminKey]??''),idleExpiresAt:{gt:new Date()},absoluteExpiresAt:{gt:new Date()}}
-    const row=await db.adminSession.updateManyAndReturn({where,data:{idleExpiresAt:new Date(Date.now()+1800_000)},select:{adminId:true}})
-    if(!row.length)throw new Problem(401,'AUTH','Войдите как администратор.')
-    return row[0].adminId
+    const key=digest(req.cookies[adminKey]??'')
+    const now=new Date()
+    const row=await db.adminSession.findUnique({where:{tokenHash:key},include:{admin:true}})
+    if(!row || row.idleExpiresAt<=now || row.absoluteExpiresAt<=now)
+      throw new Problem(401,'AUTH','Войдите как администратор.')
+    const touched=await db.adminSession.updateMany({
+      where:{tokenHash:key,idleExpiresAt:{gt:now},absoluteExpiresAt:{gt:now}},
+      data:{idleExpiresAt:new Date(+now+1800_000)}
+    })
+    if(!touched.count)throw new Problem(401,'AUTH','Сеанс завершён.')
+    return row
+  }
+  async function admin(req:FastifyRequest){
+    const session=await pendingAdmin(req)
+    if(!session.mfaAt||!session.admin.totpEnabledAt)
+      throw new Problem(403,'MFA_REQUIRED','Подтвердите вход одноразовым кодом.')
+    return session
+  }
+  async function adminRecent(req:FastifyRequest){
+    const session=await admin(req)
+    if(!session.reauthAt || +session.reauthAt<Date.now()-5*60_000)
+      throw new Problem(403,'REAUTH','Для изменения подписки повторно подтвердите личность.')
+    return session
+  }
+  async function consumeCode(tx:Prisma.TransactionClient,a:{
+    id:string;totpCiphertext:string|null;lastTotpStep:number|null
+  },code:string){
+    if(!a.totpCiphertext)return false
+    const step=verifyTotp(decryptTotp(a.totpCiphertext,mfaKey()),code,Date.now(),a.lastTotpStep??-1)
+    if(step===null)return false
+    const updated=await tx.platformAdmin.updateMany({
+      where:{id:a.id,OR:[{lastTotpStep:null},{lastTotpStep:{lt:step}}]},
+      data:{lastTotpStep:step}
+    })
+    return updated.count===1
+  }
+  function adminStage(session:Awaited<ReturnType<typeof pendingAdmin>>|null){
+    if(!session)return 'login'
+    if(!session.admin.totpEnabledAt)return 'setup'
+    return session.mfaAt?'ready':'verify'
   }
   app.get('/api/admin/session',async(req,reply)=>{
-    let authenticated=true
-    try{await admin(req)}catch(e){if(!(e instanceof Problem&&e.status===401))throw e;authenticated=false}
-    return {authenticated,csrf:challenge(req,reply,'admin')}
+    let session:Awaited<ReturnType<typeof pendingAdmin>>|null=null
+    try{session=await pendingAdmin(req)}catch(e){
+      if(!(e instanceof Problem&&e.status===401))throw e
+    }
+    return {
+      stage:adminStage(session),authenticated:adminStage(session)==='ready',
+      email:session?.admin.email??null,mfaReady:Boolean(config.ADMIN_TOTP_KEY),
+      csrf:challenge(req,reply,'admin')
+    }
   })
   app.post('/api/admin/login',async(req,reply)=>{
     csrf(req,'admin')
     const d=credentials.parse(req.body)
-    await rate('admin-ip:'+req.ip,20,reply);await rate('admin-login:'+d.email,5,reply)
+    await rate('admin-ip:'+req.ip,15,reply)
+    await rate('admin-login:'+d.email,5,reply)
     const a=await db.platformAdmin.findUnique({where:{email:d.email}})
-    if(!await argon2.verify(a?.passwordHash??dummy,d.password)||!a)throw new Problem(401,'LOGIN','Неверная почта или пароль.')
+    if(!await argon2.verify(a?.passwordHash??dummy,d.password)||!a)
+      throw new Problem(401,'LOGIN','Неверная почта или пароль.')
     const token=random()
-    await db.$transaction([db.adminSession.deleteMany({where:{tokenHash:digest(req.cookies[adminKey]??'')}}),db.adminSession.create({data:{tokenHash:digest(token),adminId:a.id,idleExpiresAt:new Date(Date.now()+1800_000),absoluteExpiresAt:new Date(Date.now()+8*3600_000)}})])
-    reply.setCookie(adminKey,token,{...options,maxAge:8*3600}).clearCookie(name('admin-challenge'),options)
-    return {csrf:mac('admin'+token)}
+    await db.$transaction([
+      db.adminSession.deleteMany({where:{tokenHash:digest(req.cookies[adminKey]??'')}}),
+      db.adminSession.create({data:{
+        tokenHash:digest(token),adminId:a.id,
+        idleExpiresAt:new Date(Date.now()+1800_000),
+        absoluteExpiresAt:new Date(Date.now()+8*3600_000)
+      }})
+    ])
+    reply.setCookie(adminKey,token,{...options,maxAge:8*3600})
+      .clearCookie(name('admin-challenge'),options)
+    return {stage:a.totpEnabledAt?'verify':'setup',csrf:mac('admin'+token)}
   })
-  app.post('/api/admin/logout',async(req,reply)=>{await admin(req);z.strictObject({}).parse(req.body);await db.adminSession.deleteMany({where:{tokenHash:digest(req.cookies[adminKey]??'')}});reply.clearCookie(adminKey,options).code(204).send()})
+  app.post('/api/admin/mfa/setup',async req=>{
+    const session=await pendingAdmin(req)
+    if(session.admin.totpEnabledAt)throw new Problem(409,'MFA_ALREADY','Двухфакторная защита включена.')
+    const secret=newTotpSecret()
+    await db.platformAdmin.update({
+      where:{id:session.adminId},data:{totpPending:encryptTotp(secret,mfaKey())}
+    })
+    return {secret,uri:totpUri(session.admin.email,secret)}
+  })
+  app.post('/api/admin/mfa/activate',async req=>{
+    const session=await pendingAdmin(req)
+    const {code}=adminCode.parse(req.body)
+    const a=await db.platformAdmin.findUniqueOrThrow({where:{id:session.adminId}})
+    if(a.totpEnabledAt||!a.totpPending)throw new Problem(409,'MFA_SETUP','Начните настройку заново.')
+    const step=verifyTotp(decryptTotp(a.totpPending,mfaKey()),code)
+    if(step===null)throw new Problem(401,'MFA_CODE','Неверный код подтверждения.')
+    const now=new Date()
+    await db.$transaction(async tx=>{
+      const updated=await tx.platformAdmin.updateMany({
+        where:{id:a.id,totpEnabledAt:null,totpPending:a.totpPending},
+        data:{totpCiphertext:a.totpPending,totpPending:null,totpEnabledAt:now,lastTotpStep:step}
+      })
+      if(!updated.count)throw new Problem(409,'CONFLICT','Настройка уже изменилась.')
+      await tx.adminSession.update({
+        where:{tokenHash:session.tokenHash},data:{mfaAt:now,reauthAt:now}
+      })
+    })
+    return {enabled:true}
+  })
+  app.post('/api/admin/mfa/verify',async req=>{
+    const session=await pendingAdmin(req)
+    const {code}=adminCode.parse(req.body)
+    if(!session.admin.totpEnabledAt)throw new Problem(409,'MFA_SETUP','Сначала включите защиту.')
+    await rate('admin-mfa:'+session.adminId,12,{header:()=>{}} as FastifyReply)
+    const now=new Date()
+    await db.$transaction(async tx=>{
+      const a=await tx.platformAdmin.findUniqueOrThrow({where:{id:session.adminId}})
+      if(!await consumeCode(tx,a,code))throw new Problem(401,'MFA_CODE','Неверный или использованный код.')
+      await tx.adminSession.update({
+        where:{tokenHash:session.tokenHash},data:{mfaAt:now,reauthAt:now}
+      })
+    })
+    return {verified:true}
+  })
+  app.post('/api/admin/reauth',async(req,reply)=>{
+    const session=await admin(req)
+    const d=z.strictObject({password:z.string().min(1),code:z.string().regex(/^[0-9]{6}$/)}).parse(req.body)
+    await rate('admin-reauth:'+session.adminId,8,reply)
+    if(!await argon2.verify(session.admin.passwordHash,d.password))
+      throw new Problem(401,'REAUTH_FAILED','Неверные данные подтверждения.')
+    await db.$transaction(async tx=>{
+      const a=await tx.platformAdmin.findUniqueOrThrow({where:{id:session.adminId}})
+      if(!await consumeCode(tx,a,d.code))
+        throw new Problem(401,'REAUTH_FAILED','Неверный или использованный одноразовый код.')
+      await tx.adminSession.update({
+        where:{tokenHash:session.tokenHash},data:{reauthAt:new Date()}
+      })
+    })
+    return {confirmed:true}
+  })
+  app.post('/api/admin/logout',async(req,reply)=>{
+    const session=await pendingAdmin(req)
+    z.strictObject({}).parse(req.body)
+    await db.adminSession.deleteMany({where:{tokenHash:session.tokenHash}})
+    reply.clearCookie(adminKey,options).code(204).send()
+  })
+  const businessSelect={
+    id:true,name:true,slug:true,city:true,published:true,
+    accessState:true,accessVersion:true,trialEndsAt:true,paidThrough:true,
+    owner:{select:{normalizedEmail:true,createdAt:true}}
+  } as const
+  const statusOf=(b:{accessState:string;trialEndsAt:Date;paidThrough:Date|null},now=new Date())=>
+    b.accessState==='suspended'?'suspended':
+    b.accessState==='trial'&&b.trialEndsAt>now?'trial':
+    b.accessState==='active'&&(!b.paidThrough||b.paidThrough>now)?'active':'expired'
+  const liveFilter=(state:string,now:Date):Prisma.BusinessWhereInput=>
+    state==='trial'?{accessState:'trial',trialEndsAt:{gt:now}}:
+    state==='active'?{accessState:'active',OR:[{paidThrough:null},{paidThrough:{gt:now}}]}:
+    state==='suspended'?{accessState:'suspended'}:
+    {OR:[{accessState:'expired'},{accessState:'trial',trialEndsAt:{lte:now}},{accessState:'active',paidThrough:{lte:now}}]}
+  app.get('/api/admin/overview',async req=>{
+    await admin(req)
+    const now=new Date()
+    const [total,trial,active,expired,suspended,newBusinesses,recent]=await Promise.all([
+      db.business.count(),
+      db.business.count({where:liveFilter('trial',now)}),
+      db.business.count({where:liveFilter('active',now)}),
+      db.business.count({where:liveFilter('expired',now)}),
+      db.business.count({where:liveFilter('suspended',now)}),
+      db.business.count({where:{owner:{is:{createdAt:{gte:new Date(+now-30*86400_000)}}}}}),
+      db.business.findMany({take:8,orderBy:{owner:{createdAt:'desc'}},select:businessSelect})
+    ])
+    return {total,trial,active,expired,suspended,newBusinesses,
+      recent:recent.map(b=>({...b,status:statusOf(b,now)}))}
+  })
   app.get('/api/admin/businesses',async req=>{
     await admin(req)
+    const {cursor,q,state}=z.strictObject({
+      cursor:z.uuid().optional(),q:z.string().trim().max(120).optional(),
+      state:z.enum(['all','trial','active','expired','suspended']).default('all')
+    }).parse(req.query)
+    const now=new Date()
+    const where:Prisma.BusinessWhereInput={AND:[
+      ...(state==='all'?[]:[liveFilter(state,now)]),
+      ...(q?[{OR:[
+        {name:{contains:q,mode:'insensitive'}},
+        {slug:{contains:q,mode:'insensitive'}},
+        {owner:{is:{normalizedEmail:{contains:q,mode:'insensitive'}}}}
+      ]}]:[])
+    ]}
+    const rows=await db.business.findMany({
+      where,cursor:cursor?{id:cursor}:undefined,skip:cursor?1:0,
+      orderBy:{id:'asc'},take:26,select:businessSelect
+    })
+    return {rows:rows.slice(0,25).map(b=>({...b,status:statusOf(b,now)})),
+      cursor:rows.length>25?rows[24].id:null}
+  })
+  app.get('/api/admin/businesses/:id',async req=>{
+    await admin(req)
+    const {id}=z.strictObject({id:z.uuid()}).parse(req.params)
+    const business=await db.business.findUnique({where:{id},select:businessSelect})
+    if(!business)throw missing()
+    const audits=await db.accessAudit.findMany({
+      where:{businessId:id},orderBy:{createdAt:'desc'},take:30,
+      select:{id:true,createdAt:true,reason:true,prior:true,next:true,
+        admin:{select:{email:true}}}
+    })
+    return {business:{...business,status:statusOf(business)},audits}
+  })
+  app.get('/api/admin/activity',async req=>{
+    await admin(req)
     const {cursor}=z.strictObject({cursor:z.uuid().optional()}).parse(req.query)
-    const rows=await db.business.findMany({where:cursor?{id:{gt:cursor}}:{},orderBy:{id:'asc'},take:26,select:{id:true,name:true,owner:{select:{normalizedEmail:true}},accessState:true,accessVersion:true,trialEndsAt:true,paidThrough:true}})
+    const rows=await db.accessAudit.findMany({
+      cursor:cursor?{id:cursor}:undefined,skip:cursor?1:0,
+      orderBy:[{createdAt:'desc'},{id:'desc'}],take:26,
+      select:{id:true,createdAt:true,reason:true,prior:true,next:true,
+        admin:{select:{email:true}},business:{select:{id:true,name:true}}}
+    })
     return {rows:rows.slice(0,25),cursor:rows.length>25?rows[24].id:null}
   })
   app.patch('/api/admin/businesses/:id/access',async req=>{
-    const adminId=await admin(req),{id}=z.object({id:z.uuid()}).parse(req.params)
-    const d=z.strictObject({expectedVersion:z.int(),state:z.enum(['trial','active','expired']),endsAt:z.iso.datetime().nullable(),reason:z.string().trim().min(1).max(300)}).parse(req.body)
+    const session=await adminRecent(req)
+    const {id}=z.strictObject({id:z.uuid()}).parse(req.params)
+    const d=adminChange.parse(req.body)
     const end=d.endsAt?new Date(d.endsAt):null
-    if(d.state==='trial'&&!end||end&&d.state!=='expired'&&end<=new Date())throw new Problem(400,'DATE','Нужна будущая дата.')
+    if(d.state==='trial'&&!end || end && ['trial','active'].includes(d.state) && end<=new Date()
+      || ['expired','suspended'].includes(d.state)&&end)
+      throw new Problem(400,'DATE','Проверьте срок и статус подписки.')
     return db.$transaction(async tx=>{
       const b=await locked(tx,id)
       if(b.accessVersion!==d.expectedVersion)throw conflict()
-      const next=await tx.business.update({where:{id},data:{accessVersion:{increment:1},accessState:d.state,paidThrough:d.state==='active'?end:null,trialEndsAt:d.state==='trial'?end!:undefined}})
-      const snapshot=(v:typeof b)=>({state:v.accessState,version:v.accessVersion,trial:v.trialEndsAt.toISOString(),paid:v.paidThrough?.toISOString()??null})
-      await tx.accessAudit.create({data:{businessId:id,adminId,reason:d.reason,prior:snapshot(b),next:snapshot(next)}})
+      const next=await tx.business.update({where:{id},data:{
+        accessVersion:{increment:1},accessState:d.state,
+        paidThrough:d.state==='active'?end:null,
+        trialEndsAt:d.state==='trial'?end!:undefined
+      }})
+      const snapshot=(v:typeof b)=>({
+        state:v.accessState,version:v.accessVersion,
+        trial:v.trialEndsAt.toISOString(),paid:v.paidThrough?.toISOString()??null
+      })
+      await tx.accessAudit.create({data:{
+        businessId:id,adminId:session.adminId,reason:d.reason,prior:snapshot(b),next:snapshot(next)
+      }})
       return snapshot(next)
     })
   })
