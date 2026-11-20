@@ -11,7 +11,7 @@
 .eq-mail form,.eq-edit fieldset { display:grid; gap:16px; margin:20px 0; }
 .eq-mail section>a { display:inline-block; margin:12px 14px 0 0; }
 .eq-account { max-width:840px; }
-.eq-account section { padding:22px 0; border-bottom:1px solid var(--ow-border); }
+.eq-account > section { padding:22px var(--ow-gutter); border-bottom:1px solid var(--ow-border); }
 .eq-account section h2 { display:flex; gap:9px; align-items:center; font-size:15px; margin-bottom:14px; letter-spacing:-.025em; }
 .eq-account h2 svg { width:16px; height:16px; color:var(--ow-muted); }
 .eq-account dl { margin:0; display:grid; gap:8px; }
@@ -28,5 +28,5 @@
 .eq-status { display:inline-flex; align-items:center; gap:6px; }
 .eq-status:before { content:''; width:6px; height:6px; border-radius:50%; background:#bc8741; }
 .eq-status.verified:before { background:#37866c; }
-@media(max-width:680px){ .eq-account section{padding:18px 0;} .eq-account dl>div{grid-template-columns:112px 1fr;} .eq-row{flex-wrap:wrap;gap:8px;} .eq-provider{flex-wrap:nowrap;} }
+@media(max-width:680px){ .eq-account > section{padding:18px var(--ow-gutter);} .eq-account dl>div{grid-template-columns:112px 1fr;} .eq-row{flex-wrap:wrap;gap:8px;} .eq-provider{flex-wrap:nowrap;} }
 
