@@ -83,7 +83,7 @@ export default function OwnerApp() {
       {error && <Notice kind="error">{error}</Notice>}
       {authNotice && <Notice kind="info">{authNotice}</Notice>}
       {mailPage?<MailScreen/>:verifyPage && (Boolean(location.hash) || !session.owner) || session.owner && !session.owner.verifiedAt
-        ? <EmailVerification email={session.owner?.normalizedEmail} mailReady={session.mailReady} delivery={delivery} refresh={refresh} logout={session.owner ? logout : undefined} signingOut={signingOut} />
+        ? <EmailVerification email={session.owner?.normalizedEmail} alreadyVerified={Boolean(session.owner?.verifiedAt)} mailReady={session.mailReady} delivery={delivery} refresh={refresh} logout={session.owner ? logout : undefined} signingOut={signingOut} />
         : !session.owner ? <AuthScreen providers={session.providers} register={register} refresh={refresh} /> : !session.onboarded
         ? <Onboarding logout={logout} signingOut={signingOut} onCreated={business => { setCreated(business); setSession({ ...session, onboarded: true }) }} />
         : <Workspace providers={session.providers} key={session.owner.id} email={session.owner.normalizedEmail} logout={logout} signingOut={signingOut}
