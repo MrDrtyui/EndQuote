@@ -251,7 +251,8 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
     })
     return {secret,uri:totpUri(session.admin.email,secret)}
   })
-  app.post('/api/admin/mfa/activate',async req=>{
+  app.post('/api/admin/mfa/activate',async(req,reply)=>{
+    await rate('admin-enroll:'+req.ip,12,reply)
     const session=await pendingAdmin(req)
     const {code}=adminCode.parse(req.body)
     const a=await db.platformAdmin.findUniqueOrThrow({where:{id:session.adminId}})
