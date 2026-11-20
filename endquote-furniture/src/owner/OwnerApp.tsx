@@ -13,7 +13,7 @@ import './security.css'
 
 function canonical(path: string) {
   if (location.pathname === path) return
-  history.replaceState(history.state, '', path + location.search + location.hash)
+  history.replaceState(history.state, '', path === '/owner/verify' ? path : path + location.search + location.hash)
   window.scrollTo({ top: 0, behavior: 'instant' })
 }
 export default function OwnerApp() {
