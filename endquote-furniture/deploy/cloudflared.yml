@@ -1,0 +1,6 @@
+tunnel: a0a724d9-d761-44b8-99b4-077529868715
+credentials-file: /Users/ila/.cloudflared/a0a724d9-d761-44b8-99b4-077529868715.json
+ingress:
+  - hostname: endfieldhq.com
+    service: http://127.0.0.1:3000
+  - service: http_status:404

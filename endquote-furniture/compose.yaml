@@ -39,6 +39,8 @@ services:
       APPLE_CLIENT_ID: ${APPLE_CLIENT_ID:-}
       APPLE_CLIENT_SECRET: ${APPLE_CLIENT_SECRET:-}
       APP_ORIGIN: ${APP_ORIGIN:?}
+      ADMIN_TOTP_KEY:
+      TRUSTED_PROXY_IP:
       SESSION_SECRET: ${SESSION_SECRET:?}
       DATABASE_URL: postgresql://runtime:${RUNTIME_PASSWORD}@postgres/endquote
       S3_ENDPOINT: http://storage:9000
