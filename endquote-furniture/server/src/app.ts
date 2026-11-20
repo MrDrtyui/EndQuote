@@ -271,11 +271,11 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
     })
     return {enabled:true}
   })
-  app.post('/api/admin/mfa/verify',async req=>{
+  app.post('/api/admin/mfa/verify',async(req,reply)=>{
     const session=await pendingAdmin(req)
     const {code}=adminCode.parse(req.body)
     if(!session.admin.totpEnabledAt)throw new Problem(409,'MFA_SETUP','Сначала включите защиту.')
-    await rate('admin-mfa:'+session.adminId,12,{header:()=>{}} as FastifyReply)
+    await rate('admin-mfa:'+session.adminId,12,reply)
     const now=new Date()
     await db.$transaction(async tx=>{
       const a=await tx.platformAdmin.findUniqueOrThrow({where:{id:session.adminId}})
@@ -344,13 +344,13 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
       state:z.enum(['all','trial','active','expired','suspended']).default('all')
     }).parse(req.query)
     const now=new Date()
+    const search:Prisma.BusinessWhereInput=q?{OR:[
+      {name:{contains:q,mode:'insensitive'}},
+      {slug:{contains:q,mode:'insensitive'}},
+      {owner:{is:{normalizedEmail:{contains:q,mode:'insensitive'}}}}
+    ]}:{}
     const where:Prisma.BusinessWhereInput={AND:[
-      ...(state==='all'?[]:[liveFilter(state,now)]),
-      ...(q?[{OR:[
-        {name:{contains:q,mode:'insensitive'}},
-        {slug:{contains:q,mode:'insensitive'}},
-        {owner:{is:{normalizedEmail:{contains:q,mode:'insensitive'}}}}
-      ]}]:[])
+      ...(state==='all'?[]:[liveFilter(state,now)]),search
     ]}
     const rows=await db.business.findMany({
       where,cursor:cursor?{id:cursor}:undefined,skip:cursor?1:0,
