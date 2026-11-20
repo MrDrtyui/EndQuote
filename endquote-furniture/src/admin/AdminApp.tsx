@@ -125,7 +125,8 @@ export default function AdminApp(){
     return ()=>{cancelled=true}
   },[session?.stage])
   useEffect(()=>{
-    if(pending||reauth)modalFocus.current?.focus()
+    if(reauth)modalFocus.current?.focus()
+    else if(pending)document.querySelector<HTMLButtonElement>('.ea-confirm-actions button')?.focus()
   },[pending,reauth])
   useEffect(()=>{
     if(!pending&&!reauth)return
@@ -354,7 +355,7 @@ export default function AdminApp(){
           </form>
         </>:<><h2 id="ea-confirm-title">Изменить доступ?</h2>
           <p>Компания <strong>{pending?.business.name}</strong> получит статус «{pending?labels[pending.state]:''}». Действие будет записано в журнал.</p>
-          <div className="ea-confirm-actions"><button ref={modalFocus} className="ea-button" onClick={()=>setPending(null)}>Отмена</button>
+          <div className="ea-confirm-actions"><button className="ea-button" onClick={()=>setPending(null)}>Отмена</button>
             <button className="ea-primary" disabled={busy} onClick={()=>void action(commitChange)}>Подтвердить <ArrowRight size={16}/></button></div>
         </>}
         {message&&<Alert>{message}</Alert>}
