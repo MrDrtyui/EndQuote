@@ -29,6 +29,16 @@ The Node service serves the compiled SPA and API on one origin. For Vite develop
 
 **Media and recovery:** staged photos expire after 24 hours; hourly cleanup retries failed object deletes. `npm run storage:reconcile` additionally scans the dedicated bucket with an operator listing grant. Orders and attached photos are retained until an operator-approved removal; review retention duration and customer consent before launch. Back up PostgreSQL and private objects at a consistent point with writes paused; restore to a new DB and bucket, compare line snapshots and SHA-256 of attachment bytes before switching traffic. Rotate DB/object credentials separately; rotating `SESSION_SECRET` invalidates checkout grants and CSRF challenges. Revoke owner/admin sessions in the database when invalidating logins.
 
+### EndQuote Admin (internal console)
+
+The administrator console is available at `/admin`, independently from the business owner account. Bootstrap the first admin using `npm run admin:bootstrap` in `endquote-furniture/server` after migrations and building. The bootstrap command requires a terminal and `MIGRATION_DATABASE_URL`; it asks for an administrator email and password. There is **no default password or preset 6-digit code**.
+
+Set an independent `ADMIN_TOTP_KEY` (64 hexadecimal characters; generate with `openssl rand -hex 32`) in the **server** environment. It encrypts TOTP secrets at rest with AES-256-GCM and must be backed up separately. Losing the key locks admins out of their second factor. Rotating the key requires an intentional migration of encrypted secrets. Never commit the key, MFA secrets, or passwords to Git.
+
+On first sign-in, the admin enrolls a 6-digit TOTP authenticator (Google Authenticator, 1Password, Microsoft Authenticator, etc.) using the setup key and enters a fresh code to activate MFA. Subsequent logins require an authenticator code. Subscription changes require recent confirmation by password and a new TOTP code. Codes are replay-protected and the admin API refuses to serve business data before successful MFA. Only administrative business metadata and subscription history are exposed; orders and private photos are excluded.
+
+The admin API uses session cookie, CSRF/origin checks, server-side authorization and an audit log. **Before production**, add a private-network access control such as Tailscale or an equivalent trusted proxy for `/admin` and `/api/admin/*`; validate recovery and key backup procedures, test security controls with production-like TLS, and run the complete test suite. Development at localhost is not proof of production readiness.
+
 ## Files to integrate
 
 - `public/models/<id>.glb`: the twelve runtime assets.
