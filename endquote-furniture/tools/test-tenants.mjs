@@ -60,8 +60,12 @@ try{
     await p.getByLabel('Почта').fill(slug+'@example.test')
     await p.getByLabel('Пароль').fill(password)
     await p.getByRole('button',{name:'Создать аккаунт'}).click()
-    await p.getByLabel('Название компании').fill(slug)
+    await expect(p.getByRole('heading',{name:'Проверьте почту'})).toBeVisible()
+    await expect(p.getByText(slug+'@example.test')).toBeVisible()
+    // The disposable suite has no mail provider: simulate successful verification.
     await fixture.query('UPDATE "Owner" SET "verifiedAt"=now() WHERE "normalizedEmail"=$1',[slug+'@example.test'])
+    await p.reload()
+    await p.getByLabel('Название компании').fill(slug)
     await p.getByLabel('Город').fill('Алматы')
     await p.getByLabel('Телефон').fill('+77000000001')
     await p.getByLabel('Адрес витрины').fill(slug)

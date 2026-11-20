@@ -17,7 +17,7 @@
 .ow-onboard-layout { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); align-items: start; gap: clamp(40px,7vw,96px); width: min(1010px,calc(100% - 80px)); margin: 0 auto; padding-block: clamp(40px,8vh,85px); }
 .ow-steps { display: flex; gap: 13px; align-items: center; list-style: none; padding: 0 0 24px; }
 .ow-steps li { display: flex; align-items: center; gap: 6px; color: var(--ow-muted); font-size: 12px; }
-.ow-steps li:first-child svg, .ow-steps li > span { box-sizing: content-box; display: grid; place-items: center; width: 16px; height: 16px; padding: 3px; border-radius: 50%; background: var(--ow-mint); color: var(--ow-teal); }
+.ow-steps li:first-child svg, .ow-steps li:nth-child(3) svg, .ow-steps li > span { box-sizing: content-box; display: grid; place-items: center; width: 16px; height: 16px; padding: 3px; border-radius: 50%; background: var(--ow-mint); color: var(--ow-teal); }
 .ow-steps li[aria-current] { color: var(--ow-dark); font-weight: 600; }
 .ow-steps li > span { color: #fff; background: var(--ow-teal); font-size: 11px; }
 .ow-onboard-form form { margin-top: 27px; }
@@ -46,4 +46,21 @@
   .ow-onboard-layout { display: flex; flex-direction: column; align-items: stretch; width: auto; padding: 28px 20px; gap: 28px; }
   .ow-onboard-preview { margin: 0; }
   .ow-onboard-form .ow-btn { width: 100%; }
+}
+
+/* Email verification is part of signup, not a dashboard setting. */
+.eq-verify-content { max-width: 410px; }
+.eq-verify-content h1 { margin: 13px 0 12px; letter-spacing: -.045em; line-height: 1.08; }
+.eq-verify-content > p { color: var(--ow-muted); font-size: 14px; line-height: 1.65; }
+.eq-verify-content > p strong { color: var(--ow-dark); font-weight: 630; overflow-wrap: anywhere; }
+.eq-verify-icon { display: grid; place-items: center; width: 52px; height: 52px; color: var(--ow-teal); background: var(--ow-mint); border: 1px solid var(--ow-border); border-radius: 14px; margin-bottom: 23px; }
+.eq-verify-step { display: block; color: var(--ow-teal); font-size: 11px; font-weight: 650; letter-spacing: .05em; text-transform: uppercase; }
+.eq-verify-content .ow-notice { margin-top: 20px; }
+.eq-verify-content .ow-btn { margin-top: 22px; min-height: 46px; }
+.eq-verify-content .ow-btn + .ow-btn { margin-top: 7px; }
+.eq-verify-link { display: inline-flex; align-items: center; margin-top: 24px; color: var(--ow-teal); font-size: 13px; font-weight: 600; }
+.eq-verify-link:hover { text-decoration: underline; }
+.eq-verify-content .eq-verify-tip { margin-top: 25px; font-size: 12px; color: var(--ow-muted); }
+@media (max-width: 680px) {
+  .eq-verify-content { padding-block: 58px; }
 }

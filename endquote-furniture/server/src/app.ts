@@ -124,7 +124,10 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
     return owner.id
   }
   app.post('/api/owner/business',async(req,reply)=>{
-    const b=await onboard(db,await ownerId(req),profile.parse(req.body))
+    const id=await ownerId(req)
+    const owner=await db.owner.findUnique({where:{id},select:{verifiedAt:true}})
+    if(!owner?.verifiedAt)throw new Problem(403,'VERIFY','Сначала подтвердите почту, чтобы завершить регистрацию.')
+    const b=await onboard(db,id,profile.parse(req.body))
     return reply.code(201).send(ownerView(b))
   })
   app.get('/api/owner/storefront-status/:slug',async req=>{
@@ -146,7 +149,7 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
     const id=await ownerId(req)
     if(req.method!=='GET' || req.routeOptions.url?.startsWith('/api/owner/orders') || req.routeOptions.url==='/api/owner/photos/:id'){
       const owner=await db.owner.findUniqueOrThrow({where:{id}})
-      if(!owner.verifiedAt)throw new Problem(403,'VERIFY','Подтвердите почту в настройках аккаунта.')
+      if(!owner.verifiedAt)throw new Problem(403,'VERIFY','Подтвердите почту, чтобы завершить регистрацию.')
     }
     return id
   }

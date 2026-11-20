@@ -1,0 +1,66 @@
+name: EndQuote registration email verification
+on:
+  pull_request:
+    paths:
+      - 'endquote-furniture/server/**'
+      - 'endquote-furniture/src/owner/**'
+      - 'endquote-furniture/tools/test-tenants.mjs'
+      - '.github/workflows/endquote-email-verification.yml'
+  push:
+    branches: [feat/registration-email-verification]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: eq_test_012345abcdef
+          POSTGRES_PASSWORD: disposable_ci_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d eq_test_012345abcdef"
+          --health-interval 2s
+          --health-timeout 3s
+          --health-retries 30
+    env:
+      DATABASE_URL: postgresql://runtime:disposable_runtime_password@127.0.0.1:5432/eq_test_012345abcdef
+      MIGRATION_DATABASE_URL: postgresql://postgres:disposable_ci_password@127.0.0.1:5432/eq_test_012345abcdef
+      TEST_DB_NAME: eq_test_012345abcdef
+      TEST_DB_ADDR: 127.0.0.1:5432
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            endquote-furniture/package-lock.json
+            endquote-furniture/server/package-lock.json
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: endquote-furniture
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: endquote-furniture/server
+      - name: Create isolated runtime database role
+        run: |
+          PG=$(docker ps -q --filter 'ancestor=postgres:17' | head -1)
+          test -n "$PG"
+          docker exec "$PG" psql -U postgres -d eq_test_012345abcdef -c "CREATE ROLE runtime LOGIN PASSWORD 'disposable_runtime_password';"
+      - name: Generate, migrate, build and grant permissions
+        run: |
+          npm run generate
+          npx prisma migrate deploy
+          npm run build
+          node dist/src/grants.js
+        working-directory: endquote-furniture/server
+      - name: Test registration, email verification, sessions and token reuse
+        run: node --test tests/auth.test.mjs tests/registration-verification.test.mjs
+        working-directory: endquote-furniture/server
+      - name: Build registration and owner UI
+        run: npm run build
+        working-directory: endquote-furniture
