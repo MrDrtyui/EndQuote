@@ -47,7 +47,6 @@ export function Account({providers,refreshSession}:{providers:Provider[]; refres
   return <div className="ow-page eq-account"><PageHeading title="Аккаунт"/>
     {resource.error?<LoadError error={resource.error} retry={resource.retry}/>:!account?<Loading/>:<>
     <section><h2><UserRound/>Профиль</h2><dl><div><dt>Почта аккаунта</dt><dd>{account.email}</dd></div><div><dt>Статус почты</dt><dd><span className={'eq-status '+(account.verified?'verified':'')}>{account.verified?'Подтверждена':'Ожидает подтверждения'}</span></dd></div><div><dt>Дата регистрации</dt><dd>{dateLabel(account.createdAt)}</dd></div></dl>
-      {!account.verified && <div className="eq-row"><p>{account.mailReady?'Для публикации и работы с заявками подтвердите адрес.':'Отправка писем временно недоступна.'}</p>{account.mailReady&&<Button variant="secondary" disabled={!!busy} busy={busy==='verify'} onClick={()=>action('verify',async()=>{await api('owner/verify','POST',{});setMessage({kind:'success',text:'Проверьте почту. Ссылка действует один час.'})})}>Отправить письмо</Button>}</div>}
     </section>
     <section><h2><Mail/>Электронная почта</h2><div className="eq-row"><div><strong>{account.email}</strong><p>{account.pending?'Ожидает подтверждения адрес '+account.pending:'На этот адрес приходят письма для восстановления доступа.'}</p></div>
       {!edit&&account.hasPassword&&<Button variant="secondary" disabled={!!busy||!account.mailReady} onClick={()=>open('email')}>Изменить</Button>}</div>
