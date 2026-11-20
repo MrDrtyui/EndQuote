@@ -35,7 +35,7 @@ export function accounts(app: FastifyInstance, ctx: AuthContext) {
       await tx.mailToken.upsert({where:{ownerId_purpose:{ownerId:owner.id,purpose}},create:{ownerId:owner.id,purpose,...data},update:data})
     })
     const subject = purpose === 'reset' ? 'Установите новый пароль' : 'Подтвердите электронную почту'
-    const link = config.APP_ORIGIN + '/owner/' + (purpose === 'reset' ? 'reset' : purpose === 'verify' ? 'verify?signin=1' : 'verify') + '#' + token
+    const link = config.APP_ORIGIN + '/owner/' + (purpose === 'reset' ? 'reset' : 'verify') + '#' + token
     try {
       const response = await fetch('https://api.resend.com/emails',{method:'POST',redirect:'error',signal:AbortSignal.timeout(8000),
         headers:{Authorization:'Bearer '+config.RESEND_API_KEY,'Content-Type':'application/json'},
@@ -103,7 +103,6 @@ export function accounts(app: FastifyInstance, ctx: AuthContext) {
     const hash=digest(token)
     const row=await db.mailToken.findUnique({where:{hash}})
     if(!row || row.expiresAt<=new Date() || (row.purpose==='reset')!==Boolean(password)) throw badLink()
-    if(row.purpose==='verify' && await ownerId(req)!==row.ownerId) throw new Problem(403,'ACCOUNT','Откройте ссылку после входа в соответствующий аккаунт.')
     const passwordHash=password ? await argon2.hash(password,{type:argon2.argon2id}) : undefined
     await db.$transaction(async tx=>{
       const current=await lockOwner(tx,row.ownerId)
