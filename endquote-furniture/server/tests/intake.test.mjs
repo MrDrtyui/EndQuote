@@ -37,6 +37,7 @@ test('transaction ordering, expiry, access audit, attempt and private storage li
   const creds={email:s+'@example.test',password:secret}
   await owner('GET','/api/auth/session')
   assert.equal((await owner('POST','/api/auth/register',creds)).statusCode,201)
+  await fixture.query('UPDATE "Owner" SET "verifiedAt"=now() WHERE "normalizedEmail"=$1',[creds.email])
   assert.equal((await owner('POST','/api/owner/business',{slug:'admin',name:s,phone:'+77000000003',city:s})).statusCode,400)
   const create=()=>owner('POST','/api/owner/business',{slug,name:s,phone:'+77000000003',city:s,description:'Original description'})
   const race=await Promise.all([create(),create()])
@@ -66,6 +67,7 @@ test('transaction ordering, expiry, access audit, attempt and private storage li
   const ownerB=browser(),anonB=browser(),slugB=slug+'-b',baseB='/api/public/'+slugB
   await ownerB('GET','/api/auth/session')
   assert.equal((await ownerB('POST','/api/auth/register',{...creds,email:'b-'+creds.email})).statusCode,201)
+  await fixture.query('UPDATE "Owner" SET "verifiedAt"=now() WHERE "normalizedEmail"=$1',['b-'+creds.email])
   const profileB={slug,name:'Tenant B',phone:'+77000000005',city:s}
   assert.equal((await ownerB('POST','/api/owner/business',profileB)).statusCode,409)
   const b2=(await ownerB('POST','/api/owner/business',{...profileB,slug:slugB})).json()

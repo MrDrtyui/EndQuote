@@ -48,7 +48,14 @@ try{
   const config=join(dir,'prisma.config.mjs')
   writeFileSync(config,`export default {schema:${JSON.stringify(resolve('prisma/schema.prisma'))},migrations:{path:${JSON.stringify(migrations)}},datasource:{url:process.env.MIGRATION_DATABASE_URL}}`)
   deploy(upgrade,['deploy'],config)
-  const tables=['Owner','Business','Slug','Customer','CleaningOrder','OrderLine','Upload','StatusEvent']
+  // Populate the phase-3 owner shape before upgrading. New account columns do not exist there yet.
+  const oldDb=new pg.Client({connectionString:upgrade})
+  await oldDb.connect()
+  try{
+    const owners=await db.query('SELECT id,"normalizedEmail","passwordHash","createdAt" FROM "Owner"')
+    for(const row of owners.rows)await oldDb.query('INSERT INTO "Owner"(id,"normalizedEmail","passwordHash","createdAt") VALUES($1,$2,$3,$4)',[row.id,row.normalizedEmail,row.passwordHash,row.createdAt])
+  }finally{await oldDb.end()}
+  const tables=['OwnerSession','Business','Slug','Customer','CleaningOrder','OrderLine','Upload','StatusEvent']
   run('pg_dump',['--format=custom','--data-only','--file',join(dir,'fixtures.dump'),...tables.flatMap(t=>['--table','"'+t+'"']),url.href])
   run('pg_restore',['--exit-on-error','--no-owner','--dbname',upgrade,join(dir,'fixtures.dump')])
   deploy(upgrade,['deploy']);deploy(upgrade,['status']);assert.deepEqual(await fingerprint(upgrade),source)

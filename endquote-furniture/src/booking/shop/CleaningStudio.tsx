@@ -86,7 +86,7 @@ export default function CleaningStudio({ asset, initial, onClose, onSave }: {
           {sizeOpen && <div id="sf-model-size" className="sf-size-label"><b>{dimensions(asset)} см</b><span>Ширина × глубина × высота</span></div>}
         </div>
         <div className="sf-gallery-caption">
-          <span>{view === '3d' ? <><Hand size={15} />Потяните, чтобы повернуть</> : <><Picture size={15} />Фотография модели</>}</span>
+          <span>{view === 'photo' ? <><Picture size={15} />Фотография модели</> : ready && <><Hand size={15} />Потяните, чтобы повернуть</>}</span>
           <button className="sf-jump-params" onClick={scrollToOptions}>Параметры<ChevronDown size={13} /></button>
         </div>
       </div>

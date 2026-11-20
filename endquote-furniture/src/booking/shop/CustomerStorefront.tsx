@@ -44,7 +44,7 @@ function ContactSheet({ close }: { close: () => void }) {
 export default function CustomerStorefront({ flow: booking }: { flow: BookingFlow }) {
   const [contact, setContact] = useState(false)
   const [sort, setSort] = useState('catalog')
-  const {company,live,preview}=useStore()
+  const {company,live,preview,logo}=useStore()
   const navigate = useStoreNavigation(booking)
   const flow = { ...booking, go: navigate }
   const { quantity, step, selected, itemsLabel } = flow
@@ -53,15 +53,19 @@ export default function CustomerStorefront({ flow: booking }: { flow: BookingFlo
     <div inert={Boolean(selected) || contact}>
     <a className="sf-skip" href="#sf-main">К содержанию</a>
     <header className="sf-nav"><div className="sf-container sf-nav-inner">
-      <a className="sf-brand" href={location.pathname} aria-label={'EndQuote — к услугам '+company.name} onClick={e => { e.preventDefault(); flow.go('catalog') }}>
-        <span className="sf-brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M5 16c7.5-1 9-3 11-12 1.7 8.8 3.5 11 11 12-7.5 1.5-9.6 4.5-11 12-1.5-7.5-3.5-10.5-11-12Z" stroke="currentColor" strokeWidth="1.65"/><path d="m9 20 8-10" stroke="currentColor" strokeWidth="1.1"/></svg></span>{company.name}
+      <a className="sf-brand" href={location.pathname} aria-label={company.name + ' — к услугам'} onClick={e => { e.preventDefault(); flow.go('catalog') }}>
+        {logo ? <img className="sf-brand-logo" src={logo} width="36" height="36" alt="" /> :
+          <span className="sf-brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M5 16c7.5-1 9-3 11-12 1.7 8.8 3.5 11 11 12-7.5 1.5-9.6 4.5-11 12-1.5-7.5-3.5-10.5-11-12Z" stroke="currentColor" strokeWidth="1.65"/><path d="m9 20 8-10" stroke="currentColor" strokeWidth="1.1"/></svg></span>}
+        <span className="sf-identity"><strong>{company.name}</strong><span className="sf-nav-place"><MapPin size={12} />{company.city}</span></span>
       </a>
-      <span className="sf-nav-place"><MapPin size={14} />{company.city}</span>
-      <span className="sf-demo-badge">{preview?'Предпросмотр':live?'Витрина':'Демо-витрина'}</span>
-      <button className="sf-bag" onClick={cart} aria-label="Открыть корзину"><ShoppingBag size={17} /><span>Корзина</span><b>{quantity}</b></button>
+      {preview && <span className="sf-preview-label">Предпросмотр</span>}
+      <button className="sf-nav-contact" onClick={() => setContact(true)} aria-label={'Связаться с ' + company.name}><MessageCircle size={18} /><span>Контакты</span></button>
+      <button className="sf-bag" onClick={cart} aria-label={quantity ? 'Открыть корзину, ' + itemsLabel(quantity) : 'Открыть корзину'}>
+        <ShoppingBag size={17} /><span>Корзина</span>{quantity > 0 && <b>{quantity}</b>}
+      </button>
     </div></header>
     <main className="sf-container sf-main" id="sf-main" tabIndex={-1}>
-      {step === 'catalog' ? <FurnitureCatalog flow={flow} sort={sort} setSort={setSort} onContact={() => setContact(true)} />
+      {step === 'catalog' ? <FurnitureCatalog flow={flow} sort={sort} setSort={setSort} />
         : step === 'success' ? <Confirmation flow={flow} /> : <Checkout flow={flow} />}
     </main>
     <div className="sf-container"><StoreFooter contact={() => setContact(true)} />

@@ -44,7 +44,7 @@ async function contact(page, name = 'Алия') {
 
 try {
   const manifest = JSON.parse(await readFile(path.join(root, 'public/manifest.json'), 'utf8'))
-  for (const width of [390, 360, 1440]) {
+  for (const width of [360, 390, 430, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: width > 700 ? 1000 : 844 }, deviceScaleFactor: 2, isMobile: width < 700, hasTouch: width < 700, locale: 'ru-RU' })
     const page = await context.newPage(); currentPage = page
     const errors = [], glbs = [], writes = [], outbound = []
@@ -56,8 +56,8 @@ try {
       if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== new URL(url).origin) outbound.push(request.url())
     })
     await page.goto(url)
-    await expect(page.getByRole('heading', { name: 'ЧистоДом', exact: true })).toBeVisible()
-    await expect(page.getByRole('heading', { name: /Услуги и цены/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Химчистка мебели на дому', exact: true })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'ЧистоДом — к услугам' })).toBeVisible()
     await expect(page.getByRole('button', { name: 'Рассчитать стоимость' })).toHaveCount(0)
     await overflow(page)
     assert(glbs.length === 0, 'GLB fetched before viewer opening')
@@ -76,7 +76,12 @@ try {
       await page.getByLabel('Сортировка мебели').selectOption('catalog')
     }
     await overflow(page)
-    const firstPrice = await cards.first().locator('.booking-card-details').boundingBox()
+    const firstCard = await cards.first().boundingBox()
+    if (width <= 430) {
+      assert(firstCard.y < 350, `Mobile introduction pushes the catalog below 350px at ${width}px`)
+      await expect(page.locator('.sf-nav-place')).toBeVisible()
+    }
+    const firstPrice = await cards.first().locator('.sf-product-body').boundingBox()
     assert(firstPrice.y + firstPrice.height < (width > 700 ? 1000 : 844), `Starting price not immediately visible at ${width}px`)
     await screenshot(page, `${width}-storefront-first-screen.png`)
     await page.getByRole('button', { name: 'Матрасы', exact: true }).click()
@@ -173,7 +178,7 @@ try {
     if (width === 390) {
       await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('endquote.demo.basket.chistodom.v1')).length)).toBe(2)
       await page.reload()
-      await expect(page.getByRole('heading', { name: 'ЧистоДом', exact: true })).toBeVisible()
+      await expect(page.getByRole('heading', { name: 'Химчистка мебели на дому', exact: true })).toBeVisible()
       await page.getByRole('button', { name: 'Перейти к заказу' }).click()
       await expect.poll(async () => digits(await page.getByTestId('cart-total').innerText())).toBe(20200)
       report.checks.basketSurvivesRefresh = true
@@ -220,20 +225,20 @@ try {
     await screenshot(page, `${width}-confirmation.png`, true)
     if (width === 390) {
       await page.getByRole('button', { name: 'Вернуться к услугам' }).click()
-      await expect(page.getByRole('heading', { name: 'ЧистоДом', exact: true })).toBeVisible()
+      await expect(page.getByRole('heading', { name: 'Химчистка мебели на дому', exact: true })).toBeVisible()
       assert(!new URL(page.url()).searchParams.has('order'), 'Returning to storefront retained stale order URL')
       await open(page, 'ottoman')
       await page.getByRole('button', { name: /Добавить в заказ/ }).click()
       await page.getByRole('button', { name: /Ваша демо-заявка/ }).click()
       await expect(page.getByRole('heading', { name: 'Заявка сохранена', exact: true })).toBeVisible()
-      await page.getByRole('link', { name: 'EndQuote — к услугам ЧистоДом' }).click()
+      await page.getByRole('link', { name: 'ЧистоДом — к услугам' }).click()
       await page.getByRole('button', { name: 'Перейти к заказу' }).click()
       await expect.poll(async () => digits(await page.getByTestId('cart-total').innerText())).toBe(3000)
       await page.getByRole('button', { name: 'Перейти к контактам' }).click()
       await contact(page, 'Дана')
       await page.getByRole('button', { name: 'Отправить демо-заявку' }).click()
       await expect(page.getByRole('heading', { name: 'Заявка сохранена', exact: true })).toBeVisible()
-      await page.getByRole('link', { name: 'EndQuote — к услугам ЧистоДом' }).click()
+      await page.getByRole('link', { name: 'ЧистоДом — к услугам' }).click()
       await open(page, 'dining-chair')
       await page.getByRole('button', { name: /Добавить в заказ/ }).click()
       await page.getByRole('button', { name: 'Перейти к заказу' }).click()
@@ -253,7 +258,7 @@ try {
   await context.addInitScript(() => { const original = HTMLCanvasElement.prototype.getContext; HTMLCanvasElement.prototype.getContext = function (type, ...args) { return type === 'webgl' || type === 'webgl2' ? null : original.call(this, type, ...args) } })
   const page = await context.newPage(); currentPage = page
   await page.goto(url)
-  await expect(page.getByRole('heading', { name: 'ЧистоДом', exact: true })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Химчистка мебели на дому', exact: true })).toBeVisible()
   await open(page, 'sofa-3-seater', true)
   await expect(page.locator('.viewer-fallback img')).toBeVisible()
   await page.getByRole('button', { name: /Добавить в заказ/ }).click()

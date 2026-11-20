@@ -1,10 +1,13 @@
 import { useState, type FormEvent } from 'react'
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronRight, Globe2, Link2, LogOut, MapPin, Sofa, Store } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, ChevronRight, Globe2, Link2, LogOut, MapPin, Store } from 'lucide-react'
 import { api, ApiError } from './api'
 import { type Business, normalizePhone, problem, publicUrl, slugError, suggestSlug, validPhone } from './data'
 import { Brand, Button, Field, firstError, type FormErrors, Notice, validEmail } from './ui'
 
-export function AuthScreen({ register, refresh }: { register: boolean; refresh: () => Promise<void> }) {
+import {SocialButtons} from './Security'
+import type {Provider} from './data'
+
+export function AuthScreen({ register, refresh, providers }: { providers?:Provider[]; register: boolean; refresh: (delivery?:string) => Promise<void> }) {
   const [email, setEmail] = useState(''), [password, setPassword] = useState('')
   const [errors, setErrors] = useState<FormErrors>({}), [error, setError] = useState(''), [busy, setBusy] = useState(false)
   const validate = (mail = email, secret = password) => ({
@@ -20,7 +23,7 @@ export function AuthScreen({ register, refresh }: { register: boolean; refresh: 
     setError('')
     if (firstError(event.currentTarget, next)) return
     setBusy(true)
-    try { await api('auth/' + (register ? 'register' : 'login'), 'POST', credentials); await refresh() }
+    try { const result=await api<{verificationDelivery?:string}>('auth/' + (register ? 'register' : 'login'), 'POST', credentials); await refresh(result.verificationDelivery) }
     catch (e) {
       if (register && e instanceof ApiError && e.status === 409) setErrors({ email: 'Эта почта уже зарегистрирована. Войдите в кабинет.' })
       else setError(problem(e))
@@ -30,7 +33,7 @@ export function AuthScreen({ register, refresh }: { register: boolean; refresh: 
     <div className="ow-auth-main"><header><Brand /></header>
       <div className="ow-access-form">
         <h1>{register ? 'Создайте аккаунт' : 'Вход в кабинет'}</h1>
-        <p className="ow-intro">{register ? 'Начните с почты и пароля. Затем настроим витрину вашей компании.' : 'Управляйте заявками, ценами и витриной вашей компании.'}</p>
+        {providers && providers.length > 0 && <><SocialButtons providers={providers}/><div className="eq-divider">или по почте</div></>}
         <form noValidate onSubmit={submit} onInput={() => setError('')}>
           <Field label="Почта" name="email" type="email" autoComplete="username" autoCapitalize="none" spellCheck={false}
             placeholder="name@company.kz" required maxLength={254} value={email} error={errors.email} disabled={busy}
@@ -40,27 +43,19 @@ export function AuthScreen({ register, refresh }: { register: boolean; refresh: 
             placeholder={register ? 'Придумайте пароль' : 'Введите пароль'} hint={register ? 'Не менее 12 символов.' : undefined}
             error={errors.password} required maxLength={128} value={password} disabled={busy}
             onChange={e => { setPassword(e.target.value); setErrors(prev => ({ ...prev, password: undefined })) }} />
+          {!register && <a className="eq-forgot" href="/owner/forgot">Забыли пароль?</a>}
           {error && <Notice kind="error">{error}</Notice>}
           <Button type="submit" busy={busy} className="ow-wide">{register ? 'Создать аккаунт' : 'Войти'}{!busy && <ArrowRight size={16} />}</Button>
         </form>
+        {providers?.length === 0 && <SocialButtons providers={providers}/>}
         <p className="ow-switch-auth">{register ? 'Уже есть аккаунт?' : 'Нет аккаунта?'} <a href={register ? '/owner/login' : '/owner/register'}>{register ? 'Войти' : 'Зарегистрироваться'}</a></p>
       </div>
-      <footer><a className="ow-back" href="/"><ArrowLeft size={15} />На главную</a><a className="ow-mobile-demo" href="/chistodom">Демо витрины<ArrowUpRight size={14} /></a></footer>
+      <footer><a className="ow-back" href="/"><ArrowLeft size={15} />На главную</a></footer>
     </div>
-    <aside className="ow-auth-art">
-      <div className="ow-art-copy"><span className="ow-art-label"><Store size={16} />Витрина EndQuote</span>
-        <h2>От выбора мебели<br />до заявки.</h2>
-        <p>Клиент выбирает предмет и сразу видит стоимость чистки по вашим тарифам.</p>
-      </div>
-      <figure><img src={register ? '/marketing/study-armchair.webp' : '/marketing/study-sofa-2-seater.webp'} alt={register ? 'Студийная модель кресла' : 'Студийная модель двухместного дивана'} />
-        <figcaption><div><Sofa size={18} /><span><small>Из каталога мебели</small><strong>{register ? 'Кресло' : 'Двухместный диван'}</strong></span></div>
-          <a href="/chistodom">Смотреть демо<ArrowUpRight size={15} /></a></figcaption>
-      </figure>
-    </aside>
   </main>
 }
 
-export function Onboarding({ onCreated, logout, signingOut }: { onCreated: (business: Business) => void; logout: () => void; signingOut: boolean }) {
+export function Onboarding({ onCreated, logout, signingOut, verification }: { verification?:string; onCreated: (business: Business) => void; logout: () => void; signingOut: boolean }) {
   const [name, setName] = useState(''), [city, setCity] = useState(''), [phone, setPhone] = useState('')
   const [slug, setSlug] = useState(''), [customSlug, setCustomSlug] = useState(false)
   const [errors, setErrors] = useState<FormErrors>({}), [error, setError] = useState(''), [busy, setBusy] = useState(false)
@@ -84,6 +79,7 @@ export function Onboarding({ onCreated, logout, signingOut }: { onCreated: (busi
     <div className="ow-onboard-layout"><div className="ow-onboard-form">
       <ol className="ow-steps" aria-label="Настройка, шаг 2 из 2"><li><Check size={13} />Аккаунт</li><li aria-hidden="true"><ChevronRight size={14} /></li><li aria-current="step"><span>2</span>Витрина</li></ol>
       <h1>Создайте витрину</h1><p className="ow-intro">Укажите, как клиентам найти вашу компанию и связаться с вами.</p>
+      {verification&&<Notice kind="info">{verification}</Notice>}
       <form noValidate onSubmit={submit}><fieldset disabled={busy} className="ow-fields">
         <Field label="Название компании" name="name" value={name} placeholder="Например, Мята" maxLength={100} autoComplete="organization" required error={errors.name}
           onChange={e => { const v = e.target.value; setName(v); clear('name'); if (!customSlug) { setSlug(suggestSlug(v)); clear('slug') } }} />

@@ -40,7 +40,7 @@ function Toggle({ label, checked, change }: { label: string; checked: boolean; c
 type Props = { business: Business; active: boolean; onRevision: (rev: number) => void }
 export default function Pricing(props: Props) {
   const data = useResource<CatalogResponse>('owner/catalog')
-  return <div className="ow-page"><PageHeading title="Услуги и цены">Настройте каталог и стоимость чистки для вашей витрины.</PageHeading>
+  return <div className="ow-page"><PageHeading title="Услуги и цены" />
     {data.error ? <LoadError error={data.error} retry={data.retry} /> : !data.data ? <Loading label="Загружаем каталог…" />
       : <CatalogEditor {...props} initial={data.data} reload={data.retry} />}
   </div>
@@ -110,15 +110,17 @@ function CatalogEditor({ business, active, onRevision, initial, reload }: Props 
         <option value="">Все категории</option>{draft.categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select>}
     </div>
     <fieldset disabled={busy || !editable} className="ow-catalog-body">
-      {tab === 'models' && (models.length ? <div className="ow-model-grid">{models.map(m => {
+      {tab === 'models' && (models.length ? <div className="ow-model-list"><div className="ow-model-labels" aria-hidden="true"><span>Услуга</span><span className="ow-category-col">Категория</span><span>Базовая цена</span><span>Показ</span></div>{models.map(m => {
         const group = draft.categories.find(c => c.id === m.category)
-        return <article className="ow-model-card" key={m.id}><div className="ow-model-art">
-          <img src={'/previews/' + m.id + '.webp'} alt="" loading="lazy" /><button className="ow-edit-model" type="button" aria-label={'Настроить: ' + m.name} onClick={() => setEditing({ ...m })}><Pencil size={15} /></button>
-        </div><div className="ow-model-info"><small>{group?.name || 'Категория'}</small><h3>{m.name}</h3>
-          <Field label="Базовая цена" name={'base-' + m.id} inputMode="numeric" unit="₸" value={m.base} error={errors['base-' + m.id]} onChange={e => updateModel(m.id, { base: e.target.value })}
+        return <article className="ow-model-row" key={m.id}>
+          <img className="ow-model-thumb" src={'/previews/' + m.id + '.webp'} alt="" loading="lazy" />
+          <div className="ow-model-name"><h3>{m.name}</h3><small>{group?.name}{!group?.enabled && ' · Категория скрыта'}</small></div>
+          <span className="ow-category-col">{group?.name}{!group?.enabled && ' · Скрыта'}</span>
+          <Field className="ow-price-input" label="Базовая цена" aria-label={'Базовая цена · ' + m.name} name={'base-' + m.id} inputMode="numeric" unit="₸" value={m.base} error={errors['base-' + m.id]} onChange={e => updateModel(m.id, { base: e.target.value })}
             onBlur={() => setErrors(prev => ({ ...prev, ['base-' + m.id]: numericError(m.base) }))} />
-          <div className="ow-enable-row"><span>{!group?.enabled ? 'Категория скрыта' : m.enabled ? 'На витрине' : 'Скрыто'}</span><Toggle label={'Показывать: ' + m.name} checked={m.enabled} change={enabled => updateModel(m.id, { enabled })} /></div>
-        </div></article>
+          <Toggle label={'Показывать: ' + m.name} checked={m.enabled} change={enabled => updateModel(m.id, { enabled })} />
+          <button type="button" className="ow-icon-btn" title={'Настроить: ' + m.name} aria-label={'Настроить: ' + m.name} onClick={() => setEditing({ ...m })}><Pencil size={14} /></button>
+        </article>
       })}</div> : <Empty icon={Sofa} title="В категории нет мебели">Назначьте предмету эту категорию в его настройках.</Empty>)}
       {tab === 'categories' && <div className="ow-panel ow-edit-panel"><div className="ow-setting-heading"><h2>Категории мебели</h2><p>Название увидят клиенты. Скрытая категория убирает с витрины все её предметы.</p></div>
         {draft.categories.map(c => <div className="ow-category-row" key={c.id}><Field label="Название категории" name={'cat-' + c.id} value={c.name} maxLength={100} error={errors['cat-' + c.id]} onChange={e => change({ ...draft, categories: draft.categories.map(v => v.id === c.id ? { ...v, name: e.target.value } : v) }, 'cat-' + c.id)} />

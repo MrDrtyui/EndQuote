@@ -1,0 +1,33 @@
+.sf-notice {
+  min-height:100vh; min-height:100svh; background:#f8f9fa; color:#24262a;
+  font-family:'Inter Variable',Inter,system-ui,sans-serif; -webkit-font-smoothing:antialiased;
+}
+.sf-bar {display:flex; align-items:center; gap:13px; height:54px; padding:0 clamp(20px,4vw,54px); background:#fff; border-bottom:1px solid #e5e6e9; color:#656971; font-size:12px}
+.sf-bar>svg {color:#a0a3aa}
+.sf-brand {display:inline-flex; align-items:center; gap:7px; color:#222626; font-size:16px; font-weight:650; letter-spacing:-.055em}
+.sf-brand svg {width:20px; height:17px; color:#166c5f}
+.sf-body {max-width:548px; margin:auto; padding:clamp(48px,15vh,152px) 20px 40px}
+.sf-card {overflow-wrap:anywhere; border:1px solid #dddfe3; border-radius:13px; background:white; box-shadow:0 2px 5px rgb(29 33 38 / .035)}
+.sf-copy {padding:28px}
+.sf-identity {display:flex; align-items:center; gap:11px; margin-bottom:20px; font-size:13px; font-weight:560; color:#535961}
+.sf-symbol {width:38px; height:38px; flex:none; display:grid; place-items:center; color:#386f62; background:#f1f6f3; border:1px solid #dbe7e0; border-radius:10px}
+.sf-copy h1 {margin:0; font-size:clamp(23px,3.6vw,29px); font-weight:590; letter-spacing:-.046em; line-height:1.18; text-wrap:balance}
+.sf-copy p {margin:10px 0 0; max-width:52ch; color:#646970; font-size:14px; line-height:1.58}
+.sf-terms {margin:22px 0 0; padding-top:12px; border-top:1px solid #e8e9eb; font-size:12px}
+.sf-terms div {display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:4px 12px; padding:4px 0}
+.sf-terms dt {color:#676b73}
+.sf-terms dd {margin:0; font-weight:530}
+.sf-actions {display:flex; align-items:center; gap:8px; flex-wrap:wrap; border-top:1px solid #eaebed; background:#fcfcfd; border-radius:0 0 13px 13px; padding:15px 28px}
+.sf-actions :is(a,button) {display:inline-flex; gap:8px; align-items:center; justify-content:center; min-height:36px; padding:7px 12px; border-radius:7px; border:1px solid #d8dadd; font-family:inherit; font-size:13px; font-weight:550; line-height:1.3}
+.sf-actions .sf-primary {background:#176757; border-color:#176757; color:white}
+.sf-actions .sf-primary:hover {background:#115546}
+.sf-secondary {background:white; color:#34383c}
+.sf-secondary:hover {background:#f1f3f3}
+.sf-notice :is(a,button):focus-visible {outline:2px solid #18715f; outline-offset:3px}
+@media (max-width:480px) {
+  .sf-body {padding:clamp(42px,10vh,80px) 16px 32px}
+  .sf-copy {padding:22px 20px}
+  .sf-actions {padding:12px 20px}
+  .sf-actions :is(a,button){min-height:44px}
+}
+@media (prefers-reduced-motion:no-preference){.sf-pending svg {animation:sf-spin 1s linear infinite}@keyframes sf-spin {to {transform:rotate(360deg)}}}

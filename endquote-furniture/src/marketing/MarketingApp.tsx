@@ -1,10 +1,23 @@
-import { useEffect, useRef, useState } from 'react'
+import { Component, lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, Check, Clock3, Globe2, Link2, Mail, Menu, X } from 'lucide-react'
 import { MARKETING, whatsappLink } from './content'
 import Workflow from './Workflow'
 import { Logo, Modal, QuoteMark, SectionLabel } from './ui'
 import { api } from '../owner/api'
 import './marketing.css'
+
+const HeroSofa = lazy(() => import('./HeroSofa'))
+
+class HeroArtwork extends Component {
+  state = { failed: false }
+  static getDerivedStateFromError() { return { failed: true } }
+  render() {
+    if (this.state.failed) return null
+    return <div className="eq-hero-art" aria-hidden="true">
+      <Suspense fallback={null}><HeroSofa /></Suspense>
+    </div>
+  }
+}
 
 const navigation = [
   { href: '#how-it-works', label: 'Как это работает' },
@@ -152,15 +165,11 @@ export default function MarketingApp() {
     <Header action={action} authenticated={authenticated} />
     <main id="main">
       <section className="eq-hero" aria-labelledby="eq-hero-title">
-        <div className="eq-container eq-hero-layout">
-          <div className="eq-hero-copy">
-            <p className="eq-release"><i className="eq-status-dot" />Витрина для сервисного бизнеса</p>
-            <h1 id="eq-hero-title"><span>Ваши услуги.</span><span>Ваши цены.</span><em>Одна ссылка.</em></h1>
-            <div className="eq-hero-bottom">
-              <p className="eq-hero-intro">Превратите ссылку в&nbsp;профиле в&nbsp;каталог услуг с&nbsp;3D-превью, расчётом стоимости и&nbsp;заявками.</p>
-              <a className="eq-hero-learn" href="#how-it-works">Как это работает<ArrowDown size={18} strokeWidth={1.7} /></a>
-            </div>
-          </div>
+        <h1 id="eq-hero-title"><span>Ваши услуги.</span>{' '}<span>Ваши цены.</span>{' '}<em>Одна ссылка.</em></h1>
+        <HeroArtwork />
+        <div className="eq-container eq-hero-bottom">
+          <p className="eq-hero-intro">Каталог услуг, расчёт стоимости и&nbsp;заявки по&nbsp;одной ссылке.</p>
+          <a className="eq-hero-learn" href="#how-it-works">Как это работает<ArrowDown size={16} strokeWidth={1.6} /></a>
         </div>
       </section>
       <Channels />

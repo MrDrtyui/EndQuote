@@ -11,6 +11,10 @@ model Owner {
   normalizedEmail String @unique
   passwordHash String
   createdAt DateTime @default(now())
+  verifiedAt DateTime?
+  hasPassword Boolean @default(true)
+  tokens MailToken[]
+  identities ProviderIdentity[]
   sessions OwnerSession[]
   business Business?
 }
@@ -159,4 +163,30 @@ model Upload {
   @@unique([businessId,id])
   @@index([businessId,session,attempt])
   currentFor Business[] @relation("CurrentLogo")
+}
+
+model MailToken {
+  hash String @id
+  ownerId String @db.Uuid
+  owner Owner @relation(fields:[ownerId],references:[id],onDelete:Cascade)
+  purpose String
+  email String
+  expiresAt DateTime
+  @@unique([ownerId,purpose])
+}
+model ProviderIdentity {
+  provider String
+  subject String
+  ownerId String @db.Uuid
+  owner Owner @relation(fields:[ownerId],references:[id],onDelete:Cascade)
+  @@id([provider,subject])
+  @@unique([ownerId,provider])
+}
+model AuthAttempt {
+  stateHash String @id
+  browserHash String
+  provider String
+  sessionHash String?
+  expiresAt DateTime
+  @@index([expiresAt])
 }

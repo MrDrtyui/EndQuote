@@ -1,38 +1,61 @@
-import { ArrowRight, CalendarDays, ClipboardList, Inbox, Link2, ReceiptText, Store, type LucideIcon } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, CalendarDays, ChevronRight, Inbox, Settings2 } from 'lucide-react'
 import { formatMoney } from '../booking/pricing'
-import { accessInfo, statusGroups, statuses, useResource, type Business, type OrderPage, type Summary } from './data'
-import { CopyLink, Empty, LoadError, Loading, PageHeading, RefreshButton } from './ui'
+import { accessInfo, publicUrl, statusGroups, statuses, useResource, type Business, type OrderPage, type Summary } from './data'
+import { BusinessAvatar, CopyLink, Empty, LoadError, Loading, PageHeading, RefreshButton, StatusIcon } from './ui'
 import { OrderList } from './Orders'
 
-function Metric({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string | number }) {
-  return <div className="ow-metric"><div><span>{label}</span><Icon size={17} /></div><strong>{value}</strong></div>
-}
-export default function Overview({ business, version, open, refresh }: { business: Business; version: number; open: (id: string) => void; refresh: () => void }) {
+export default function Overview({ business, version, open, selected, refresh }: { business: Business; version: number; selected?: string; open: (id: string) => void; refresh: () => void }) {
   const summary = useResource<Summary>('owner/summary', version)
   const recent = useResource<OrderPage>('owner/orders', version)
   const counts = summary.data?.counts
-  const total = counts && statuses.reduce((sum, status) => sum + counts[status], 0)
+  const total = counts ? statuses.reduce((sum, status) => sum + counts[status], 0) : 0
   const live = business.published && accessInfo(business).active
+  const storefrontIdentity = <>
+    <BusinessAvatar business={business} />
+    <span className="ow-storefront-details">
+      <strong title={business.name}>{business.name}</strong>
+      <span className="ow-storefront-meta">
+        <span title={publicUrl(business.slug)}>/{business.slug}</span>
+        {business.city && <><span aria-hidden="true">·</span><span title={business.city}>{business.city}</span></>}
+      </span>
+    </span>
+  </>
   return <div className="ow-page">
     <PageHeading title="Обзор" action={<RefreshButton onClick={refresh} />} />
-    <section className="ow-hero"><div className="ow-hero-body">
-      <div className="ow-hero-label"><Store size={15} />Ваша витрина<span className={'ow-badge ' + (live ? 'ow-status-live' : 'ow-status-draft')}><i />{live ? 'Опубликована' : business.published ? 'Недоступна' : 'Черновик'}</span></div>
-      <h2>{business.name}</h2><div className="ow-hero-url"><Link2 size={14} /><span>{location.host}/{business.slug}</span></div>
-      <div className="ow-actions"><a href="#storefront" className="ow-btn ow-primary">Настроить витрину<ArrowRight size={15} /></a><CopyLink slug={business.slug} /></div>
-    </div><div className="ow-hero-art" aria-hidden="true"><img src="/previews/sofa-2-seater.webp" alt="" /></div></section>
-    <section className="ow-stat-section" aria-label="Статистика заявок"><div className="ow-section-title"><h2>Статистика заявок</h2><span className="ow-period"><CalendarDays size={14} />Последние 30 дней</span></div>
-      {summary.error ? <LoadError error={summary.error} retry={summary.retry} /> : counts && summary.data ?
-        <div className="ow-metrics"><Metric icon={ClipboardList} label="Всего заявок" value={total!} /><Metric icon={Inbox} label="Новые заявки" value={counts.new} /><Metric icon={ReceiptText} label="Сумма оценок" value={formatMoney(summary.data.estimate)} /></div>
-        : <Loading label="Загружаем статистику…" />}
-    </section>
-    <div className="ow-overview-lower"><section className="ow-panel">
-      <header className="ow-panel-head"><h2>Последние заявки</h2><a href="#orders" className="ow-inline-link">Все заявки<ArrowRight size={14} /></a></header>
-      {recent.error ? <LoadError error={recent.error} retry={recent.retry} /> : !recent.data ? <Loading /> : recent.data.orders.length
-        ? <OrderList orders={recent.data.orders.slice(0, 5)} open={open} compact />
-        : <Empty title="Заявок пока нет">{live ? 'Отправьте клиенту ссылку на витрину. Его заявка появится здесь.' : 'Опубликуйте витрину и поделитесь ссылкой с клиентами.'}</Empty>}
-    </section><section className="ow-panel ow-breakdown"><header className="ow-panel-head"><h2>По статусам</h2></header>
-      {counts ? <div className="ow-breakdown-body"><div className="ow-status-bar" aria-hidden="true">{!!total && statuses.filter(s => counts[s]).map(s => <i key={s} className={'ow-color-' + s} style={{ flexGrow: counts[s] }} />)}</div>
-        <ul>{statuses.map(s => <li key={s}><a href={'#orders/' + s}><i className={'ow-status-dot ow-color-' + s} />{statusGroups[s]}<strong>{counts[s]}</strong></a></li>)}</ul>
-      </div> : summary.error ? <LoadError error={summary.error} retry={summary.retry} /> : <Loading />}</section></div>
+    <div className="ow-overview-layout"><div className="ow-overview-main">
+      <section className="ow-summary"><header className="ow-section-head"><h2>Сводка по заявкам</h2><span className="ow-period"><CalendarDays size={13} />Последние 30 дней</span></header>
+        {summary.error ? <LoadError error={summary.error} retry={summary.retry} /> : summary.data && counts ?
+          <dl className="ow-metrics"><div><dt>Всего заявок</dt><dd>{total}</dd></div>
+            <div><dt>Новые</dt><dd><a href="#orders/new">{counts.new}<ChevronRight size={13} /></a></dd></div>
+            <div><dt>Сумма оценок</dt><dd>{formatMoney(summary.data.estimate)}</dd></div></dl>
+          : <Loading label="Загружаем статистику…" />}
+      </section>
+      <section className="ow-recent"><header className="ow-section-head"><h2><Inbox size={15} />Последние заявки</h2><a href="#orders" className="ow-inline-link">Все заявки<ArrowRight size={13} /></a></header>
+        {recent.error ? <LoadError error={recent.error} retry={recent.retry} /> : !recent.data ? <Loading /> : recent.data.orders.length
+          ? <OrderList orders={recent.data.orders.slice(0, 5)} open={open} selected={selected} compact />
+          : <Empty title="Заявок пока нет" action={live ? <CopyLink slug={business.slug} /> : <a className="ow-btn ow-secondary" href="#storefront">Настроить витрину<ArrowRight size={13} /></a>}>
+            {live ? 'Поделитесь витриной с клиентом. Полученная заявка появится здесь.' : 'Опубликуйте витрину, чтобы клиенты могли отправить первую заявку.'}</Empty>}
+      </section>
+    </div>
+    <aside className="ow-inspector">
+      <section className="ow-storefront-summary" aria-labelledby="ow-storefront-title">
+        <header><h2 id="ow-storefront-title">Витрина</h2>
+          <span className={'ow-badge ' + (live ? 'ow-status-live' : 'ow-status-draft')}><i />{live ? 'Опубликована' : business.published ? 'Недоступна' : 'Черновик'}</span>
+        </header>
+        {live
+          ? <a className="ow-storefront-identity" href={publicUrl(business.slug)} target="_blank" rel="noreferrer" aria-label={'Открыть витрину «' + business.name + '» в новой вкладке'}>
+              {storefrontIdentity}<ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+          : <div className="ow-storefront-identity">{storefrontIdentity}</div>}
+        <div className="ow-storefront-actions"><CopyLink slug={business.slug} label="Копировать ссылку" />
+          <a className="ow-btn ow-quiet" href="#storefront"><Settings2 size={14} />Настройки витрины</a>
+        </div>
+      </section>
+      <section><h2>По статусам <small>30 дней</small></h2>
+        {counts ? <ul className="ow-breakdown">{statuses.map(status => <li key={status}>
+          <a href={'#orders/' + status}><StatusIcon status={status} />{statusGroups[status]}<strong>{counts[status]}</strong></a>
+        </li>)}</ul> : summary.error ? <LoadError error={summary.error} retry={summary.retry} /> : <Loading />}
+      </section>
+    </aside></div>
   </div>
 }

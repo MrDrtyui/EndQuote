@@ -23,7 +23,9 @@ test('owner registration, persistent sessions, CSRF, expiry, logout and rate cap
     return r
   }
   const creds = {email:randomUUID()+'@example.test',password:randomBytes(24).toString('hex')}
-  await call('GET','session')
+  assert.deepEqual((await call('GET','session')).json().providers,[])
+  assert.equal((await call('POST','recover',{email:creds.email})).statusCode,503)
+  assert.equal((await call('POST','social/start',{provider:'google',link:false})).statusCode,503)
   assert.equal((await call('POST','register',creds,{'x-csrf-token':'x'})).statusCode,403)
   assert.equal((await call('POST','register',creds,{origin:'https://example.test'})).statusCode,403)
   assert.equal((await call('POST','register',{...creds,role:'admin'})).statusCode,400)

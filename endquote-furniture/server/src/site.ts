@@ -8,7 +8,7 @@ export async function site(app:FastifyInstance,db:PrismaClient){
   const root=fileURLToPath(new URL('../../../dist/',import.meta.url))
   await app.register(serve,{root,wildcard:false,index:false,redirect:false})
   app.get('/healthz',async()=>({ok:true}))
-  for(const path of ['/','/lab','/clean/chistodom','/chistodom','/owner','/owner/login','/owner/register','/owner/onboard','/owner/preview','/admin']){
+  for(const path of ['/','/lab','/clean/chistodom','/chistodom','/owner','/owner/login','/owner/register','/owner/forgot','/owner/reset','/owner/verify','/owner/onboard','/owner/preview','/admin']){
     app.get(path,async(_req,reply)=>reply.sendFile('index.html'))
   }
   app.setNotFoundHandler(async(req,reply)=>{

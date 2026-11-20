@@ -1,4 +1,4 @@
-.ow-auth { min-height: 100dvh; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); max-width: 1760px; margin: 0 auto; }
+.ow-auth { min-height: 100dvh; display: grid; grid-template-columns: minmax(0,1fr); max-width: 1760px; margin: 0 auto; }
 .ow-auth-main { display: flex; min-width: 0; flex-direction: column; padding: clamp(26px,4vw,64px) clamp(28px,5vw,80px) 34px; }
 .ow-auth-main > header { display: flex; align-items: center; }
 .ow-access-form { width: min(100%,380px); margin: auto; padding-block: 66px; }
@@ -11,23 +11,7 @@
 .ow-switch-auth a { color: var(--ow-teal); font-weight: 600; padding: 7px 2px; }
 .ow-switch-auth a:hover { text-decoration: underline; }
 .ow-auth-main > footer { display: flex; align-items: center; justify-content: space-between; }
-.ow-back, .ow-mobile-demo { color: var(--ow-muted); font-size: 12px; min-height: 36px; }
-.ow-mobile-demo { display: none; }
-.ow-auth-art { background: #222520; border: 1px solid #343832; margin: 16px 16px 16px 0; border-radius: 19px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; color: #f4f6ef; min-height: 560px; }
-.ow-art-copy { padding: clamp(26px,4vw,66px) clamp(26px,4vw,60px) 20px; }
-.ow-art-label { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; color: #d1ddcd; font-weight: 520; }
-.ow-auth-art h2 { font-size: clamp(36px,4.6vw,72px); line-height: 1.02; font-weight: 510; letter-spacing: -.065em; margin: clamp(30px,7vh,75px) 0 14px; }
-.ow-art-copy p { max-width: 36ch; font-size: 14px; line-height: 1.65; color: #c0c9bd; }
-.ow-auth-art figure { min-width: 0; }
-.ow-auth-art figure > img { display: block; width: 100%; max-height: 48dvh; object-fit: cover; object-position: center 54%; }
-.ow-auth-art figcaption { margin: 0 clamp(23px,3.3vw,54px); padding: 20px 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid #495047; }
-.ow-auth-art figcaption > div, .ow-auth-art figcaption a { display: flex; align-items: center; gap: 10px; }
-.ow-auth-art figcaption > div > svg { color: #c4cfbb; }
-.ow-auth-art figcaption small, .ow-auth-art figcaption strong { display: block; }
-.ow-auth-art figcaption small { font-size: 11px; color: #b1bcae; }
-.ow-auth-art figcaption strong { font-size: 13px; font-weight: 530; }
-.ow-auth-art figcaption a { font-size: 12px; color: #e2ecdd; min-height: 40px; }
-.ow-auth-art figcaption a:hover { text-decoration: underline; }
+.ow-back { color: var(--ow-muted); font-size: 12px; min-height: 36px; }
 .ow-onboard { min-height: 100dvh; background: #fbfcfb; }
 .ow-onboard-bar { min-height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 10px max(5vw,24px); background: #fff; border-bottom: 1px solid var(--ow-border); }
 .ow-onboard-layout { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); align-items: start; gap: clamp(40px,7vw,96px); width: min(1010px,calc(100% - 80px)); margin: 0 auto; padding-block: clamp(40px,8vh,85px); }
@@ -50,10 +34,7 @@
 .ow-mini-url { overflow-wrap: anywhere; border-top: 1px solid var(--ow-border); margin-top: 18px; padding-top: 12px; color: var(--ow-teal); }
 .ow-app .ow-preview-note { font-size: 12px; line-height: 1.65; color: #53675b; margin-top: 16px; }
 @media (max-width: 850px) {
-  .ow-auth { grid-template-columns: 1.12fr 1fr; }
   .ow-auth-main { padding-inline: 30px; }
-  .ow-art-copy { padding: 32px 24px 20px; }
-  .ow-auth-art figcaption { align-items: flex-start; flex-direction: column; gap: 2px; }
   .ow-onboard-layout { width: calc(100% - 48px); gap: 28px; grid-template-columns: 1.2fr 1fr; }
   .ow-onboard-form .ow-field-pair { grid-template-columns: minmax(0,1fr); }
 }
@@ -61,8 +42,6 @@
   .ow-auth { display: block; }
   .ow-auth-main { min-height: 100dvh; padding: 28px 24px 16px; }
   .ow-access-form { padding-block: 46px; }
-  .ow-auth-art { display: none; }
-  .ow-mobile-demo { display: inline-flex; align-items: center; gap: 5px; }
   .ow-onboard-bar { min-height: 65px; padding-inline: 20px; }
   .ow-onboard-layout { display: flex; flex-direction: column; align-items: stretch; width: auto; padding: 28px 20px; gap: 28px; }
   .ow-onboard-preview { margin: 0; }

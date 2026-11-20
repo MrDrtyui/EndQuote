@@ -1,0 +1,32 @@
+.eq-forgot { display:inline-flex; align-items:center; gap:4px; color:var(--ow-teal); font-size:13px; }
+.eq-forgot { justify-self:end; margin-top:-12px; }
+.eq-social { display:grid; gap:6px; margin-top:18px; }
+.eq-social small { color:var(--ow-muted); font-size:12px; font-weight:400; }
+.eq-divider + form { margin-top:12px; }
+.eq-divider { display:flex; align-items:center; gap:12px; color:var(--ow-muted); font-size:12px; margin:14px 0 2px; }
+.eq-divider::before,.eq-divider::after { content:''; height:1px; flex:1; background:var(--ow-border); }
+.eq-mail { min-height:100dvh; padding:32px clamp(20px,5vw,80px); }
+.eq-mail section { max-width:380px; margin:clamp(48px,16vh,160px) auto; }
+.eq-mail section>p,.eq-account section p,.eq-account dt { color:var(--ow-muted); font-size:13px; line-height:1.55; }
+.eq-mail form,.eq-edit fieldset { display:grid; gap:16px; margin:20px 0; }
+.eq-mail section>a { display:inline-block; margin:12px 14px 0 0; }
+.eq-account { max-width:840px; }
+.eq-account section { padding:22px 0; border-bottom:1px solid var(--ow-border); }
+.eq-account section h2 { display:flex; gap:9px; align-items:center; font-size:15px; margin-bottom:14px; letter-spacing:-.025em; }
+.eq-account h2 svg { width:16px; height:16px; color:var(--ow-muted); }
+.eq-account dl { margin:0; display:grid; gap:8px; }
+.eq-account dl>div { display:grid; grid-template-columns:minmax(120px, 155px) 1fr; gap:12px; align-items:baseline; }
+.eq-account dd,.eq-account strong { margin:0; font-size:13px; font-weight:540; }
+.eq-account section { overflow-wrap:anywhere; }
+.eq-row { display:flex; gap:16px; justify-content:space-between; align-items:center; }
+.eq-row>div { min-width:0; }
+.eq-row .ow-btn { flex-shrink:0; }
+.eq-account dl+.eq-row { margin-top:12px; }
+.eq-provider+.eq-provider { border-top:1px solid var(--ow-border); margin-top:12px; padding-top:12px; }
+.eq-edit { max-width:360px; }
+.eq-edit fieldset { border:0; padding:0; min-width:0; margin-bottom:0; }
+.eq-status { display:inline-flex; align-items:center; gap:6px; }
+.eq-status:before { content:''; width:6px; height:6px; border-radius:50%; background:#bc8741; }
+.eq-status.verified:before { background:#37866c; }
+@media(max-width:680px){ .eq-account section{padding:18px 0;} .eq-account dl>div{grid-template-columns:112px 1fr;} .eq-row{flex-wrap:wrap;gap:8px;} .eq-provider{flex-wrap:nowrap;} }
+

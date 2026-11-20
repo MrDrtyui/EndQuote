@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { BadgeCheck, ChevronRight, Ellipsis, Inbox, LayoutDashboard, LogOut, MapPin, Menu, PanelLeft, Settings2, Sofa, Store, UserRound, X } from 'lucide-react'
-import { accessInfo, dateLabel, useResource, type Business, type Status, statuses } from './data'
+import { ChartNoAxesColumn, Check, ChevronRight, ChevronsUpDown, CreditCard, Ellipsis, Inbox, Layers2, LogOut, Menu, Settings2, Store, UserRound, X } from 'lucide-react'
+import { accessInfo, useResource, type Business, type Provider, type Status, statuses } from './data'
 import { Brand, BusinessAvatar, LoadError, Loading, Modal, Notice, PreviewLink } from './ui'
 import Overview from './Overview'
 import Orders, { OrderDrawer } from './Orders'
@@ -9,9 +9,9 @@ import Storefront from './Storefront'
 import { Account, Subscription } from './Settings'
 
 const pages = {
-  overview: { label: 'Обзор', icon: LayoutDashboard }, orders: { label: 'Заявки', icon: Inbox },
-  pricing: { label: 'Услуги и цены', icon: Sofa }, storefront: { label: 'Витрина', icon: Store },
-  subscription: { label: 'Подписка', icon: BadgeCheck }, account: { label: 'Аккаунт', icon: Settings2 },
+  overview: { label: 'Обзор', icon: ChartNoAxesColumn }, orders: { label: 'Заявки', icon: Inbox },
+  pricing: { label: 'Услуги и цены', icon: Layers2 }, storefront: { label: 'Витрина', icon: Store },
+  subscription: { label: 'Подписка', icon: CreditCard }, account: { label: 'Аккаунт', icon: Settings2 },
 }
 type Page = keyof typeof pages
 const mainPages: Page[] = ['overview', 'orders', 'pricing', 'storefront']
@@ -20,7 +20,7 @@ function readRoute() {
   return { page: (Object.hasOwn(pages, name) ? name : 'overview') as Page, status: statuses.includes(filter as Status) ? filter as Status : '' as const }
 }
 type Props = {
-  email: string; logout: () => void; signingOut: boolean; created?: Business
+  providers: Provider[]; email: string; logout: () => void; signingOut: boolean; created?: Business
   dismissCreated: () => void; refreshSession: () => Promise<void>
 }
 export default function Workspace(props: Props) {
@@ -30,7 +30,7 @@ export default function Workspace(props: Props) {
     ? <LoadError error={profile.error} retry={profile.retry} /> : <Loading label="Загружаем данные компании…" />}</main>
   return <Dashboard {...props} initial={initial} />
 }
-function Dashboard({ initial, email, logout, signingOut, created, dismissCreated, refreshSession }: Props & { initial: Business }) {
+function Dashboard({ initial, providers, email, logout, signingOut, created, dismissCreated, refreshSession }: Props & { initial: Business }) {
   const [business, setBusiness] = useState(initial)
   const [route, setRoute] = useState(readRoute)
   const [visited, setVisited] = useState<Set<Page>>(() => new Set([route.page]))
@@ -60,24 +60,27 @@ function Dashboard({ initial, email, logout, signingOut, created, dismissCreated
       aria-label={label} aria-current={key === page ? 'page' : undefined} onClick={() => setMenu(false)}>
       <Icon size={18} /><span>{short ?? label}</span></a>
   }
+  const group = mainPages.includes(page) ? 'Рабочее пространство' : 'Настройки'
+  const closeMenu = () => setMenu(false)
   const side = <>
-    <div className="ow-side-brand"><Brand /></div>
-    <a className="ow-company" href="#storefront" onClick={() => setMenu(false)}><BusinessAvatar business={business} />
-      <span><strong>{business.name}</strong><small><MapPin size={11} />{business.city}</small></span><ChevronRight size={14} /></a>
-    <nav className="ow-side-nav" aria-label="Разделы кабинета"><p>Управление</p>{mainPages.map(key => navLink(key))}
-      <p>Настройки</p>{navLink('subscription')}{navLink('account')}</nav>
-    <div className="ow-side-bottom"><a className="ow-plan-link" href="#subscription" onClick={() => setMenu(false)}>
-      <span className="ow-plan-icon"><BadgeCheck size={17} /></span><span><strong>{access.label}</strong><small>{access.end ? 'До ' + dateLabel(access.end) : access.active ? 'Без даты окончания' : 'Только просмотр'}</small></span><ChevronRight size={14} /></a>
-      <div className="ow-user-row"><a href="#account" onClick={() => setMenu(false)}><span className="ow-user-icon"><UserRound size={16} /></span><span><strong>Мой аккаунт</strong><small>{email}</small></span></a>
-        <button className="ow-icon-btn" disabled={signingOut} aria-label="Выйти" title="Выйти" onClick={logout}><LogOut size={16} /></button></div>
+    <WorkspaceMenu business={business} email={email} close={closeMenu} />
+    <nav className="ow-side-nav" aria-label="Разделы кабинета">
+      <p>Рабочее пространство</p>{mainPages.map(key => navLink(key))}
+      <p>Настройки</p>{navLink('account')}{navLink('subscription')}
+    </nav>
+    <div className="ow-side-bottom">
+      <Brand />
+      <div className="ow-user-row"><a href="#account" onClick={closeMenu}><span className="ow-user-icon"><UserRound size={14} /></span><span>{email}</span></a>
+        <button className="ow-icon-btn" disabled={signingOut} aria-label="Выйти" title="Выйти" onClick={logout}><LogOut size={15} /></button></div>
     </div>
   </>
   return <div className="ow-shell">
     <a href="#ow-content" className="ow-skip" onClick={e => { e.preventDefault(); content.current?.focus() }}>К содержимому</a>
     <aside className="ow-sidebar">{side}</aside>
     <div className="ow-work">
-      <header className="ow-topbar"><div className="ow-crumb"><PanelLeft size={16} /><span>Кабинет</span><ChevronRight size={12} /><strong>{pages[page].label}</strong></div>
-        <div className="ow-mobile-brand"><button className="ow-icon-btn" aria-label="Открыть меню" aria-haspopup="dialog" onClick={() => setMenu(true)}><Menu size={20} /></button><Brand /></div>
+      <header className="ow-topbar">
+        <button className="ow-mobile-trigger ow-icon-btn" aria-label="Открыть меню" aria-haspopup="dialog" onClick={() => setMenu(true)}><Menu size={17} /></button>
+        <div className="ow-crumb"><BusinessAvatar business={business} /><strong title={business.name}>{business.name}</strong><ChevronRight size={12} /><span>{group}</span></div>
         <PreviewLink />
       </header>
       <main className="ow-content" id="ow-content" tabIndex={-1} ref={content}>
@@ -85,12 +88,12 @@ function Dashboard({ initial, email, logout, signingOut, created, dismissCreated
         {created && !business.published && page === 'overview' && <div className="ow-created" role="status"><span className="ow-tile-icon"><Store size={20} /></span>
           <div><strong>Витрина создана</strong><p>Проверьте цены и опубликуйте витрину, чтобы принимать заявки.</p></div>
           <button className="ow-icon-btn" onClick={dismissCreated} aria-label="Скрыть сообщение"><X size={16} /></button></div>}
-        {page === 'overview' && <Overview business={business} version={orderVersion} open={setSelected} refresh={refreshOrders} />}
-        {page === 'orders' && <Orders filter={route.status} version={orderVersion} open={setSelected} refresh={refreshOrders} />}
+        {page === 'overview' && <Overview business={business} version={orderVersion} open={setSelected} selected={selected} refresh={refreshOrders} />}
+        {page === 'orders' && <Orders filter={route.status} version={orderVersion} open={setSelected} selected={selected} refresh={refreshOrders} />}
         {visited.has('pricing') && <section hidden={page !== 'pricing'}><Pricing business={business} active={page === 'pricing'} onRevision={catalogRevision => setBusiness(prev => ({ ...prev, catalogRevision }))} /></section>}
         {visited.has('storefront') && <section hidden={page !== 'storefront'}><Storefront business={business} setBusiness={setBusiness} /></section>}
         {page === 'subscription' && <Subscription business={business} />}
-        {page === 'account' && <Account email={email} refreshSession={refreshSession} />}
+        {page === 'account' && <Account providers={providers} refreshSession={refreshSession} />}
       </main>
     </div>
     <nav className="ow-bottom-nav" aria-label="Быстрая навигация">{navLink('overview')}{navLink('orders')}{navLink('pricing','Цены')}
@@ -100,3 +103,38 @@ function Dashboard({ initial, email, logout, signingOut, created, dismissCreated
   </div>
 }
 
+
+function WorkspaceMenu({ business, email, close }: { business: Business; email: string; close: () => void }) {
+  const [open, setOpen] = useState(false)
+  const root = useRef<HTMLDivElement>(null)
+  const trigger = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    if (!open) return
+    function outside(event: PointerEvent) {
+      if (!root.current?.contains(event.target as Node)) setOpen(false)
+    }
+    document.addEventListener('pointerdown', outside)
+    return () => document.removeEventListener('pointerdown', outside)
+  }, [open])
+  function navigate() { setOpen(false); close() }
+  return <div className="ow-workspace-menu" ref={root} onBlur={event => {
+    if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false)
+  }} onKeyDown={event => {
+    if (event.key === 'Escape' && open) {
+      event.stopPropagation()
+      event.preventDefault()
+      setOpen(false)
+      trigger.current?.focus()
+    }
+  }}>
+    <button ref={trigger} className="ow-company" aria-expanded={open} onClick={() => setOpen(!open)}>
+      <BusinessAvatar business={business} /><strong>{business.name}</strong><ChevronsUpDown size={13} />
+    </button>
+    {open && <div className="ow-workspace-pop">
+      <small>{email}</small><div className="ow-workspace-identity"><BusinessAvatar business={business} />
+        <div><strong>{business.name}</strong><small>{business.city}</small></div><Check size={14} /></div>
+      <a href="#storefront" onClick={navigate}><Store size={15} />Настройки компании</a>
+      <a href="#account" onClick={navigate}><UserRound size={15} />Мой аккаунт</a>
+    </div>}
+  </div>
+}

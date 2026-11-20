@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type ButtonHTMLAttributes, type InputHTMLAttributes, type ReactNode } from 'react'
-import { AlertCircle, ArrowUpRight, Check, CheckCircle2, Copy, Eye, EyeOff, Inbox, Info, Link2, LoaderCircle, RefreshCw, X, type LucideIcon } from 'lucide-react'
+import { AlertCircle, ArrowUpRight, Check, CheckCircle2, Circle, CircleCheck, CircleDot, CircleX, Copy, Eye, EyeOff, Inbox, Info, Link2, LoaderCircle, RefreshCw, X, type LucideIcon } from 'lucide-react'
 import { QuoteMark } from '../marketing/ui'
 import { initials, publicUrl, statusLabels, type Business, type Status } from './data'
 
@@ -28,8 +28,12 @@ export function Loading({ label = 'Загрузка…' }: { label?: string }) {
 export function LoadError({ error, retry }: { error: string; retry: () => void }) {
   return <Notice kind="error">{error} <button type="button" className="ow-text-link" onClick={retry}>Попробовать ещё раз</button></Notice>
 }
+export function StatusIcon({ status }: { status: Status }) {
+  const Icon = { new: Circle, accepted: CircleDot, completed: CircleCheck, cancelled: CircleX }[status]
+  return <Icon aria-hidden="true" size={14} className={'ow-state-icon ow-state-' + status} />
+}
 export function StatusBadge({ status }: { status: Status }) {
-  return <span className={'ow-badge ow-status-' + status}><i />{statusLabels[status]}</span>
+  return <span className="ow-order-status"><StatusIcon status={status} />{statusLabels[status]}</span>
 }
 export function BusinessAvatar({ business }: { business: Business }) {
   return <span className="ow-business-avatar" aria-hidden="true">{business.logoId
@@ -47,7 +51,7 @@ export function PreviewLink({ children = 'Предпросмотр' }: { childre
 export function RefreshButton({ onClick }: { onClick: () => void }) {
   return <Button variant="secondary" onClick={onClick}><RefreshCw size={14} />Обновить</Button>
 }
-export function CopyLink({ slug }: { slug: string }) {
+export function CopyLink({ slug, label = 'Скопировать ссылку' }: { slug: string; label?: string }) {
   const [state, setState] = useState<'idle' | 'copied' | 'manual'>('idle')
   const manual = useRef<HTMLInputElement>(null)
   useEffect(() => {
@@ -61,7 +65,7 @@ export function CopyLink({ slug }: { slug: string }) {
     catch { setState('manual') }
   }
   return <div className="ow-copy"><Button variant="secondary" onClick={copy}>
-    {state === 'copied' ? <Check size={15} /> : <Copy size={15} />}<span aria-live="polite">{state === 'copied' ? 'Ссылка скопирована' : 'Скопировать ссылку'}</span>
+    {state === 'copied' ? <Check size={15} /> : <Copy size={15} />}<span aria-live="polite">{state === 'copied' ? 'Ссылка скопирована' : label}</span>
   </Button>{state === 'manual' && <label>Скопируйте адрес вручную<input ref={manual} readOnly value={publicUrl(slug)} onFocus={e => e.target.select()} /></label>}</div>
 }
 

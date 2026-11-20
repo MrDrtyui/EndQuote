@@ -44,5 +44,11 @@ async function send<T>(path:string,method:string,body?:unknown):Promise<T>{
   }
   if(data.csrf) token=data.csrf
   if(path.startsWith('auth/') && Object.hasOwn(data, 'owner')) ownerId = data.owner?.id ?? null
+  if(path === 'auth/session') {
+    // Older servers return the session without advertising social sign-in.
+    data.providers = Array.isArray(data.providers)
+      ? data.providers.filter((provider: unknown) => provider === 'google' || provider === 'apple')
+      : []
+  }
   return data
 }

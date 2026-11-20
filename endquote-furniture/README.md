@@ -21,7 +21,7 @@ node dist/src/grants.js   # grant table/column access to the pre-created runtime
 npm start
 ```
 
-The Node service serves the compiled SPA and API on one origin. For Vite development use `npm run dev` in the frontend and set the server's `APP_ORIGIN` to the exact browser origin instead. Bootstrap the first administrator in a local terminal with `npm run admin:bootstrap` in `server/`; the password prompt is hidden. Subscription changes require a reason and are versioned and audited.
+The Node service serves the compiled SPA and API on one origin. For Vite development, set the API server’s `APP_ORIGIN=http://127.0.0.1:5173` and run `npm run dev` in the frontend. Opening `http://localhost:5173` redirects the browser to that canonical address so login, cookies and callback URLs use the same host. To use localhost as the canonical name instead, export `APP_ORIGIN=http://localhost:5173` for both processes. Bootstrap the first administrator in a local terminal with `npm run admin:bootstrap` in `server/`; the password prompt is hidden. Subscription changes require a reason and are versioned and audited.
 
 **Verification:** `npm test` runs the frontend domain tests. In `server/`, `npm run test:disposable` creates unique loopback-only PostgreSQL/MinIO containers, builds, runs API and desktop/mobile checkout tests, rehearses migration/restore to new targets, and removes its labeled containers and volumes. Requires an already running local Docker daemon, standalone `docker-compose`, `pg_dump`/`pg_restore`, Chrome (`CHROME_PATH` overrides the macOS default), and locally available `postgres:17` and MinIO images (`EQ_TEST_MINIO_IMAGE` selects the local tag). No shared DSN or bucket is used.
 
@@ -207,3 +207,37 @@ npm run build
 ```
 
 Проверка маркетинга на 360, 390, 768 и 1440 px проходит загрузку превью, отсутствие горизонтального переполнения и ранней загрузки 3D, реальное вращение в iframe, расчёт 9 000 → 18 000 ₸, изоляцию корзины, форму заявки, FAQ, юридические уведомления и переход в полный каталог. Контактные URL проверяются без отправки сообщений. Результаты и снимки находятся в `reports/marketing/`; SHA-256 исходных 24 GLB/Blender-файлов сравниваются с сохранённой базой. Полный клиентский путь отдельно проверяет `test:booking`.
+
+## Почта и социальный вход
+
+Конфигурацию читает сервер при запуске. Используйте отдельные ключи для каждого окружения. В Compose передайте значения через переменные процесса или закрытый файл окружения. В публичном клиенте ключи не используются.
+
+| Сервис | Настройка |
+| --- | --- |
+| Resend | Добавьте домен отправителя в Resend, опубликуйте предложенные DNS-записи и дождитесь подтверждения. Создайте ключ с правом отправки для этого домена. Передайте его как `RESEND_API_KEY`, адрес отправителя как `MAIL_FROM`. Отключите отслеживание переходов для писем авторизации, чтобы сохранить фрагмент ссылки. |
+| Google | В Google Auth Platform настройте аудиторию и экран согласия. Создайте OAuth-клиент типа «Веб-приложение». Добавьте точный URI возврата `{APP_ORIGIN}/api/auth/social/google/callback`. Задайте `GOOGLE_CLIENT_ID` и `GOOGLE_CLIENT_SECRET`. В тестовом режиме добавьте тестовые адреса в аудиторию. |
+| Apple | В Apple Developer включите Sign in with Apple для основного App ID. Привяжите к нему Services ID, зарегистрируйте HTTPS-домен и точный Return URL `{APP_ORIGIN}/api/auth/social/apple/callback`. Services ID укажите в `APPLE_CLIENT_ID`. Создайте ключ Sign in with Apple для основного App ID. Передайте подписанный клиентский JWT в `APPLE_CLIENT_SECRET`. Для отправки писем пользователям Hide My Email зарегистрируйте отправителя в Apple Private Email Relay. |
+
+Здесь `{APP_ORIGIN}` означает полный внешний origin без завершающего слеша. Для Apple нужен публичный HTTPS-домен. Обратный прокси должен передавать POST формы Apple и исходный Origin. Кнопка входа становится активной после настройки соответствующего провайдера.
+
+Чтобы создать клиентский JWT для Apple, из каталога `server` задайте `APPLE_TEAM_ID`, `APPLE_KEY_ID`, `APPLE_CLIENT_ID` и `APPLE_KEY_PATH` (путь к закрытому файлу .p8). Команда ниже помещает секрет в окружение текущего shell. Перенесите его в хранилище секретов приложения и обновите до истечения 90 дней.
+
+```sh
+export APPLE_CLIENT_SECRET="$(node --input-type=module <<'JS'
+import {readFile} from 'node:fs/promises'
+import {importPKCS8, SignJWT} from 'jose'
+const e = process.env
+const key = await importPKCS8(await readFile(e.APPLE_KEY_PATH, 'utf8'), 'ES256')
+const secret = await new SignJWT({}).setProtectedHeader({alg:'ES256',kid:e.APPLE_KEY_ID})
+  .setIssuer(e.APPLE_TEAM_ID).setSubject(e.APPLE_CLIENT_ID)
+  .setAudience('https://appleid.apple.com').setIssuedAt().setExpirationTime('90d').sign(key)
+process.stdout.write(secret)
+JS
+)"
+```
+
+Миграция `202611200001_account_security` сохраняет владельцев и сессии. Ранее зарегистрированным владельцам нужно подтвердить адрес для публикации, изменения данных бизнеса и доступа к заявкам. Черновик витрины можно создать до подтверждения. После миграций выполните стандартный шаг выдачи прав `node dist/src/grants.js` от роли миграции. Compose выполняет этот шаг автоматически.
+
+Ссылки подтверждения действуют час, восстановления — 30 минут. Для первичного подтверждения откройте ссылку после входа в соответствующий аккаунт. Смена адреса и восстановление пароля завершают все сеансы. Для управления связанными аккаунтами требуется вход в течение последних десяти минут. Если способ входа единственный, перед отключением настройте пароль через письмо или подключите другой доступный способ.
+
+Для изолированной проверки используйте Node 24 и `cd server && npm run test:disposable` с локальными Docker-образами, указанными в `tests/disposable.mjs`. Тесты используют тестовый почтовый транспорт и локально подписанные ответы провайдеров. Для проверки реальной интеграции в отдельном тестовом окружении пройдите регистрацию, откройте письмо и выполните полный вход каждым настроенным провайдером.

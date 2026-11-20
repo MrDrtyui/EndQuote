@@ -16,6 +16,7 @@ function validSocial(raw: string, key: Social) {
 }
 export default function Storefront({ business, setBusiness }: { business: Business; setBusiness: Dispatch<SetStateAction<Business>> }) {
   const [draft, setDraft] = useState(() => profileFields(business)), [social, setSocial] = useState(() => socialFields(business))
+  const [tab, setTab] = useState<'publication' | 'profile' | 'identity'>('publication')
   const [errors, setErrors] = useState<FormErrors>({})
   const [busy, setBusy] = useState(''), [confirm, setConfirm] = useState(false)
   const [feedback, setFeedback] = useState<{ scope: string; message: Message } | null>(null)
@@ -79,15 +80,19 @@ export default function Storefront({ business, setBusiness }: { business: Busine
       setBusiness(result); notify('publish', 'success', result.published ? 'Витрина опубликована' : 'Витрина снята с публикации')
     } catch (err) { notify('publish', 'error', problem(err)) } finally { setBusy(''); setConfirm(false) }
   }
-  return <div className="ow-page"><PageHeading title="Витрина">Профиль компании, публичная ссылка и публикация.</PageHeading>
-    <section className="ow-panel ow-publication"><div className="ow-publish-heading"><span className="ow-tile-icon"><Globe2 size={21} /></span><div><h2>Публичная витрина</h2><p>{business.published && editable ? 'Клиенты могут рассчитать цену и отправить заявку.' : business.published ? 'Доступ к витрине приостановлен.' : 'Пока черновик виден только вам.'}</p></div>
+  return <div className="ow-page"><PageHeading title="Витрина" />
+    <div className="ow-viewbar"><div className="ow-segments" role="group" aria-label="Настройки витрины">
+      {([['publication','Публикация'],['profile','Профиль'],['identity','Оформление']] as const).map(([key,label]) =>
+        <button key={key} type="button" aria-pressed={tab === key} onClick={() => setTab(key)}>{label}</button>)}
+    </div></div>
+    <section hidden={tab !== 'publication'} className="ow-settings-pane ow-publication"><div className="ow-publish-heading"><span className="ow-tile-icon"><Globe2 size={21} /></span><div><h2>Публичная витрина</h2><p>{business.published && editable ? 'Клиенты могут рассчитать цену и отправить заявку.' : business.published ? 'Доступ к витрине приостановлен.' : 'Пока черновик виден только вам.'}</p></div>
       <span className={'ow-badge ' + (business.published && editable ? 'ow-status-live' : 'ow-status-draft')}><i />{business.published ? editable ? 'Опубликована' : 'Недоступна' : 'Черновик'}</span></div>
       <div className="ow-public-url"><Link2 size={17} />{business.published && editable
         ? <a href={'/' + business.slug} target="_blank" rel="noreferrer">{publicUrl(business.slug)}<ArrowUpRight size={14} /></a>
         : <span>{publicUrl(business.slug)}</span>}</div>
       <div className="ow-actions"><CopyLink key={business.slug} slug={business.slug} /><PreviewLink /><Button variant={business.published ? 'quiet' : 'primary'} disabled={locked} onClick={() => setConfirm(true)}>{business.published ? 'Снять с публикации' : 'Опубликовать'}</Button></div>
       {feedbackFor('publish')}</section>
-    <div className="ow-settings-grid"><form noValidate className="ow-panel ow-edit-panel ow-profile-form" onSubmit={saveProfile}>
+    <div className="ow-settings-pane" hidden={tab === 'publication'}><form hidden={tab !== 'profile'} noValidate className="ow-panel ow-edit-panel ow-profile-form" onSubmit={saveProfile}>
       <div className="ow-setting-heading"><h2>Профиль компании</h2><p>Эти данные появятся на странице для клиентов.</p></div>
       <fieldset disabled={locked} className="ow-fields"><Field label="Название компании" name="name" required maxLength={100} autoComplete="organization" value={draft.name} error={errors.name} onChange={e => edit('name',e.target.value)} />
         <div className="ow-field-pair"><Field label="Город" name="city" required autoComplete="address-level2" maxLength={100} value={draft.city} error={errors.city} onChange={e => edit('city',e.target.value)} />
@@ -98,7 +103,7 @@ export default function Storefront({ business, setBusiness }: { business: Busine
           hint={draft.slug !== business.slug ? 'После сохранения прежняя ссылка перестанет открывать витрину.' : undefined} onChange={e => edit('slug',e.target.value.toLowerCase())} />
         {feedbackFor('profile')}<Button type="submit" busy={busy === 'profile'} disabled={!profileDirty}><Check size={16} />Сохранить профиль</Button>
       </fieldset></form>
-      <div className="ow-setting-stack"><section className="ow-panel ow-edit-panel"><div className="ow-setting-heading"><h2>Логотип</h2><p>Изображение профиля на витрине.</p></div>
+      <div hidden={tab !== 'identity'} className="ow-setting-stack"><section className="ow-panel ow-edit-panel"><div className="ow-setting-heading"><h2>Логотип</h2><p>Изображение профиля на витрине.</p></div>
         <div className="ow-logo-form">{selectedLogo ? <img className="ow-logo-preview" src={selectedLogo} alt="Предпросмотр логотипа" /> : <BusinessAvatar business={business} />}
           <div><Button variant="secondary" busy={busy === 'logo'} disabled={locked} onClick={() => fileInput.current?.click()}><Upload size={15} />{business.logoId ? 'Заменить' : 'Загрузить'}</Button><small>PNG, JPEG, WebP · до 2 МБ</small></div></div>
         <input ref={fileInput} hidden type="file" aria-label="Логотип компании" accept="image/png,image/jpeg,image/webp" disabled={locked} onChange={e => { const file = e.target.files?.[0]; e.target.value = ''; if (file) void upload(file) }} />{feedbackFor('logo')}</section>

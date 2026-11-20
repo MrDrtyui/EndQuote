@@ -5,10 +5,13 @@ import argon2 from 'argon2'
 import { z } from 'zod'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient, Prisma } from './generated/client.js'
-import { onboard, owned, ownerView, profile,locked } from './business.js'
+import { onboard, owned, ownerView, profile,locked,entitled,missing } from './business.js'
 import { workspace,conflict } from './workspace.js'
 import multipart from '@fastify/multipart'
 import {intake,type CommitClock} from './intake.js'
+
+import {accounts} from './account.js'
+import {social} from './social.js'
 
 export const environment = z.object({
   APP_ORIGIN: z.url().refine(s => {
@@ -18,6 +21,9 @@ export const environment = z.object({
   }),
   SESSION_SECRET: z.string().regex(/^[a-f0-9]{64}$/i),
   DATABASE_URL: z.url().regex(/^postgres(?:ql)?:\/\//),
+  RESEND_API_KEY:z.string().optional(), MAIL_FROM:z.string().optional(),
+  GOOGLE_CLIENT_ID:z.string().optional(), GOOGLE_CLIENT_SECRET:z.string().optional(),
+  APPLE_CLIENT_ID:z.string().optional(), APPLE_CLIENT_SECRET:z.string().optional(),
   PORT: z.coerce.number().int().min(1).max(65535).default(3000),
   TRUSTED_PROXY_IP:z.union([z.ipv4(),z.ipv6()]).optional(),
 })
@@ -44,6 +50,10 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
   app.addHook('onRequest', async (req, reply) => {
     reply.header('X-Request-Id',req.id).header('Cache-Control','no-store').header('X-Content-Type-Options','nosniff').header('Referrer-Policy','same-origin').header('X-Frame-Options','SAMEORIGIN')
     if (req.headers.host !== new URL(config.APP_ORIGIN).host) throw new Problem(400,'HOST','Недопустимый адрес.')
+    if (req.method === 'POST' && req.routeOptions.url === '/api/auth/social/apple/callback') {
+      if (req.headers.origin !== 'https://appleid.apple.com' || req.headers['content-type']?.split(';')[0] !== 'application/x-www-form-urlencoded') throw new Problem(403,'ORIGIN','Некорректный ответ Apple.')
+      return
+    }
     if (!['GET','HEAD'].includes(req.method)) {
       if (req.headers.origin !== config.APP_ORIGIN) throw new Problem(403,'ORIGIN','Недопустимый источник.')
       const upload=req.routeOptions.url==='/api/owner/logo'||req.routeOptions.url==='/api/public/:slug/uploads'
@@ -87,13 +97,14 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
     const where = {tokenHash:digest(token),revokedAt:null,idleExpiresAt:{gt:now},absoluteExpiresAt:{gt:now}}
     const updated = await db.ownerSession.updateMany({where,data:{idleExpiresAt:new Date(+now+3600_000)}})
     if (!updated.count) return null
-    return (await db.ownerSession.findUnique({where:{tokenHash:where.tokenHash},select:{owner:{select:{id:true,normalizedEmail:true}}}}))?.owner ?? null
+    return (await db.ownerSession.findUnique({where:{tokenHash:where.tokenHash},select:{owner:{select:{id:true,normalizedEmail:true,verifiedAt:true}}}}))?.owner ?? null
   }
-  async function issue(ownerId: string, req: FastifyRequest, reply: FastifyReply, expectedHash:string) {
+  async function issue(ownerId: string, req: FastifyRequest, reply: FastifyReply, expectedHash:string, socialIdentity?:{provider:string;subject:string}) {
     const old = req.cookies[name('owner')], token = random()
     await db.$transaction(async tx=>{
       const [owner]=await tx.$queryRaw<{passwordHash:string}[]>`SELECT "passwordHash" FROM "Owner" WHERE id=${ownerId}::uuid FOR UPDATE`
       if(owner?.passwordHash!==expectedHash)throw conflict()
+      if(socialIdentity && !await tx.providerIdentity.count({where:{...socialIdentity,ownerId}}))throw conflict()
       await tx.ownerSession.updateMany({where:{tokenHash:digest(old ?? ''),revokedAt:null},data:{revokedAt:new Date()}})
       await tx.ownerSession.create({data:{ownerId,tokenHash:digest(token),idleExpiresAt:new Date(Date.now()+3600_000),absoluteExpiresAt:new Date(Date.now()+7*86400_000)}})
     })
@@ -102,7 +113,7 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
   }
   app.get('/api/auth/session',async (req,reply) => {
     const owner = await identity(req)
-    return {owner,onboarded:owner ? Boolean(await db.business.count({where:{ownerId:owner.id}})) : false,csrf:challenge(req,reply)}
+    return {owner,providers:providers(),mailReady:mail.mailReady,onboarded:owner ? Boolean(await db.business.count({where:{ownerId:owner.id}})) : false,csrf:challenge(req,reply)}
   })
   async function ownerId(req: FastifyRequest) {
     if(req.method !== 'GET') csrf(req)
@@ -114,9 +125,31 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
     const b=await onboard(db,await ownerId(req),profile.parse(req.body))
     return reply.code(201).send(ownerView(b))
   })
+  app.get('/api/owner/storefront-status/:slug',async req=>{
+    const id = await ownerId(req)
+    const {slug} = z.object({slug:z.string()}).parse(req.params)
+    const business = await db.business.findFirst({where:{ownerId:id,slug}})
+    if (!business) throw missing()
+    if (!entitled(business,clock.now())) {
+      const trial = business.accessState === 'trial'
+      return {kind:'expired', name:business.name, trial, endedAt:trial ? business.trialEndsAt : business.paidThrough}
+    }
+    return business.published ? {kind:'open'} : {kind:'unpublished',name:business.name}
+  })
   app.get('/api/owner/profile',async req=>ownerView(await owned(db,await ownerId(req))))
-  workspace(app,db,ownerId)
-  const files=intake(app,db,mac,options,ownerId,rate,clock)
+  const ctx={db,config,csrf,ownerId,rate,issue,name,mac}
+  const mail=accounts(app,ctx)
+  const providers=social(app,ctx)
+  async function businessAccess(req:FastifyRequest){
+    const id=await ownerId(req)
+    if(req.method!=='GET' || req.routeOptions.url?.startsWith('/api/owner/orders') || req.routeOptions.url==='/api/owner/photos/:id'){
+      const owner=await db.owner.findUniqueOrThrow({where:{id}})
+      if(!owner.verifiedAt)throw new Problem(403,'VERIFY','Подтвердите почту в настройках аккаунта.')
+    }
+    return id
+  }
+  workspace(app,db,businessAccess)
+  const files=intake(app,db,mac,options,businessAccess,rate,clock)
   app.get('/readyz',async()=>{await db.$queryRaw`SELECT 1`;await files.ready();return {ok:true}})
   const adminKey=name('admin')
   async function admin(req:FastifyRequest){
@@ -163,34 +196,24 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
       return snapshot(next)
     })
   })
-  app.patch('/api/owner/account',async(req,reply)=>{
-    const id=await ownerId(req)
-    await rate('account:'+id,8,reply)
-    const d=credentials.partial().extend({currentPassword:z.string().min(1).max(128)}).refine(d=>d.email||d.password).parse(req.body)
-    const before=await db.owner.findUniqueOrThrow({where:{id}})
-    if(!await argon2.verify(before.passwordHash,d.currentPassword)) throw new Problem(403,'PASSWORD','Неверный текущий пароль.')
-    const passwordHash=await argon2.hash(d.password??d.currentPassword,{type:argon2.argon2id})
-    await db.$transaction(async tx=>{
-      if(!(await tx.owner.updateMany({where:{id,passwordHash:before.passwordHash},data:{passwordHash,normalizedEmail:d.email}})).count) throw conflict()
-      await tx.ownerSession.updateMany({where:{ownerId:id,revokedAt:null},data:{revokedAt:new Date()}})
-    })
-    return {csrf:await issue(id,req,reply,passwordHash)}
-  })
   for (const mode of ['register','login'] as const) app.post('/api/auth/'+mode,async (req,reply) => {
     csrf(req)
     await rate(mode+':ip:'+req.ip,30,reply)
     const {email,password} = credentials.parse(req.body)
     await rate(mode+':account:'+email,5,reply)
     let owner
+    let verificationDelivery: string | undefined
     if (mode === 'register') {
       owner = await db.owner.create({data:{normalizedEmail:email,passwordHash:await argon2.hash(password,{type:argon2.argon2id})}})
+      try { await mail.send(owner,'verify'); verificationDelivery='accepted' }
+      catch { verificationDelivery='unavailable'; if(mail.mailReady) console.error('EndQuote registration email unavailable') }
       reply.code(201)
     } else {
       owner = await db.owner.findUnique({where:{normalizedEmail:email}})
-      if (!await argon2.verify(owner?.passwordHash ?? dummy,password) || !owner) throw new Problem(401,'LOGIN','Неверная почта или пароль.')
+      if (!await argon2.verify(owner?.passwordHash ?? dummy,password) || !owner?.hasPassword) throw new Problem(401,'LOGIN','Неверная почта или пароль.')
       await db.rateBucket.deleteMany({where:{key:mac(mode+':account:'+email)}})
     }
-    return {owner:{id:owner.id,normalizedEmail:email},csrf:await issue(owner.id,req,reply,owner.passwordHash)}
+    return {verificationDelivery,owner:{id:owner.id,normalizedEmail:email},csrf:await issue(owner.id,req,reply,owner.passwordHash)}
   })
   app.post('/api/auth/logout',async (req,reply) => {
     csrf(req)

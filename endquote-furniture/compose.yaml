@@ -32,6 +32,12 @@ services:
   app:
     build: .
     environment:
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      MAIL_FROM: ${MAIL_FROM:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      APPLE_CLIENT_ID: ${APPLE_CLIENT_ID:-}
+      APPLE_CLIENT_SECRET: ${APPLE_CLIENT_SECRET:-}
       APP_ORIGIN: ${APP_ORIGIN:?}
       SESSION_SECRET: ${SESSION_SECRET:?}
       DATABASE_URL: postgresql://runtime:${RUNTIME_PASSWORD}@postgres/endquote

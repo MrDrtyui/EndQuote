@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import type { ItemConfiguration } from '../booking/domain'
 import { api } from './api'
 
-export type Session = { owner: { id: string; normalizedEmail: string } | null; onboarded: boolean }
+export type Provider = 'google' | 'apple'
+export type Session = { providers: Provider[]; mailReady:boolean; owner: { verifiedAt:string|null; id: string; normalizedEmail: string } | null; onboarded: boolean }
 export type Business = {
   id: string; slug: string; name: string; city: string; phone: string; description: string; area: string
   published: boolean; editable: boolean; trialEndsAt: string; paidThrough: string | null

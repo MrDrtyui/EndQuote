@@ -46,3 +46,18 @@ test('a stale catalog revision is returned to the editor without replaying the s
   await assert.rejects(api('owner/catalog', 'PUT', { revision: 1 }), { status: 409, code: 'CONFLICT' })
   assert.equal(requests.length, 1)
 })
+
+test('legacy guest and owner sessions render with social login disabled', async t => {
+  const owner = { id: 'owner-a', normalizedEmail: 'owner@example.test' }
+  const { api } = await client(t, [
+    { body: { owner: null, onboarded: false, csrf: 'guest' } },
+    { body: { owner, onboarded: true, csrf: 'owner' } },
+    { body: { owner, providers: ['google', 'apple'], mailReady: true } },
+  ])
+  assert.deepEqual((await api('auth/session')).providers, [])
+  const signedIn = await api('auth/session')
+  assert.deepEqual(signedIn.providers, [])
+  assert.deepEqual(signedIn.owner, owner)
+  assert.equal(signedIn.onboarded, true)
+  assert.deepEqual((await api('auth/session')).providers, ['google', 'apple'])
+})
