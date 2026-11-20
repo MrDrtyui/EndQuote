@@ -1,0 +1,39 @@
+name: EndQuote Admin checks
+on:
+  push:
+    branches: [feat/endquote-admin-linear-mfa]
+  pull_request:
+    paths:
+      - 'endquote-furniture/server/**'
+      - 'endquote-furniture/src/admin/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            endquote-furniture/package-lock.json
+            endquote-furniture/server/package-lock.json
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: endquote-furniture
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: endquote-furniture/server
+      - name: Generate Prisma client
+        run: npm run generate
+        working-directory: endquote-furniture/server
+      - name: Build backend
+        run: npm run build
+        working-directory: endquote-furniture/server
+      - name: Admin MFA unit tests
+        run: node --test tests/admin-security.test.mjs
+        working-directory: endquote-furniture/server
+      - name: Build frontend
+        run: npm run build
+        working-directory: endquote-furniture
