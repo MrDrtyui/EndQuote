@@ -71,18 +71,23 @@ try {
     await expect(page.locator('.eq-plan-card')).toHaveCount(3)
     await expect(page.locator('#pricing .eq-plan-index')).toHaveCount(0)
     await expect(page.locator('.eq-plan-card').first().locator('.eq-plan-features li')).toHaveCount(3)
-    await expect(page.locator('.eq-plan-card').first().locator('.eq-plan-rate strong')).toHaveCSS('color', 'rgb(41, 48, 39)')
+    await expect(page.locator('.eq-pricing-copy')).toHaveCSS('text-align', 'center')
+    await expect(page.locator('.eq-pricing-copy .eq-section-label')).toHaveCSS('justify-content', 'center')
+    await expect(page.locator('.eq-plan-card').first()).toHaveCSS('text-align', 'center')
+    await expect(page.locator('.eq-plan-card').first().locator('.eq-plan-rate strong')).toHaveCSS('color', 'rgb(242, 243, 237)')
     if (width === 1440) {
       const card = page.locator('.eq-plan-card').first()
       assert(await card.evaluate(element => element.getBoundingClientRect().height < 360), 'Pricing card is too tall')
     }
     for (const amount of ['4 999', '13 490', '47 990']) await expect(page.locator('#pricing')).toContainText(amount)
     for (const card of await page.locator('.eq-plan-card').all()) {
-      await expect(card).toHaveCSS('background-color', 'rgb(255, 255, 255)')
+      await expect(card).toHaveCSS('background-color', 'rgb(37, 39, 33)')
       const link = card.locator('a.eq-plan-action')
       await expect(link).toHaveAttribute('href', /^https:\/\/wa\.me\/77088056548\?text=/)
       await expect(link).toHaveAttribute('target', '_blank')
     }
+    await expect(page.locator('.eq-plan-card--recommended .eq-plan-badge')).toHaveCSS('background-color', 'rgb(200, 248, 133)')
+    await expect(page.locator('.eq-plan-action').first()).toHaveCSS('background-color', 'rgb(242, 243, 237)')
     await expect(page.locator('#pricing')).toContainText('Автоматических списаний нет.')
     await expect(page.getByRole('link', { name: 'dryuicode@gmail.com' })).toHaveAttribute('href', 'mailto:dryuicode@gmail.com')
     await page.getByRole('button', { name: /^Конфиденциальность/ }).click()
