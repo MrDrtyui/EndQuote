@@ -129,9 +129,24 @@ model CleaningOrder {
   events StatusEvent[]
   lines OrderLine[]
   photos Upload[]
+  notification OrderNotification?
   @@unique([businessId,id])
   @@unique([businessId,session,attempt])
   @@index([businessId,createdAt,id])
+}
+// Durable mail outbox. One notification per committed order.
+model OrderNotification {
+  orderId String @id @db.Uuid
+  order CleaningOrder @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  recipientEmail String
+  businessName String
+  total Int
+  createdAt DateTime @default(now())
+  nextAttemptAt DateTime @default(now())
+  attempts Int @default(0)
+  leaseUntil DateTime?
+  sentAt DateTime?
+  @@index([sentAt, nextAttemptAt])
 }
 model OrderLine {
   id String @id @default(uuid()) @db.Uuid
