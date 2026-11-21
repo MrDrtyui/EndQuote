@@ -67,8 +67,8 @@ try {
       await expect(page.getByRole('navigation', { name: 'Мобильная навигация' })).toHaveCount(0)
     }
     await expect(page.locator('#pricing')).toContainText('Один продукт.')
-    await expect(page.locator('#pricing')).toContainText('Три тарифа.')
-    await expect(page.locator('.eq-plan-card')).toHaveCount(3)
+    await expect(page.locator('#pricing')).toContainText('Четыре тарифа.')
+    await expect(page.locator('.eq-plan-card')).toHaveCount(4)
     await expect(page.locator('#pricing .eq-plan-index')).toHaveCount(0)
     await expect(page.locator('.eq-plan-card').first().locator('.eq-plan-features li')).toHaveCount(3)
     await expect(page.locator('.eq-pricing-copy')).toHaveCSS('text-align', 'center')
@@ -79,9 +79,17 @@ try {
       const card = page.locator('.eq-plan-card').first()
       assert(await card.evaluate(element => element.getBoundingClientRect().height < 360), 'Pricing card is too tall')
     }
+    await expect(page.locator('.eq-plan-card--trial h3')).toHaveText('Free')
+    await expect(page.locator('.eq-plan-card--trial .eq-plan-rate strong')).toHaveText('0 ₸')
+    await expect(page.locator('.eq-plan-card--trial')).toContainText('14 дней')
+    await expect(page.locator('.eq-plan-card--trial a.eq-plan-action')).toHaveAttribute('href', '/owner/register')
+    const expectedColumns = width <= 760 ? 1 : width <= 1180 ? 2 : 4
+    assert(await page.locator('.eq-plan-grid').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length) === expectedColumns, 'Pricing responsive columns')
     for (const amount of ['4 999', '13 490', '47 990']) await expect(page.locator('#pricing')).toContainText(amount)
     for (const card of await page.locator('.eq-plan-card').all()) {
       await expect(card).toHaveCSS('background-color', 'rgb(37, 39, 33)')
+    }
+    for (const card of await page.locator('.eq-plan-card:not(.eq-plan-card--trial)').all()) {
       const link = card.locator('a.eq-plan-action')
       await expect(link).toHaveAttribute('href', /^https:\/\/wa\.me\/77088056548\?text=/)
       await expect(link).toHaveAttribute('target', '_blank')
