@@ -100,10 +100,9 @@ function Channels() {
 }
 
 const subscriptionFeatures = [
-  'Витрина по вашей ссылке',
-  '3D-расчёт стоимости услуг',
-  'Свои услуги и настройка цен',
-  'Заявки в личном кабинете',
+  'Витрина с 3D-расчётом',
+  'Настройка услуг и цен',
+  'Приём заявок в кабинете',
 ] as const
 
 const formatPrice = (value: number) => new Intl.NumberFormat('ru-RU').format(value)
@@ -118,29 +117,24 @@ function Pricing() {
         <p>Все возможности EndQuote доступны на любом тарифе. Выберите срок — чем он дольше, тем выгоднее.</p>
       </div>
       <div className="eq-plan-grid">
-        {SUBSCRIPTION_PLANS.map((plan, index) => {
+        {SUBSCRIPTION_PLANS.map(plan => {
           const saved = monthlyBase * plan.months - plan.total
           const discount = Math.round(saved / (monthlyBase * plan.months) * 100)
           return <article className={`eq-plan-card${plan.recommended ? ' eq-plan-card--recommended' : ''}`} key={plan.key}>
             <div className="eq-plan-topline">
-              <span className="eq-plan-index">0{index + 1} / Подписка</span>
+              <h3>{plan.title}</h3>
               {plan.recommended && <span className="eq-plan-badge">Популярный</span>}
             </div>
-            <h3>{plan.title}</h3>
             <div className="eq-plan-rate"><strong>{formatPrice(Math.round(plan.total / plan.months))} ₸</strong><span>/ мес.</span></div>
-            <p className="eq-plan-rate-caption">{plan.months === 1 ? 'Оплата помесячно' : 'В пересчёте на месяц'}</p>
-            <div className="eq-plan-total">
-              <span>К оплате за {plan.term}</span>
-              <strong>{formatPrice(plan.total)} ₸</strong>
-            </div>
-            <div className="eq-plan-saving">
-              {saved > 0 ? <><span>Экономия {formatPrice(saved)} ₸</span><span className="eq-plan-discount">−{discount}%</span></> : <span>Без долгосрочных обязательств</span>}
+            <div className="eq-plan-payment">
+              <span>{formatPrice(plan.total)} ₸ за {plan.term}</span>
+              {saved > 0 && <span className="eq-plan-discount" aria-label={`Скидка ${discount} процентов`}>−{discount}%</span>}
             </div>
             <ul className="eq-plan-features">
               {subscriptionFeatures.map(feature => <li key={feature}><Check size={17} strokeWidth={1.9} aria-hidden="true" /><span>{feature}</span></li>)}
             </ul>
             <a className="eq-plan-action" href={whatsappLink(`Здравствуйте! Хочу подключить EndQuote на ${plan.term} за ${formatPrice(plan.total)} ₸. Подскажите, как оформить подписку.`)} {...external} aria-label={`Запросить подключение EndQuote: ${plan.title}`}>
-              Запросить подключение <ArrowUpRight size={17} aria-hidden="true" />
+              Подключить <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           </article>
         })}
