@@ -37,7 +37,7 @@ function price(b:Business,d:z.infer<typeof quote>){
   return {lines,total,revision:b.catalogRevision}
 }
 export type CommitClock={now:()=>Date;beforeLock?:()=>Promise<void>;afterLock?:()=>Promise<void>}
-export function intake(app:FastifyInstance,db:PrismaClient,mac:(s:string)=>string,options:import('@fastify/cookie').CookieSerializeOptions,ownerId:(req:FastifyRequest)=>Promise<string>,rate:(k:string,n:number,r:FastifyReply)=>Promise<void>,clock:CommitClock){
+export function intake(app:FastifyInstance,db:PrismaClient,mac:(s:string)=>string,options:import('@fastify/cookie').CookieSerializeOptions,ownerId:(req:FastifyRequest)=>Promise<string>,rate:(k:string,n:number,r:FastifyReply)=>Promise<void>,clock:CommitClock,onNewOrder:()=>void=()=>{}){
   const files=media(db),prefix='/api/public/:slug'
   const timer=setInterval(()=>{void files.cleanup().catch(()=>{console.error('Staged media cleanup failed; retry scheduled.')})},3600_000);timer.unref()
   app.addHook('onClose',async()=>{clearInterval(timer);files.close()})
@@ -82,7 +82,7 @@ export function intake(app:FastifyInstance,db:PrismaClient,mac:(s:string)=>strin
     if(req.headers['idempotency-key']!==d.attempt)throw new Problem(400,'KEY','Неверный ключ заявки.')
     const payloadHash=digest(JSON.stringify(d))
     await clock.beforeLock?.()
-    return db.$transaction(async tx=>{
+    const result = await db.$transaction(async tx=>{
       const b=await locked(tx,initial.id)
       await clock.afterLock?.()
       if(check(req,b)!==session)throw missing()
@@ -98,10 +98,16 @@ export function intake(app:FastifyInstance,db:PrismaClient,mac:(s:string)=>strin
       const customer=await tx.customer.upsert({where:{businessId_phone:{businessId:b.id,phone:d.contact.phone}},create:{businessId:b.id,phone:d.contact.phone,name:d.contact.name},update:{name:d.contact.name}})
       const row=await tx.cleaningOrder.create({data:{businessId:b.id,customerId:customer.id,session,attempt:d.attempt,receipt:random(),payloadHash,total:calc.total,businessName:b.name,revision:calc.revision,contact:d.contact,consentVersion:consent,consentAt:now}})
       await tx.orderLine.createMany({data:calc.lines.map((snapshot,position)=>({businessId:b.id,orderId:row.id,snapshot,position}))})
+      const recipient=await tx.owner.findUnique({where:{id:b.ownerId},select:{normalizedEmail:true,verifiedAt:true}})
+      if (recipient?.verifiedAt) await tx.orderNotification.create({
+        data:{orderId:row.id,recipientEmail:recipient.normalizedEmail,businessName:b.name,total:calc.total}
+      })
       const attached=await tx.upload.updateMany({where:{businessId:b.id,id:{in:d.uploads},session,attempt:d.attempt,purpose:'photo',state:'staged',createdAt:{gt:new Date(+now-86400_000)}},data:{orderId:row.id,state:'attached'}})
       if(attached.count!==d.uploads.length)throw missing()
       reply.code(201);return {reference:row.receipt,total:row.total}
     })
+    if (!('alreadySubmitted' in result)) onNewOrder()
+    return result
   })
   app.get(prefix+'/receipts/:ref',async req=>{
     const b=await resolve(req,true),session=check(req,b,true),{ref}=z.object({ref:z.string().length(64)}).parse(req.params)
