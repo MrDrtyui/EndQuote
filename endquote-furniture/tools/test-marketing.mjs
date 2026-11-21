@@ -66,9 +66,17 @@ try {
       await page.getByRole('navigation', { name: 'Мобильная навигация' }).getByRole('link', { name: 'Тарифы' }).click()
       await expect(page.getByRole('navigation', { name: 'Мобильная навигация' })).toHaveCount(0)
     }
-    await expect(page.locator('#pricing')).toContainText('Тарифы готовятся')
-    assert(!/\d[\s\d]*(?:₸|тенге|\/мес)/.test(await page.locator('#pricing').innerText()), 'Invented subscription price')
-    await expect(page.locator('#pricing').getByRole('link', { name: 'Начать бесплатно' })).toHaveAttribute('href', '/owner/register')
+    await expect(page.locator('#pricing')).toContainText('Один продукт.')
+    await expect(page.locator('#pricing')).toContainText('Три тарифа.')
+    await expect(page.locator('.eq-plan-card')).toHaveCount(3)
+    for (const amount of ['4 999', '13 490', '47 990']) await expect(page.locator('#pricing')).toContainText(amount)
+    for (const card of await page.locator('.eq-plan-card').all()) {
+      await expect(card).toHaveCSS('background-color', 'rgb(255, 255, 255)')
+      const link = card.locator('a.eq-plan-action')
+      await expect(link).toHaveAttribute('href', /^https:\/\/wa\.me\/77088056548\?text=/)
+      await expect(link).toHaveAttribute('target', '_blank')
+    }
+    await expect(page.locator('#pricing')).toContainText('Автоматических списаний нет.')
     await expect(page.getByRole('link', { name: 'dryuicode@gmail.com' })).toHaveAttribute('href', 'mailto:dryuicode@gmail.com')
     await page.getByRole('button', { name: /^Конфиденциальность/ }).click()
     await expect(page.getByRole('dialog')).toBeVisible()
