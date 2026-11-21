@@ -113,10 +113,21 @@ function Pricing() {
     <div className="eq-container eq-pricing">
       <div className="eq-pricing-copy">
         <SectionLabel index="02">Подписка EndQuote</SectionLabel>
-        <h2 id="eq-pricing-title">Один продукт.<br /><em>Три тарифа.</em></h2>
-        <p>Все возможности EndQuote доступны на любом тарифе. Выберите срок — чем он дольше, тем выгоднее.</p>
+        <h2 id="eq-pricing-title">Один продукт.<br /><em>Четыре тарифа.</em></h2>
+        <p>Начните с 14 дней бесплатно — затем выберите удобный срок подписки. Все возможности EndQuote доступны и на пробном периоде.</p>
       </div>
       <div className="eq-plan-grid">
+        <article className="eq-plan-card eq-plan-card--trial">
+          <div className="eq-plan-topline"><h3>Free</h3></div>
+          <div className="eq-plan-rate"><strong>0 ₸</strong><span>/ 14 дней</span></div>
+          <div className="eq-plan-payment"><span>Бесплатный доступ при создании витрины</span></div>
+          <ul className="eq-plan-features">
+            {subscriptionFeatures.map(feature => <li key={feature}><Check size={17} strokeWidth={1.9} aria-hidden="true" /><span>{feature}</span></li>)}
+          </ul>
+          <a className="eq-plan-action" href="/owner/register" aria-label="Начать бесплатный пробный период на 14 дней">
+            Начать бесплатно <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+        </article>
         {SUBSCRIPTION_PLANS.map(plan => {
           const saved = monthlyBase * plan.months - plan.total
           const discount = Math.round(saved / (monthlyBase * plan.months) * 100)
@@ -141,7 +152,7 @@ function Pricing() {
       </div>
       <div className="eq-pricing-foot">
         <p><Check size={15} aria-hidden="true" /> Все функции включены в каждый тариф.</p>
-        <p>Подключение и оплата согласовываются вручную. Автоматических списаний нет.</p>
+        <p>Пробный доступ действует 14 дней после создания витрины. Продление согласовывается вручную, автоматических списаний нет.</p>
       </div>
     </div>
   </section>
