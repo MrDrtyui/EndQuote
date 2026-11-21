@@ -69,6 +69,13 @@ try {
     await expect(page.locator('#pricing')).toContainText('Один продукт.')
     await expect(page.locator('#pricing')).toContainText('Три тарифа.')
     await expect(page.locator('.eq-plan-card')).toHaveCount(3)
+    await expect(page.locator('#pricing .eq-plan-index')).toHaveCount(0)
+    await expect(page.locator('.eq-plan-card').first().locator('.eq-plan-features li')).toHaveCount(3)
+    await expect(page.locator('.eq-plan-card').first().locator('.eq-plan-rate strong')).toHaveCSS('color', 'rgb(41, 48, 39)')
+    if (width === 1440) {
+      const card = page.locator('.eq-plan-card').first()
+      assert(await card.evaluate(element => element.getBoundingClientRect().height < 360), 'Pricing card is too tall')
+    }
     for (const amount of ['4 999', '13 490', '47 990']) await expect(page.locator('#pricing')).toContainText(amount)
     for (const card of await page.locator('.eq-plan-card').all()) {
       await expect(card).toHaveCSS('background-color', 'rgb(255, 255, 255)')
