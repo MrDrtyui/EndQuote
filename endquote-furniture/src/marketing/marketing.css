@@ -277,12 +277,12 @@
 .eq-benefits-grid p { max-width: 335px; }
 /* Compact, centered subscription pricing on dark EndQuote surfaces */
 .eq-pricing-section { background: #1b1d19; border-block: 1px solid var(--rule); }
-.eq-pricing { display: flex; flex-direction: column; width: min(1000px, 90%); gap: 30px; }
+.eq-pricing { display: flex; flex-direction: column; width: min(1160px, 90%); gap: 30px; }
 .eq-pricing-copy { max-width: 780px; margin-inline: auto; text-align: center; }
 .eq-pricing-copy .eq-section-label { justify-content: center; }
 .eq-pricing-copy h2 { max-width: 18ch; margin-inline: auto; font-size: clamp(39px, 3.9vw, 56px); }
 .eq-pricing-copy > p { max-width: 610px; margin-inline: auto; padding-top: 15px; color: var(--muted); font-size: 14px; line-height: 1.65; letter-spacing: -.014em; }
-.eq-plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 16px; }
+.eq-plan-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch; gap: 16px; }
 .eq-plan-card {
   position: relative; min-width: 0; display: flex; flex-direction: column; align-items: center;
   padding: 24px 22px 22px; text-align: center; color: var(--white);
@@ -321,8 +321,8 @@
 .eq-pricing-foot { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; margin-top: 0; text-align: center; }
 .eq-pricing-foot p { display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: #aeb5a9; font-size: 11px; line-height: 1.6; }
 .eq-pricing-foot svg { color: var(--acid); flex: none; }
-@media (min-width: 761px) and (max-width: 900px) {
-  .eq-plan-grid { grid-template-columns: 1fr; width: min(100%, 390px); margin-inline: auto; gap: 23px; }
+@media (min-width: 761px) and (max-width: 1180px) {
+  .eq-plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 720px); margin-inline: auto; gap: 16px; }
 }
 .eq-faq { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: clamp(40px, 6vw, 90px); }
 .eq-faq .eq-section-label { color: var(--muted); }
