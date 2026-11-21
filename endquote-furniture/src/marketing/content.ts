@@ -2,12 +2,14 @@ export const MARKETING = {
   email: 'dryuicode@gmail.com',
   whatsapp: '77088056548',
   demo: '/chistodom',
-  earlyAccess: {
-    title: 'Начнём с вашего бизнеса.',
-    priceLabel: 'Тарифы готовятся',
-    description: 'Подписки пока не открыты. Стоимость и условия объявим перед запуском. Оставьте запрос — обсудим, как EndQuote подойдёт вашему бизнесу.',
-  },
 } as const
+
+// Public subscription terms. Activation is coordinated manually with the team.
+export const SUBSCRIPTION_PLANS = [
+  { key: 'month', title: 'Месяц', term: '1 месяц', months: 1, total: 4999, recommended: false },
+  { key: 'quarter', title: '3 месяца', term: '3 месяца', months: 3, total: 13490, recommended: true },
+  { key: 'year', title: 'Год', term: '12 месяцев', months: 12, total: 47990, recommended: false },
+] as const
 
 export function whatsappLink(message = 'Здравствуйте! Хочу узнать об EndQuote для моего бизнеса.') {
   return `https://wa.me/${MARKETING.whatsapp}?text=${encodeURIComponent(message)}`

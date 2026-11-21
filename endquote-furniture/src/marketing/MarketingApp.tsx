@@ -1,6 +1,6 @@
 import { Component, lazy, Suspense, useEffect, useRef, useState } from 'react'
-import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, Check, Clock3, Globe2, Link2, Mail, Menu, X } from 'lucide-react'
-import { MARKETING, whatsappLink } from './content'
+import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, Check, Globe2, Link2, Menu, X } from 'lucide-react'
+import { MARKETING, SUBSCRIPTION_PLANS, whatsappLink } from './content'
 import Workflow from './Workflow'
 import { Logo, Modal, QuoteMark, SectionLabel } from './ui'
 import { api } from '../owner/api'
@@ -99,27 +99,56 @@ function Channels() {
   </aside>
 }
 
-function Pricing({ action }: { action: OwnerAction }) {
-  return <section id="pricing" className="eq-pricing-section eq-section">
+const subscriptionFeatures = [
+  'Витрина по вашей ссылке',
+  '3D-расчёт стоимости услуг',
+  'Свои услуги и настройка цен',
+  'Заявки в личном кабинете',
+] as const
+
+const formatPrice = (value: number) => new Intl.NumberFormat('ru-RU').format(value)
+
+function Pricing() {
+  const monthlyBase = SUBSCRIPTION_PLANS[0].total
+  return <section id="pricing" className="eq-pricing-section eq-section" aria-labelledby="eq-pricing-title">
     <div className="eq-container eq-pricing">
       <div className="eq-pricing-copy">
-        <SectionLabel index="02">Ранний доступ</SectionLabel>
-        <h2>Начнём с вашего<br /><em>бизнеса.</em></h2>
-        <p>Сейчас фокусируемся на химчистке мебели. Хотим понять задачи мастеров и небольших компаний, прежде чем открывать подписки.</p>
-        <a className="eq-text-link" href={whatsappLink('Здравствуйте! Хочу обсудить ранний доступ к EndQuote для моего бизнеса.')} {...external}>Расскажите о своей работе<ArrowUpRight size={15} /></a>
+        <SectionLabel index="02">Подписка EndQuote</SectionLabel>
+        <h2 id="eq-pricing-title">Один продукт.<br /><em>Три тарифа.</em></h2>
+        <p>Все возможности EndQuote доступны на любом тарифе. Выберите срок — чем он дольше, тем выгоднее.</p>
       </div>
-      <article className="eq-access-card">
-        <div className="eq-access-kicker"><span><i className="eq-status-dot" />ГОТОВИМ ЗАПУСК</span><QuoteMark /></div>
-        <h3>{MARKETING.earlyAccess.priceLabel}</h3>
-        <p>Стоимость и условия объявим перед запуском. Сейчас можно попробовать клиентскую часть.</p>
-        <ul className="eq-access-list">
-          <li><Check size={17} /><div>Клиентская витрина и 3D-расчёт<small>Уже в демо</small></div></li>
-          <li><Clock3 size={16} /><div>Своя страница и настройка цен<small>В разработке</small></div></li>
-          <li><Clock3 size={16} /><div>Кабинет и приём реальных заявок<small>Следующий этап</small></div></li>
-        </ul>
-        <a className="eq-button eq-primary" href={action.href}>{action.label}<ArrowUpRight size={17} /></a>
-        <a className="eq-access-email" href={`mailto:${MARKETING.email}?subject=${encodeURIComponent('Ранний доступ к EndQuote')}`}><Mail size={13} />Или написать на почту</a>
-      </article>
+      <div className="eq-plan-grid">
+        {SUBSCRIPTION_PLANS.map((plan, index) => {
+          const saved = monthlyBase * plan.months - plan.total
+          const discount = Math.round(saved / (monthlyBase * plan.months) * 100)
+          return <article className={`eq-plan-card${plan.recommended ? ' eq-plan-card--recommended' : ''}`} key={plan.key}>
+            <div className="eq-plan-topline">
+              <span className="eq-plan-index">0{index + 1} / Подписка</span>
+              {plan.recommended && <span className="eq-plan-badge">Популярный</span>}
+            </div>
+            <h3>{plan.title}</h3>
+            <div className="eq-plan-rate"><strong>{formatPrice(Math.round(plan.total / plan.months))} ₸</strong><span>/ мес.</span></div>
+            <p className="eq-plan-rate-caption">{plan.months === 1 ? 'Оплата помесячно' : 'В пересчёте на месяц'}</p>
+            <div className="eq-plan-total">
+              <span>К оплате за {plan.term}</span>
+              <strong>{formatPrice(plan.total)} ₸</strong>
+            </div>
+            <div className="eq-plan-saving">
+              {saved > 0 ? <><span>Экономия {formatPrice(saved)} ₸</span><span className="eq-plan-discount">−{discount}%</span></> : <span>Без долгосрочных обязательств</span>}
+            </div>
+            <ul className="eq-plan-features">
+              {subscriptionFeatures.map(feature => <li key={feature}><Check size={17} strokeWidth={1.9} aria-hidden="true" /><span>{feature}</span></li>)}
+            </ul>
+            <a className="eq-plan-action" href={whatsappLink(`Здравствуйте! Хочу подключить EndQuote на ${plan.term} за ${formatPrice(plan.total)} ₸. Подскажите, как оформить подписку.`)} {...external} aria-label={`Запросить подключение EndQuote: ${plan.title}`}>
+              Запросить подключение <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          </article>
+        })}
+      </div>
+      <div className="eq-pricing-foot">
+        <p><Check size={15} aria-hidden="true" /> Все функции включены в каждый тариф.</p>
+        <p>Подключение и оплата согласовываются вручную. Автоматических списаний нет.</p>
+      </div>
     </div>
   </section>
 }
@@ -131,7 +160,7 @@ function Footer() {
     <div className="eq-container">
       <div className="eq-footer-main">
         <div><Logo /><p>Ваши услуги. Ваши цены.<br />Одна ссылка в профиле.</p></div>
-        <div className="eq-footer-column"><strong>Продукт</strong><a href="#how-it-works">Как это работает</a><a href={MARKETING.demo}>Клиентское демо</a><a href="#pricing">Ранний доступ</a></div>
+        <div className="eq-footer-column"><strong>Продукт</strong><a href="#how-it-works">Как это работает</a><a href={MARKETING.demo}>Клиентское демо</a><a href="#pricing">Тарифы</a></div>
         <div className="eq-footer-column"><strong>Связаться</strong><a href={`mailto:${MARKETING.email}`}>{MARKETING.email}<ArrowUpRight size={12} /></a><a href={whatsappLink()} {...external}>+7 (708) 805-65-48<ArrowUpRight size={12} /></a></div>
         <a className="eq-up" href="#top" aria-label="В начало страницы"><ArrowUp size={18} /></a>
       </div>
@@ -140,7 +169,7 @@ function Footer() {
     {legal && <Modal titleId="eq-legal-title" onClose={() => setLegal(null)} className="eq-legal">
       <span className="eq-section-label"><i />Перед запуском</span>
       <h2 id="eq-legal-title">{legal === 'privacy' ? 'Политика конфиденциальности' : 'Условия использования'}</h2>
-      <p>Документ готовится и будет опубликован к открытию регистрации. Подписки, оплата и личный кабинет пока недоступны.</p>
+      <p>Документ готовится к публикации. Подключение подписки согласовывается с командой; автоматической оплаты на сайте нет.</p>
       <p>В клиентском демо заявки сохраняются только в браузере. Они не отправляются компании или команде EndQuote.</p>
       <a href={`mailto:${MARKETING.email}`} className="eq-text-link">Задать вопрос о продукте<ArrowUpRight size={15} /></a>
     </Modal>}
@@ -174,7 +203,7 @@ export default function MarketingApp() {
       </section>
       <Channels />
       <Workflow />
-      <Pricing action={action} />
+      <Pricing />
       <section className="eq-close-section">
         <div className="eq-container eq-close-card">
           <div><span className="eq-section-label"><i />Попробуйте EndQuote</span>
