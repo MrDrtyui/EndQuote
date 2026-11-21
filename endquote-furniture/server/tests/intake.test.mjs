@@ -6,6 +6,7 @@ import sharp from 'sharp'
 import {makeApp} from '../dist/src/app.js'
 import {starter} from '../dist/src/catalog.js'
 import {media} from '../dist/src/storage.js'
+import {orderNotifications} from '../dist/src/notifications.js'
 import pg from 'pg'
 import http from 'node:http'
 import {once} from 'node:events'
@@ -106,6 +107,44 @@ test('transaction ordering, expiry, access audit, attempt and private storage li
   assert.equal(revised.statusCode,200)
   const committed=await db.cleaningOrder.findFirstOrThrow({where:{businessId:b.id},include:{lines:true}})
   assert.equal(committed.lines.length,1);assert.equal(committed.lines[0].snapshot.base,9000);assert.equal(committed.total,28400)
+  // The outbox is committed exactly once alongside the order, even when a client retries.
+  const notification=await db.orderNotification.findUniqueOrThrow({where:{orderId:committed.id}})
+  assert.equal(notification.recipientEmail,creds.email)
+  assert.equal(notification.total,committed.total)
+  assert.equal(await db.orderNotification.count({where:{orderId:committed.id}}),1)
+  const emails=[]
+  const notifier=orderNotifications(db,{
+    APP_ORIGIN:origin,RESEND_API_KEY:'disposable-test-key',MAIL_FROM:'EndQuote <notice@example.test>'
+  },{
+    start:false,
+    send:async (_url,init)=>{
+      const payload=JSON.parse(init.body)
+      emails.push({headers:init.headers,payload})
+      if(emails.length===1)return new Response(JSON.stringify({message:'temporarily unavailable'}),{status:429,headers:{'Retry-After':'1'}})
+      return new Response(JSON.stringify({id:'accepted-test-message'}),{status:200,headers:{'Content-Type':'application/json'}})
+    }
+  })
+  try {
+    assert.equal(await notifier.flush(),1)
+    const deferred=await db.orderNotification.findUniqueOrThrow({where:{orderId:committed.id}})
+    assert.equal(deferred.attempts,1)
+    assert.equal(deferred.sentAt,null)
+    assert.ok(deferred.nextAttemptAt>new Date())
+    await db.orderNotification.update({where:{orderId:committed.id},data:{nextAttemptAt:new Date(0)}})
+    assert.equal(await notifier.flush(),1)
+    const delivered=await db.orderNotification.findUniqueOrThrow({where:{orderId:committed.id}})
+    assert.ok(delivered.sentAt)
+    assert.equal(delivered.attempts,2)
+    assert.equal(await notifier.flush(),0)
+    assert.equal(emails.length,2)
+    assert.deepEqual(emails.map(e=>e.headers['Idempotency-Key']),Array(2).fill('order-notification:'+committed.id))
+    assert.deepEqual(emails[0].payload.to,[creds.email])
+    assert.equal(emails[0].payload.text.includes('Fixture'),false)
+    assert.equal(emails[0].payload.text.includes('+77000000004'),false)
+    assert.equal(emails[0].payload.text.includes('Synthetic'),false)
+    assert.equal(emails[0].payload.text.includes('/owner#orders'),true)
+    assert.deepEqual(emails[0].payload,emails[1].payload)
+  }finally{await notifier.stop()}
   assert.equal((await edit(a.revision)).statusCode,409)
   const next=await store(),h2=hold('beforeLock'),stale=submit(next);await h2.ready
   c.models[0].base=40000;assert.equal((await edit(next.revision)).statusCode,200);h2.release()

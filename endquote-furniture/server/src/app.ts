@@ -13,6 +13,7 @@ import {intake,type CommitClock} from './intake.js'
 import {accounts} from './account.js'
 import {newTotpSecret,encryptTotp,decryptTotp,verifyTotp,totpUri} from './admin-security.js'
 import {social} from './social.js'
+import {orderNotifications} from './notifications.js'
 
 export const environment = z.object({
   APP_ORIGIN: z.url().refine(s => {
@@ -41,6 +42,7 @@ const credentials = z.strictObject({
 export async function makeApp(config: z.infer<typeof environment>,clock:CommitClock={now:()=>new Date()}) {
   const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: config.DATABASE_URL, max: 12 }) })
   const app = Fastify({ logger: false, bodyLimit: 128 * 1024, trustProxy: config.TRUSTED_PROXY_IP??false,requestTimeout:60_000 })
+  const notifier = orderNotifications(db,config)
   const secure = config.APP_ORIGIN.startsWith('https:')
   const name = (s: string) => (secure ? '__Host-' : '') + 'eq-' + s
   const options = { secure, httpOnly: true, sameSite: 'lax' as const, path: '/' }
@@ -48,7 +50,7 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
   const dummy = await argon2.hash(random(), { type: argon2.argon2id })
   await app.register(cookie)
   await app.register(multipart)
-  app.addHook('onClose', () => db.$disconnect())
+  app.addHook('onClose', async () => { await notifier.stop(); await db.$disconnect() })
   app.addHook('onRequest', async (req, reply) => {
     reply.header('X-Request-Id',req.id).header('Cache-Control','no-store').header('X-Content-Type-Options','nosniff').header('Referrer-Policy','same-origin').header('X-Frame-Options','SAMEORIGIN')
     if (req.headers.host !== new URL(config.APP_ORIGIN).host) throw new Problem(400,'HOST','Недопустимый адрес.')
@@ -154,7 +156,7 @@ export async function makeApp(config: z.infer<typeof environment>,clock:CommitCl
     return id
   }
   workspace(app,db,businessAccess)
-  const files=intake(app,db,mac,options,businessAccess,rate,clock)
+  const files=intake(app,db,mac,options,businessAccess,rate,clock,notifier.kick)
   app.get('/readyz',async()=>{await db.$queryRaw`SELECT 1`;await files.ready();return {ok:true}})
   // Separate, limited admin sessions are never interchangeable with owner sessions.
   // Every admin API requires an enrolled TOTP and a completed second factor.

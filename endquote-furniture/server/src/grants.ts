@@ -6,6 +6,8 @@ const db=new PrismaClient({adapter:new PrismaPg({connectionString:process.env.MI
 try{
   await db.$transaction(async tx=>{
     await tx.$executeRaw`GRANT SELECT, INSERT, UPDATE, DELETE ON "MailToken","ProviderIdentity","AuthAttempt" TO runtime`
+    await tx.$executeRaw`GRANT SELECT, INSERT ON "OrderNotification" TO runtime`
+    await tx.$executeRaw`GRANT UPDATE ("nextAttemptAt","attempts","leaseUntil","sentAt") ON "OrderNotification" TO runtime`
     await tx.$executeRaw`GRANT USAGE ON SCHEMA public TO runtime`
     await tx.$executeRaw`GRANT SELECT ON "Owner","OwnerSession","Business","Slug","RateBucket","Customer","CleaningOrder","OrderLine","StatusEvent","Upload","PlatformAdmin","AdminSession" TO runtime`
     await tx.$executeRaw`GRANT INSERT ON "Owner","OwnerSession","Business","Slug","RateBucket","Customer","CleaningOrder","OrderLine","StatusEvent","Upload","AdminSession","AccessAudit" TO runtime`
